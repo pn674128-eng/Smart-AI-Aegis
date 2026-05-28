@@ -1,0 +1,58 @@
+{
+  "sessions": [
+    {
+      "session_id": "ce482652",
+      "timestamp": "2026-05-24T18:37:19",
+      "ops": [
+        {
+          "id": "81a82d0d-c23",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "牙孔 M4-0.7 + 【孔倒角 M4】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "64b52a0e-bfc",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "51a74021-3df",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "600a4108-a9b",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D8.5 + 【孔倒角 D8.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "1888918f-f93",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "46cdae13-509",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D10-面精銑"
+        },
+        {
+          "id": "c4bf3e12-4ee",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "57bc8a7e-823",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    }
+  ]
+}

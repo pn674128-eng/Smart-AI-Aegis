@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8"><title>CAM Core API</title>
+<style>
+body{margin:0;padding:12px 14px;background:#1e1e1e;color:#e3e3e3;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.5}
+h1{font-size:19px;color:#8fd3ff;margin:0 0 8px}h2{font-size:16px;color:#ffd37f;margin:18px 0 8px}
+h3{font-size:14px;color:#b8e19a;margin:12px 0 6px}.muted{color:#a0a0a0;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;margin:8px 0 14px;background:#252525}
+th,td{border:1px solid #3f3f3f;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#333;color:#f0f0f0}code,pre{color:#93e2b1;font-family:Consolas,monospace}
+pre{background:#151515;border:1px solid #333;border-radius:6px;padding:10px;white-space:pre-wrap}
+a{color:#8fd3ff;text-decoration:none}.nav{margin-bottom:12px}
+</style></head><body>
+<div class="nav"><a href="reference.html">&larr; 回主頁</a></div>
+<h1>CAM Core API — 官方完整參考 (adsk.cam)</h1>
+<div class="muted">來源：Fusion API Documentation (live query). 涵蓋 CAM / Setups / Operations / ToolLibrary / PostProcessInput</div>
+<h2>CAM — Properties</h2>
+<table><tr><th>屬性</th><th>說明</th></tr><tr><td><code>setups</code></td><td>Returns the Setups collection</td></tr><tr><td><code>allOperations</code></td><td>ObjectCollection of ALL operations in the document</td></tr><tr><td><code>genericPostFolder</code></td><td>Gets the installed post folder path</td></tr><tr><td><code>personalPostFolder</code></td><td>Gets the personal post folder path</td></tr><tr><td><code>temporaryFolder</code></td><td>Gets the folder for temporary files</td></tr><tr><td><code>documentToolLibrary</code></td><td>Gets the document ToolLibrary</td></tr><tr><td><code>allMachines</code></td><td>Array of all machines in the document</td></tr><tr><td><code>ncPrograms</code></td><td>Returns collection of NC programs</td></tr><tr><td><code>manufacturingModels</code></td><td>Returns collection of manufacturing models</td></tr><tr><td><code>exportManager</code></td><td>Returns Export Manager</td></tr><tr><td><code>importManager</code></td><td>Returns Import Manager</td></tr><tr><td><code>inspectionResults</code></td><td>Returns results collection (pathMeasures / manualMeasure)</td></tr><tr><td><code>setupGroups</code></td><td>Returns SetupGroups collection</td></tr><tr><td><code>customGraphicsGroups</code></td><td>Returns customGraphicsGroups object</td></tr><tr><td><code>designRootOccurrence</code></td><td>CAM root component single occurrence referencing Design root</td></tr><tr><td><code>flatPatternOccurrences</code></td><td>Read-only list of flat pattern occurrences</td></tr><tr><td><code>documentStockMaterialLibrary</code></td><td>Gets the document StockMaterialLibrary</td></tr></table>
+<h2>CAM — Methods</h2>
+<table><tr><th>方法</th><th>說明</th></tr><tr><td><code>generateToolpath(objects)</code></td><td>Generate/regenerate toolpaths for specified objects (incl. nested)</td></tr><tr><td><code>generateAllToolpaths()</code></td><td>Generate/regenerate ALL toolpaths in document</td></tr><tr><td><code>clearToolpath(objects)</code></td><td>Clear toolpaths for specified objects</td></tr><tr><td><code>clearAllToolpaths()</code></td><td>Clear ALL toolpaths in document</td></tr><tr><td><code>checkToolpath(objects)</code></td><td>Check if operations are valid and up to date</td></tr><tr><td><code>checkAllToolpaths()</code></td><td>Check ALL operations in document</td></tr><tr><td><code>postProcess(objects, input)</code></td><td>Post specified toolpaths to CNC file</td></tr><tr><td><code>postProcessAll(input)</code></td><td>Post ALL toolpaths in document</td></tr><tr><td><code>generateSetupSheet(objects, format, outputFolder, openInBrowser)</code></td><td>Generate setup sheets for specified objects</td></tr><tr><td><code>generateAllSetupSheets(format, outputFolder, openInBrowser)</code></td><td>Generate ALL setup sheets</td></tr><tr><td><code>getMachiningTime(objects)</code></td><td>Get machining time for specified objects</td></tr><tr><td><code>generateTemplateXML(objects)</code></td><td>Generate template XML string for specified operations/setups/folders</td></tr><tr><td><code>checkValidity()</code></td><td>Check if models changed; invalidate affected operations</td></tr><tr><td><code>clearMissingReferences()</code></td><td>Clear all missing references from all operations</td></tr><tr><td><code>export3MFForDefaultAdditiveSetup(path, supportType)</code></td><td>Export 3MF for default additive setup</td></tr><tr><td><code>deleteEntities(entities)</code></td><td>Delete specified entities associated with this product</td></tr><tr><td><code>findAttributes(groupName, attributeName)</code></td><td>Find attributes attached to objects</td></tr></table>
+<h2>Setups 集合</h2>
+<table><tr><th>成哣</th><th>說明</th></tr><tr><td><code>count</code></td><td>Number of setups</td></tr><tr><td><code>item(index)</code></td><td>Returns setup at index</td></tr><tr><td><code>itemByName(name)</code></td><td>Returns setup by name</td></tr><tr><td><code>itemByOperationId(id)</code></td><td>Returns setup by operation id</td></tr><tr><td><code>createInput(operationType)</code></td><td>Creates a new SetupInput object</td></tr><tr><td><code>add(input)</code></td><td>Creates and adds a new Setup from SetupInput</td></tr></table>
+<h2>SetupInput 建立 Setup 用</h2>
+<div class="muted">cam.setups.createInput(operationType) 回傳此物件</div>
+<table><tr><th>屬性</th><th>說明</th></tr><tr><td><code>name</code></td><td>Name of the new setup</td></tr><tr><td><code>operationType</code></td><td>OperationTypes enum</td></tr><tr><td><code>models</code></td><td>ObjectCollection of Occurrence/BRepBody/MeshBody</td></tr><tr><td><code>stockMode</code></td><td>SetupStockModes enum</td></tr><tr><td><code>stockSolids</code></td><td>Array of stock solid models</td></tr><tr><td><code>fixtureEnabled</code></td><td>Enable/disable fixture use</td></tr><tr><td><code>fixtures</code></td><td>Array of fixture models</td></tr><tr><td><code>machine</code></td><td>Machine object</td></tr><tr><td><code>printSetting</code></td><td>PrintSetting (additive)</td></tr><tr><td><code>parameters</code></td><td>CAMParameters for the setup to be created</td></tr><tr><td><code>isUsingPreviousSetupData</code></td><td>Use data from previous setup</td></tr></table>
+<h2>Operations 集合</h2>
+<div class="muted">setup.operations / folder.operations / pattern.operations</div>
+<table><tr><th>成哣</th><th>說明</th></tr><tr><td><code>count</code></td><td>Number of operations</td></tr><tr><td><code>compatibleStrategies</code></td><td>List of strategies compatible with parent setup</td></tr><tr><td><code>item(index)</code></td><td>Returns operation at index</td></tr><tr><td><code>itemByName(name)</code></td><td>Returns operation by browser name</td></tr><tr><td><code>itemByOperationId(id)</code></td><td>Returns operation by operation id</td></tr><tr><td><code>createInput(strategy)</code></td><td>Creates a new OperationInput for given strategy</td></tr><tr><td><code>add(input)</code></td><td>Creates and adds a new Operation from OperationInput</td></tr></table>
+<h2>OperationInput 建立 Operation 用</h2>
+<div class="muted">setup.operations.createInput(strategy) 回傳此物件</div>
+<table><tr><th>屬性</th><th>說明</th></tr><tr><td><code>strategy</code></td><td>Current strategy (OperationStrategyTypes)</td></tr><tr><td><code>parameters</code></td><td>CAMParameters for the new operation</td></tr><tr><td><code>tool</code></td><td>Optionally specify the tool (Tool object)</td></tr><tr><td><code>toolPreset</code></td><td>Optionally specify the tool preset</td></tr><tr><td><code>displayName</code></td><td>Override default browser-tree display name</td></tr><tr><td><code>generationMode</code></td><td>Automatic generation mode during creation</td></tr><tr><td><code>referenceTool</code></td><td>Optionally specify reference tool</td></tr></table>
+<h2>ToolLibrary / DocumentToolLibrary</h2>
+<div class="muted">cam.documentToolLibrary 為 DocumentToolLibrary，包含以下成哣及 DocumentToolLibrary 副å 功能</div>
+<table><tr><th>成哣</th><th>說明</th></tr><tr><td><code>count</code></td><td>Number of tools in the library</td></tr><tr><td><code>item(index)</code></td><td>Get Tool by index</td></tr><tr><td><code>add(tool)</code></td><td>Insert tool at end of library</td></tr><tr><td><code>remove(index)</code></td><td>Remove tool by index</td></tr><tr><td><code>toJson()</code></td><td>Generate JSON string of all tools</td></tr><tr><td><code>createQuery()</code></td><td>Create a ToolQuery to search for matching tools</td></tr><tr><td><code>updateTool(tool)</code></td><td>Update a tool in the library</td></tr><tr><td><code>createFromJson(json) [static]</code></td><td>Create ToolLibrary from JSON string</td></tr><tr><td><code>createEmpty() [static]</code></td><td>Create empty ToolLibrary</td></tr></table>
+<h3>DocumentToolLibrary 額外方法</h3>
+<table><tr><th>方法</th><th>說明</th></tr><tr><td><code>operationsByTool(tool)</code></td><td>Returns all operations using the given tool</td></tr><tr><td><code>update(tool)</code></td><td>Update tool in document tool library</td></tr><tr><td><code>toolsBySetupOrFolder(container)</code></td><td>Returns all tools used in a given setup or folder</td></tr></table>
+<h2>PostProcessInput</h2>
+<div class="muted">PostProcessInput.create() 建立。傳入 cam.postProcess() / cam.postProcessAll()</div>
+<table><tr><th>屬性</th><th>說明</th></tr><tr><td><code>programName</code></td><td>Program name or number</td></tr><tr><td><code>programComment</code></td><td>Program comment</td></tr><tr><td><code>postConfiguration</code></td><td>Full path to post configuration file (.cps)</td></tr><tr><td><code>outputFolder</code></td><td>Path for output folder</td></tr><tr><td><code>outputUnits</code></td><td>Units option for CNC output</td></tr><tr><td><code>isOpenInEditor</code></td><td>Open CNC file in editor after creation</td></tr><tr><td><code>areToolChangesMinimized</code></td><td>Reorder operations between setups to minimize tool changes</td></tr><tr><td><code>postProperties</code></td><td>List of post properties</td></tr><tr><td><code>machine</code></td><td>Machine used for post processing</td></tr></table>
+<h2>完整建立流程範例</h2>
+<pre># 1. Get CAM product
+cam = adsk.cam.CAM.cast(doc.products.itemByProductType('CAMProductType'))
+
+# 2. Create Setup
+setup_input = cam.setups.createInput(adsk.cam.OperationTypes.MillingOperation)
+setup_input.name = 'Setup1'
+setup_input.models = models_collection
+setup = cam.setups.add(setup_input)
+
+# 3. Create Operation
+op_input = setup.operations.createInput(adsk.cam.OperationStrategyTypes.Drilling)
+op_input.displayName = 'Drill1'
+op = setup.operations.add(op_input)
+
+# 4. Set parameters
+op.parameters.itemByName('cycleType').expression = "'drilling'"
+op.parameters.itemByName('holeMode').expression = "'selection-faces'"
+
+# 5. Generate toolpath
+cam.generateToolpath(op)
+
+# 6. Post process
+post_input = adsk.cam.PostProcessInput.create(
+    'O0001', 'fanuc', outputFolder, adsk.cam.PostOutputUnitOptions.DocumentUnitsOutput)
+cam.postProcess(op, post_input)</pre>
+</body></html>

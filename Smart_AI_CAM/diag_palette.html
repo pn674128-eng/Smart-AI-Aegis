@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SemiAutoCAM Diagnostics</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+body {
+  margin: 0;
+  padding: 12px;
+  background: #0a0b0e;
+  background-image: radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.8) 0%, #06080c 100%);
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 11px;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#title {
+  color: #00f2fe;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+#title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #00f2fe;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00f2fe;
+}
+#log {
+  height: calc(100vh - 42px);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(10, 11, 15, 0.85);
+  padding: 10px;
+  white-space: pre-wrap;
+  box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.6);
+  line-height: 1.5;
+  color: #00ffc4;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 11, 15, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.3);
+}
+</style>
+</head>
+<body>
+  <div id="title">Diagnostics Output</div>
+  <div id="log"></div>
+<script>
+function addLog(msg) {
+  var box = document.getElementById("log");
+  var now = new Date();
+  var ts = now.toLocaleTimeString();
+  var line = "[" + ts + "] " + (msg || "");
+  box.textContent = box.textContent ? (box.textContent + "\n" + line) : line;
+  box.scrollTop = box.scrollHeight;
+}
+
+window.fusionJavaScriptHandler = {
+  handle: function(action, data) {
+    try {
+      var d = JSON.parse(data || "{}");
+      if (action === "log") addLog(d.msg || "");
+    } catch (e) {
+      addLog("parse_error: " + e.message);
+    }
+    return true;
+  }
+};
+</script>
+</body>
+</html>

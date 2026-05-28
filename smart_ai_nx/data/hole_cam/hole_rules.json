@@ -1,0 +1,952 @@
+{
+  "version": 2,
+  "source": "V8.702 hole_type.txt + manual",
+  "rules": [
+    {
+      "id": "hole_tap",
+      "name_zh": "螺紋孔",
+      "priority": 4,
+      "match": {
+        "feature_type": "hole",
+        "thread": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "tap_rigid"
+      ]
+    },
+    {
+      "id": "hole_ream_h7",
+      "name_zh": "精密孔鉸",
+      "priority": 5,
+      "match": {
+        "feature_type": "hole",
+        "tolerance_ream": true,
+        "thread": false,
+        "diameter_mm": {
+          "min": 1,
+          "max": 40
+        }
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "drill_ream"
+      ]
+    },
+    {
+      "id": "hole_countersink_std",
+      "name_zh": "沉頭孔標準",
+      "priority": 20,
+      "match": {
+        "feature_type": "hole",
+        "countersink": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "countersink_contour"
+      ]
+    },
+    {
+      "id": "xk_025",
+      "name_zh": "通孔",
+      "priority": 24,
+      "xk_index": 25,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 36
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "countersink_contour"
+      ]
+    },
+    {
+      "id": "xk_026",
+      "name_zh": "大通孔",
+      "priority": 24,
+      "xk_index": 26,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 211
+      },
+      "operations": [
+        "hole_mill_semi",
+        "countersink_contour"
+      ]
+    },
+    {
+      "id": "xk_028",
+      "name_zh": "大倒角通孔",
+      "priority": 24,
+      "xk_index": 28,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 44
+      },
+      "operations": [
+        "hole_mill_semi",
+        "countersink_contour"
+      ]
+    },
+    {
+      "id": "xk_039",
+      "name_zh": "斜孔",
+      "priority": 25,
+      "xk_index": 39,
+      "match": {
+        "feature_type": "hole",
+        "angled": true,
+        "color_id": 162
+      },
+      "operations": [
+        "hole_mill_rough_2d",
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "through_hole_std",
+      "name_zh": "通孔標準",
+      "priority": 30,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "thread": false,
+        "tolerance_ream": false,
+        "countersink": false,
+        "diameter_mm": {
+          "min": 0.5,
+          "max": 60
+        }
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_014",
+      "name_zh": "小倒角通镗孔",
+      "priority": 30,
+      "xk_index": 14,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 142
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_cavity_rough"
+      ]
+    },
+    {
+      "id": "xk_016",
+      "name_zh": "沉头钻孔",
+      "priority": 30,
+      "xk_index": 16,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 161
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_chamfer_2d"
+      ]
+    },
+    {
+      "id": "xk_030",
+      "name_zh": "单沉头",
+      "priority": 30,
+      "xk_index": 30,
+      "match": {
+        "feature_type": "hole",
+        "color_id": 66,
+        "countersink": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "csink_2d_finish"
+      ]
+    },
+    {
+      "id": "xk_031",
+      "name_zh": "双沉头",
+      "priority": 30,
+      "xk_index": 31,
+      "match": {
+        "feature_type": "hole",
+        "color_id": 77,
+        "countersink": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "csink_2d_finish"
+      ]
+    },
+    {
+      "id": "blind_hole_std",
+      "name_zh": "盲孔標準",
+      "priority": 31,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "thread": false,
+        "tolerance_ream": false,
+        "countersink": false,
+        "diameter_mm": {
+          "min": 0.5,
+          "max": 60
+        }
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_033",
+      "name_zh": "腰型孔",
+      "priority": 35,
+      "xk_index": 33,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 89,
+        "slotted": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_mill_semi"
+      ]
+    },
+    {
+      "id": "xk_036",
+      "name_zh": "平面寻边",
+      "priority": 35,
+      "xk_index": 36,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 141,
+        "countersink": true
+      },
+      "operations": [
+        "hole_mill_finish",
+        "countersink_contour"
+      ]
+    },
+    {
+      "id": "xk_037",
+      "name_zh": "倒角寻边",
+      "priority": 35,
+      "xk_index": 37,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 208,
+        "countersink": true
+      },
+      "operations": [
+        "hole_mill_finish",
+        "countersink_contour"
+      ]
+    },
+    {
+      "id": "xk_038",
+      "name_zh": "型腔加工",
+      "priority": 35,
+      "xk_index": 38,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 59,
+        "countersink": true
+      },
+      "operations": [
+        "hole_mill_semi",
+        "countersink_cavity"
+      ]
+    },
+    {
+      "id": "xk_012",
+      "name_zh": "小通镗孔",
+      "priority": 36,
+      "xk_index": 12,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 1
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_013",
+      "name_zh": "大通镗孔",
+      "priority": 36,
+      "xk_index": 13,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 160
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_015",
+      "name_zh": "大倒角通镗孔",
+      "priority": 36,
+      "xk_index": 15,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 152
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_027",
+      "name_zh": "倒角通孔",
+      "priority": 36,
+      "xk_index": 27,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 122
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_035",
+      "name_zh": "腰型沉头盲孔",
+      "priority": 36,
+      "xk_index": 35,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 73,
+        "slotted": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_mill_semi"
+      ]
+    },
+    {
+      "id": "xk_041",
+      "name_zh": "打基准点",
+      "priority": 38,
+      "xk_index": 41,
+      "match": {
+        "feature_type": "hole",
+        "color_id": 186
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_004",
+      "name_zh": "小锥底盲孔",
+      "priority": 40,
+      "xk_index": 4,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 134
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_005",
+      "name_zh": "大锥底盲孔",
+      "priority": 40,
+      "xk_index": 5,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 69
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_006",
+      "name_zh": "小平底盲孔",
+      "priority": 40,
+      "xk_index": 6,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 75
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_007",
+      "name_zh": "大平底盲孔",
+      "priority": 40,
+      "xk_index": 7,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 47
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_008",
+      "name_zh": "小倒角锥底盲孔",
+      "priority": 40,
+      "xk_index": 8,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 112
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_009",
+      "name_zh": "大倒角锥底盲孔",
+      "priority": 40,
+      "xk_index": 9,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 29
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_010",
+      "name_zh": "小倒角平底盲孔",
+      "priority": 40,
+      "xk_index": 10,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 97
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_011",
+      "name_zh": "大倒角平底盲孔",
+      "priority": 40,
+      "xk_index": 11,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 55
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_017",
+      "name_zh": "小盲锥孔",
+      "priority": 40,
+      "xk_index": 17,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 125
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_018",
+      "name_zh": "大盲锥孔",
+      "priority": 40,
+      "xk_index": 18,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 161
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_020",
+      "name_zh": "大倒角盲锥孔",
+      "priority": 40,
+      "xk_index": 20,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 141
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_021",
+      "name_zh": "盲平面",
+      "priority": 40,
+      "xk_index": 21,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 105
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_022",
+      "name_zh": "大盲平面",
+      "priority": 40,
+      "xk_index": 22,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 117
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_023",
+      "name_zh": "倒角盲平面",
+      "priority": 40,
+      "xk_index": 23,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 191
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_024",
+      "name_zh": "大倒角盲平面",
+      "priority": 40,
+      "xk_index": 24,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 83
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_034",
+      "name_zh": "倒角腰型孔",
+      "priority": 40,
+      "xk_index": 34,
+      "match": {
+        "feature_type": "hole",
+        "through": true,
+        "color_id": 132,
+        "countersink": true,
+        "slotted": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_mill_semi",
+        "countersink_cavity"
+      ]
+    },
+    {
+      "id": "xk_032",
+      "name_zh": "沉头盲孔",
+      "priority": 42,
+      "xk_index": 32,
+      "match": {
+        "feature_type": "hole",
+        "through": false,
+        "color_id": 88,
+        "countersink": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_chamfer_2d"
+      ]
+    },
+    {
+      "id": "xk_053",
+      "name_zh": "倒角",
+      "priority": 43,
+      "xk_index": 53,
+      "match": {
+        "feature_type": "hole",
+        "color_id": 200,
+        "slotted": true
+      },
+      "operations": [
+        "slotted_hole_semi",
+        "slotted_hole_rough",
+        "slotted_hole_finish2"
+      ]
+    },
+    {
+      "id": "slot_open",
+      "name_zh": "開放槽",
+      "priority": 45,
+      "match": {
+        "feature_type": "slot"
+      },
+      "operations": [
+        "slot_rough",
+        "slot_2d_finish"
+      ]
+    },
+    {
+      "id": "xk_003",
+      "name_zh": "螺纹孔",
+      "priority": 47,
+      "xk_index": 3,
+      "match": {
+        "feature_type": "hole",
+        "color_id": 186,
+        "thread": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83"
+      ]
+    },
+    {
+      "id": "xk_043",
+      "name_zh": "铣内壁",
+      "priority": 48,
+      "xk_index": 43,
+      "match": {
+        "feature_type": "slot",
+        "color_id": 186
+      },
+      "operations": [
+        "cavity_rough"
+      ]
+    },
+    {
+      "id": "xk_054",
+      "name_zh": "曲面",
+      "priority": 48,
+      "xk_index": 54,
+      "match": {
+        "feature_type": "surface_shoe",
+        "color_id": 186
+      },
+      "operations": [
+        "floor_wall_pocket"
+      ]
+    },
+    {
+      "id": "xk_029",
+      "name_zh": "沉头孔",
+      "priority": 49,
+      "xk_index": 29,
+      "match": {
+        "feature_type": "hole",
+        "color_id": 55,
+        "countersink": true
+      },
+      "operations": [
+        "spot_center",
+        "drill_peck_g83",
+        "hole_chamfer_2d"
+      ]
+    },
+    {
+      "id": "face_top",
+      "name_zh": "頂面平面",
+      "priority": 50,
+      "match": {
+        "feature_type": "face_plane"
+      },
+      "operations": [
+        "face_rough",
+        "face_finish"
+      ]
+    },
+    {
+      "id": "xk_042",
+      "name_zh": "铣外壁",
+      "priority": 53,
+      "xk_index": 42,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 125
+      },
+      "operations": [
+        "zlevel_finish",
+        "face_semi",
+        "floor_wall_outer"
+      ]
+    },
+    {
+      "id": "xk_044",
+      "name_zh": "层腔铣",
+      "priority": 53,
+      "xk_index": 44,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 186
+      },
+      "operations": [
+        "slot_2d_finish",
+        "slot_face_mill",
+        "adaptive_rough",
+        "floor_wall_pocket",
+        "slotted_hole_finish"
+      ]
+    },
+    {
+      "id": "xk_045",
+      "name_zh": "开粗腔",
+      "priority": 65,
+      "xk_index": 45,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 186,
+        "slot_subtype": 1
+      },
+      "operations": [
+        "face_finish",
+        "surface_rough",
+        "slotted_hole_finish"
+      ]
+    },
+    {
+      "id": "xk_046",
+      "name_zh": "半粗腔",
+      "priority": 66,
+      "xk_index": 46,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 83,
+        "slot_subtype": 2
+      },
+      "operations": [
+        "slot_2d_finish",
+        "slot_face_mill",
+        "adaptive_rough",
+        "floor_wall_pocket",
+        "contour_2d_outer"
+      ]
+    },
+    {
+      "id": "xk_047",
+      "name_zh": "开放槽",
+      "priority": 67,
+      "xk_index": 47,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 186,
+        "slot_subtype": 3
+      },
+      "operations": [
+        "slot_2d_finish",
+        "slot_face_mill",
+        "adaptive_rough",
+        "floor_wall_pocket",
+        "contour_2d_outer"
+      ]
+    },
+    {
+      "id": "xk_055",
+      "name_zh": "多沉头",
+      "priority": 67,
+      "xk_index": 55,
+      "match": {
+        "feature_type": "slot",
+        "color_id": 186,
+        "slot_subtype": 8
+      },
+      "operations": [
+        "multi_csink_step2",
+        "multi_csink_step1",
+        "multi_csink_step3",
+        "multi_csink_step4"
+      ]
+    },
+    {
+      "id": "xk_048",
+      "name_zh": "通槽",
+      "priority": 68,
+      "xk_index": 48,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 186,
+        "slot_subtype": 4
+      },
+      "operations": [
+        "slot_2d_finish",
+        "slot_face_mill",
+        "surface_finish"
+      ]
+    },
+    {
+      "id": "xk_049",
+      "name_zh": "封闭槽",
+      "priority": 69,
+      "xk_index": 49,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 186,
+        "slot_subtype": 5
+      },
+      "operations": [
+        "face_finish",
+        "surface_rough"
+      ]
+    },
+    {
+      "id": "xk_050",
+      "name_zh": "封闭型腔",
+      "priority": 70,
+      "xk_index": 50,
+      "match": {
+        "feature_type": "pocket",
+        "angled": true,
+        "color_id": 186,
+        "slot_subtype": 6
+      },
+      "operations": [
+        "face_finish",
+        "surface_rough"
+      ]
+    },
+    {
+      "id": "xk_051",
+      "name_zh": "开放型腔",
+      "priority": 71,
+      "xk_index": 51,
+      "match": {
+        "feature_type": "pocket",
+        "angled": true,
+        "color_id": 186,
+        "slot_subtype": 7
+      },
+      "operations": [
+        "open_pocket_adaptive",
+        "floor_wall_pocket"
+      ]
+    },
+    {
+      "id": "xk_slot_std",
+      "name_zh": "Slot",
+      "priority": 72,
+      "xk_index": 2,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 101,
+        "slot_subtype": 8
+      },
+      "operations": [
+        "slot_2d_finish",
+        "slot_face_mill",
+        "floor_wall_pocket",
+        "floor_wall_outer",
+        "face_top_mill",
+        "contour_2d_outer"
+      ]
+    },
+    {
+      "id": "xk_052",
+      "name_zh": "其他槽",
+      "priority": 73,
+      "xk_index": 52,
+      "match": {
+        "feature_type": "slot",
+        "angled": true,
+        "color_id": 164,
+        "slot_subtype": 9
+      },
+      "operations": [
+        "slot_2d_finish",
+        "slot_face_mill",
+        "face_top_mill",
+        "floor_wall_pocket",
+        "floor_wall_outer"
+      ]
+    },
+    {
+      "id": "fallback",
+      "name_zh": "未匹配",
+      "priority": 9999,
+      "match": {},
+      "operations": [
+        "manual_review"
+      ]
+    }
+  ]
+}

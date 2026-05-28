@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Smart AI CAM-NX Panel</title>
+<style>
+  :root {
+    --bg-base: #0a0b0e;
+    --bg-surface: #161923;
+    --accent: #00f2fe;
+    --accent-purple: #9d6ade;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: rgba(255,255,255,0.08);
+    --grad-intuitive: linear-gradient(90deg, #00695c, #00bfa5);
+    --grad-ai: linear-gradient(90deg, #5e35b1, #9c6ade);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg-base); color: var(--text); font-size: 13px;
+  }
+  .wrap { padding: 12px; max-width: 520px; }
+  .section {
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px; margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    color: var(--accent); margin-bottom: 8px; text-transform: uppercase;
+  }
+  label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  select, input, textarea, button { font: inherit; }
+  select, input {
+    width: 100%; padding: 6px 8px; border-radius: 6px;
+    border: 1px solid var(--border); background: #1e2432; color: var(--text);
+  }
+  textarea { width: 100%; min-height: 100px; background: #1e2432; color: #a5f3fc;
+    border: 1px solid var(--border); border-radius: 6px; font-family: Consolas, monospace;
+    font-size: 11px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  button {
+    border: none; border-radius: 6px; padding: 8px 12px; cursor: pointer;
+    color: #fff; font-weight: 500;
+  }
+  .btn-intuitive { background: var(--grad-intuitive); }
+  .btn-ai { background: var(--grad-ai); }
+  .btn-ghost { background: #2a3142; color: var(--text); }
+  #mcp_progress_panel {
+    display: none; border: 1px solid #7b1fa2; background: linear-gradient(135deg,#2b1b3b,#1b2b3b);
+  }
+  #mcp_status_bar { height: 6px; background: #222; border-radius: 4px; overflow: hidden; }
+  #mcp_status_fill {
+    width: 0%; height: 100%;
+    background: linear-gradient(90deg, #e040fb, #00e5ff); transition: width 0.3s;
+  }
+  .badge {
+    font-size: 10px; padding: 2px 6px; border-radius: 4px;
+    background: rgba(0,242,254,0.15); color: var(--accent);
+  }
+  .hint { font-size: 10px; color: var(--muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+    <strong>Smart AI CAM-NX</strong>
+    <span class="badge">主幹: Fusion CAM · 參照: V8.702</span>
+  </div>
+
+  <div id="mcp_progress_panel" class="section">
+    <div style="display:flex;justify-content:space-between;">
+      <span id="mcp_status_title" style="color:#e040fb;font-weight:600;">MCP 執行中…</span>
+      <span id="mcp_status_pct">0%</span>
+    </div>
+    <div id="mcp_status_bar" style="margin-top:6px;"><div id="mcp_status_fill"></div></div>
+    <div id="mcp_status_text" class="hint"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">共用設定（對照 palette 材質/方案）</div>
+    <div class="grid2">
+      <div>
+        <label>material_profile</label>
+        <select id="material_profile">
+          <option value="carbon_steel">碳鋼 carbon_steel</option>
+          <option value="aluminum">鋁材 aluminum</option>
+          <option value="high_hardness">高硬度 high_hardness</option>
+        </select>
+      </div>
+      <div>
+        <label>scheme_id（參照星空加工方案）</label>
+        <select id="scheme_id">
+          <option value="default_part_milling">default_part_milling</option>
+        </select>
+      </div>
+    </div>
+    <div class="hint">切削 6 層仍走 query_smart_cutting（Fusion 主幹 resolver）</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">特徵 JSON（主幹孔表 → MCP）</div>
+    <label>features 陣列，例：{"category":"hole","diameter_mm":10,"through":true,"tolerance":"H7"}</label>
+    <textarea id="features_json">[
+  {"category": "hole", "diameter_mm": 10, "through": true, "tolerance": "H7"},
+  {"category": "face_plane", "kind": "TOP_PLANAR"}
+]</textarea>
+  </div>
+
+  <div class="section">
+    <div class="section-title">直覺式 / 半自動（主幹流程）</div>
+    <div class="btn-row">
+      <button type="button" class="btn-ghost" onclick="runAction('check_semi_auto_eligibility')">檢查資格</button>
+      <button type="button" class="btn-intuitive" onclick="runAction('get_semi_auto_plan')">半自動劇本</button>
+      <button type="button" class="btn-ai" onclick="runAction('nx_hole_cam_catalog')">規則目錄</button>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn-ghost" onclick="runAction('query_smart_cutting', {tool_dia:10, operation:'face'})">切削查詢</button>
+      <button type="button" class="btn-ghost" onclick="runAction('get_cam_agent_manifest')">Manifest</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">結果</div>
+    <textarea id="result_out" readonly style="min-height:220px;"></textarea>
+  </div>
+
+  <p class="hint">需先啟動 MCP 9878 + 本面板 9879。NX 內建工序建立為 Phase 2。</p>
+</div>
+<script>
+const API = "/api";
+
+function showProgress(show, title, pct, text) {
+  const p = document.getElementById("mcp_progress_panel");
+  p.style.display = show ? "block" : "none";
+  if (title) document.getElementById("mcp_status_title").textContent = title;
+  document.getElementById("mcp_status_pct").textContent = (pct || 0) + "%";
+  document.getElementById("mcp_status_fill").style.width = (pct || 0) + "%";
+  if (text) document.getElementById("mcp_status_text").textContent = text;
+}
+
+function parseFeatures() {
+  try {
+    return JSON.parse(document.getElementById("features_json").value);
+  } catch (e) {
+    throw new Error("features JSON 無效: " + e.message);
+  }
+}
+
+async function runAction(action, extraParams) {
+  const out = document.getElementById("result_out");
+  showProgress(true, action, 10, "呼叫 MCP 9878…");
+  try {
+    const params = Object.assign({
+      material_profile: document.getElementById("material_profile").value,
+      scheme_id: document.getElementById("scheme_id").value,
+    }, extraParams || {});
+    if (action.indexOf("semi_auto") >= 0 || action === "check_semi_auto_eligibility") {
+      params.features = parseFeatures();
+    }
+    if (action === "query_smart_cutting" && !params.material) {
+      params.material_profile = params.material_profile || document.getElementById("material_profile").value;
+      params.tool_dia = params.tool_dia || 10;
+    }
+    showProgress(true, action, 40, "等待回應…");
+    const r = await fetch(API, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({action, params}),
+    });
+    const data = await r.json();
+    showProgress(true, action, 100, data.success ? "完成" : (data.error || "失敗"));
+    out.value = JSON.stringify(data, null, 2);
+    setTimeout(() => showProgress(false), 800);
+  } catch (e) {
+    showProgress(true, action, 100, String(e));
+    out.value = String(e);
+    setTimeout(() => showProgress(false), 1200);
+  }
+}
+</script>
+</body>
+</html>

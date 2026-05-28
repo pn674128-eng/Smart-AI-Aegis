@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAM Methods Appendix</title>
+  <style>
+    body { margin: 0; padding: 12px 14px; background: #1e1e1e; color: #e3e3e3; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.5; font-size: 13px; }
+    h1, h2 { margin: 0 0 8px; }
+    h1 { font-size: 19px; color: #8fd3ff; }
+    h2 { margin-top: 18px; font-size: 16px; color: #ffd37f; }
+    .muted { color: #a0a0a0; margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; background: #252525; }
+    th, td { border: 1px solid #3f3f3f; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #333; color: #f0f0f0; }
+    code, pre { color: #93e2b1; font-family: Consolas, monospace; }
+    pre { background: #151515; border: 1px solid #333; border-radius: 6px; padding: 10px; white-space: pre-wrap; }
+    a { color: #8fd3ff; text-decoration: none; }
+    .nav { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="reference.html">&larr; 回主頁</a></div>
+  <h1>附錄：CAM Methods 全表</h1>
+  <div class="muted">用於快速查表、複製 expression 與比對模板策略。</div>
+
+  <h2>holeMode 全表</h2>
+  <table>
+    <tr><th>值</th><th>說明</th></tr>
+    <tr><td><code>'selection-faces'</code></td><td>直接指定孔面</td></tr>
+    <tr><td><code>'selection-points'</code></td><td>以點座標指定</td></tr>
+    <tr><td><code>'diameter'</code></td><td>按直徑範圍自動比對</td></tr>
+    <tr><td><code>'unmachined'</code></td><td>未加工孔</td></tr>
+  </table>
+
+  <h2>geometryType 全表</h2>
+  <table>
+    <tr><th>值</th><th>說明</th></tr>
+    <tr><td><code>'chains'</code></td><td>曲線鏈</td></tr>
+    <tr><td><code>'pockets'</code></td><td>挖槽區域</td></tr>
+    <tr><td><code>'face_contours'</code></td><td>面輪廓</td></tr>
+  </table>
+
+  <h2>cycleType 常用全表</h2>
+  <table>
+    <tr><th>值</th><th>說明</th></tr>
+    <tr><td><code>'drilling'</code></td><td>標準鑽孔</td></tr>
+    <tr><td><code>'chip-breaking'</code></td><td>斷屑</td></tr>
+    <tr><td><code>'deep-drilling'</code></td><td>深孔</td></tr>
+    <tr><td><code>'break-through-drilling'</code></td><td>穿透</td></tr>
+    <tr><td><code>'tapping'</code></td><td>攻牙</td></tr>
+    <tr><td><code>'bore-milling'</code></td><td>搪孔/鉸孔相關</td></tr>
+    <tr><td><code>'circular-pocket-milling'</code></td><td>圓弧挖槽</td></tr>
+    <tr><td><code>'thread-milling'</code></td><td>螺紋銑</td></tr>
+  </table>
+
+  <h2>示例：選孔面 + 設 cycle</h2>
+  <pre>holeMode = params.itemByName('holeMode')
+holeFaces = params.itemByName('holeFaces')
+cycleType = params.itemByName('cycleType')
+
+vec = holeFaces.value.value
+vec.push_back(face)
+holeFaces.value.value = vec
+
+holeMode.expression = "'selection-faces'"
+cycleType.expression = "'drilling'"</pre>
+
+  <h2>示例：2D 輪廓 geometries</h2>
+  <pre>geo_param = params.itemByName('geometries')
+cad_val = adsk.cam.CadContours2dParameterValue.cast(geo_param.value)
+curves = cad_val.getCurveSelections()
+curves.add(adsk.cam.CadCurve.createFaceContour(face))
+cad_val.applyCurveSelections(curves)
+params.itemByName('geometryType').expression = "'face_contours'"</pre>
+
+  <h2>topHeight_mode / bottomHeight_mode 全表</h2>
+  <table>
+    <tr><th>值</th><th>說明</th></tr>
+    <tr><td><code>'model top'</code></td><td>模型最高點</td></tr>
+    <tr><td><code>'from hole top'</code></td><td>從孔頂面偏移</td></tr>
+    <tr><td><code>'from hole bottom'</code></td><td>從孔底面偏移</td></tr>
+    <tr><td><code>'from setup top'</code></td><td>從 Setup 頂偏移</td></tr>
+    <tr><td><code>'from stock top'</code></td><td>從毛料頂偏移</td></tr>
+    <tr><td><code>'from selected contour'</code></td><td>從選取輪廓偏移</td></tr>
+  </table>
+
+  <h2>selectSameDiameter / 直徑深度範圍參數</h2>
+  <table>
+    <tr><th>參數名</th><th>型態</th><th>說明</th></tr>
+    <tr><td><code>selectSameDiameter</code></td><td>Boolean</td><td>自動選同直徑孔</td></tr>
+    <tr><td><code>selectSameDepth</code></td><td>Boolean</td><td>自動選同深度孔</td></tr>
+    <tr><td><code>holeDiameterMinimum</code></td><td>Float (mm)</td><td>直徑下限</td></tr>
+    <tr><td><code>holeDiameterMaximum</code></td><td>Float (mm)</td><td>直徑上限</td></tr>
+    <tr><td><code>holeDepthMinimum</code></td><td>Float (mm)</td><td>深度下限</td></tr>
+    <tr><td><code>holeDepthMaximum</code></td><td>Float (mm)</td><td>深度上限</td></tr>
+  </table>
+
+  <h2>stockOffsets 相關參數</h2>
+  <table>
+    <tr><th>參數名</th><th>說明</th></tr>
+    <tr><td><code>stockOffsets</code></td><td>整體餘量</td></tr>
+    <tr><td><code>stockToLeaveSide</code></td><td>側面精銑餘量</td></tr>
+    <tr><td><code>stockToLeaveFloor</code></td><td>底面精銑餘量</td></tr>
+    <tr><td><code>roughingStockToLeave</code></td><td>粗銑保留量</td></tr>
+    <tr><td><code>finishingStockToLeave</code></td><td>精銑保留量</td></tr>
+  </table>
+
+  <h2>示例：孔直徑批次自動選取</h2>
+  <pre>params.itemByName('holeMode').expression = "'diameter'"
+params.itemByName('holeDiameterMinimum').expression = '4.9mm'
+params.itemByName('holeDiameterMaximum').expression = '5.1mm'
+params.itemByName('selectSameDiameter').expression = 'true'
+params.itemByName('cycleType').expression = "'drilling'"</pre>
+
+  <h2>示例：topHeight + bottomHeight 精確高度</h2>
+  <pre>params.itemByName('topHeight_mode').expression = "'from hole top'"
+params.itemByName('topHeight_offset').expression = '2mm'
+params.itemByName('bottomHeight_mode').expression = "'from hole bottom'"
+params.itemByName('bottomHeight_offset').expression = '0mm'</pre>
+
+</body>
+</html>

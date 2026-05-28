@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8"><title>Tool / Preset / SetupGroup API</title><style>body{margin:0;padding:12px 14px;background:#1e1e1e;color:#e3e3e3;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.5}h1{font-size:19px;color:#8fd3ff;margin:0 0 6px}h2{font-size:16px;color:#ffd37f;margin:16px 0 6px}h3{font-size:14px;color:#b8e19a;margin:10px 0 5px}.muted{color:#a0a0a0;margin-bottom:8px}table{width:100%;border-collapse:collapse;margin:6px 0 12px;background:#252525}th,td{border:1px solid #3f3f3f;padding:5px 8px;text-align:left;vertical-align:top}th{background:#333;color:#f0f0f0}code,pre{color:#93e2b1;font-family:Consolas,monospace}pre{background:#151515;border:1px solid #333;border-radius:6px;padding:10px;white-space:pre-wrap}a{color:#8fd3ff;text-decoration:none}.nav{margin-bottom:12px}</style></head><body>
+<div class="nav"><a href="reference.html">&larr; 回主頁</a></div>
+<h1>Tool / ToolPreset / SetupGroup API (adsk.cam)</h1>
+<div class="muted">來源：Fusion API Documentation (live query)</div>
+<h2>① Tool — Properties</h2><div class="muted">工具物件。parameters 包含幾何ï¼diameter / length / flute count 等）。presets 包含材料切å參數。</div><table><tr><th>屬性 / 方法</th><th>說明</th></tr><tr><td><code>parameters</code></td><td>CAMParameters collection for this tool (geometry, body type, etc.)</td></tr><tr><td><code>presets</code></td><td>ToolPresets collection â material-specific cutting parameters</td></tr><tr><td><code>description</code></td><td>Descriptive text about the tool</td></tr></table><h2>Tool — Static / Instance Methods</h2><table><tr><th>屬性 / 方法</th><th>說明</th></tr><tr><td><code>Tool.createFromJson(json) [static]</code></td><td>Create Tool object from JSON string</td></tr><tr><td><code>Tool.createFromP21(p21str) [static]</code></td><td>Create Tool from P21 format string</td></tr><tr><td><code>Tool.createFromP21File(path) [static]</code></td><td>Create Tool from P21 file</td></tr><tr><td><code>tool.toJson()</code></td><td>Serialize tool to JSON string</td></tr></table><h2>② ToolPreset — Properties</h2><div class="muted">材料預設。parameters 包含è½é/èµ°åéç/åå±æ·±åº¦等材料ç¸éåæ¸。</div><table><tr><th>屬性 / 方法</th><th>說明</th></tr><tr><td><code>name</code></td><td>Gets/sets preset name</td></tr><tr><td><code>id</code></td><td>Gets/sets preset identifier</td></tr><tr><td><code>parameters</code></td><td>CAMParameters for this preset (feeds, speeds, etc.)</td></tr></table><h2>ToolPresets 集合</h2><div class="muted">tool.presets 取得</div><table><tr><th>屬性 / 方法</th><th>說明</th></tr><tr><td><code>count</code></td><td>Number of presets</td></tr><tr><td><code>item(index)</code></td><td>Get preset by index</td></tr><tr><td><code>itemsByName(name)</code></td><td>Search presets by name</td></tr><tr><td><code>add()</code></td><td>Create and insert new preset at end</td></tr><tr><td><code>remove(index)</code></td><td>Remove preset by index</td></tr></table><h2>ToolJointType 枚舉</h2><div class="muted">工具組件接點座標系型別</div><table><tr><th>常數</th><th>說明</th></tr><tr><td><code>CuttingSideJoint</code></td><td>Attachment point on the cutting/tool side</td></tr><tr><td><code>MachineSideJoint</code></td><td>Attachment point on the machine side</td></tr><tr><td><code>ToolHolderJoint</code></td><td>Attachment point for the tool holder</td></tr></table><h2>③ SetupGroup — Properties &amp; Methods</h2><div class="muted">決定同時å 工ç Setup 集合ãcam.setupGroups 取得。</div><table><tr><th>屬性 / 方法</th><th>說明</th></tr><tr><td><code>operationType</code></td><td>Gets Operation Type (OperationTypes enum)</td></tr><tr><td><code>count</code></td><td>Number of Setups in this group</td></tr><tr><td><code>item(index)</code></td><td>Returns Setup at index</td></tr><tr><td><code>addSetup(setup)</code></td><td>Adds an existing Setup to this group</td></tr><tr><td><code>removeSetup(setup)</code></td><td>Removes Setup from this group</td></tr><tr><td><code>deleteMe()</code></td><td>Deletes this SetupGroup</td></tr><tr><td><code>duplicate()</code></td><td>Duplicate after itself</td></tr><tr><td><code>moveBefore(op) / moveAfter(op)</code></td><td>Move in browser tree</td></tr></table><h2>SetupGroups 集合</h2><table><tr><th>屬性 / 方法</th><th>說明</th></tr><tr><td><code>count</code></td><td>Number of SetupGroups</td></tr><tr><td><code>item(index)</code></td><td>Returns SetupGroup at index</td></tr><tr><td><code>itemByName(name)</code></td><td>Returns SetupGroup by name</td></tr><tr><td><code>itemByOperationId(id)</code></td><td>Returns SetupGroup by operation id</td></tr><tr><td><code>add()</code></td><td>Creates a new SetupGroup</td></tr></table><h2>工具常用範例</h2><pre># 從 documentToolLibrary 取指定工具
+lib = cam.documentToolLibrary
+for i in range(lib.count):
+    t = lib.item(i)
+    name_p = t.parameters.itemByName('tool_description')
+    dia_p  = t.parameters.itemByName('tool_diameter')
+    if name_p and dia_p:
+        print(name_p.expression, dia_p.expression)
+
+# 將工具指定給 operation
+op_input.tool = lib.item(0)
+op_input.toolPreset = lib.item(0).presets.item(0)
+
+# 修改 Operation 上的工具
+op.tool = new_tool
+
+# 建立 SetupGroup
+sg = cam.setupGroups.add()
+sg.addSetup(setup1)
+sg.addSetup(setup2)</pre>
+</body></html>

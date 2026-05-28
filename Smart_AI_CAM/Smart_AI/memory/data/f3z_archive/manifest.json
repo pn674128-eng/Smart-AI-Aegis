@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-05-23T04:22:28.644883+00:00",
+  "shortcut": "C:\\Users\\y00079\\Desktop\\程序單.lnk",
+  "scan_roots": [
+    "D:\\程序單",
+    "D:\\輝",
+    "\\\\10.4.0.11\\hy\\06.製造部\\阿和\\輝"
+  ],
+  "count": 2,
+  "entries": [
+    {
+      "source_path": "D:\\輝\\ZTA52729A81-T01A06-行程檔塊\\ZTA52729A81-T01A06.f3z",
+      "archive_name": "ZTA52729A81-T01A06-行程檔塊__ZTA52729A81-T01A06.f3z",
+      "size_bytes": 353626,
+      "mtime_iso": "2026-03-25T02:53:48.838432+00:00"
+    },
+    {
+      "source_path": "D:\\輝\\ZTAA5YP1T11-M01D02-M01B02\\雙座標 試加工.f3z",
+      "archive_name": "ZTAA5YP1T11-M01D02-M01B02__雙座標 試加工.f3z",
+      "size_bytes": 1067873,
+      "mtime_iso": "2026-05-21T12:48:48.217967+00:00"
+    }
+  ],
+  "note": "F3Z are Fusion project archives; CAM import pipeline not yet implemented. See docs/F3Z_LEARNING.md"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "default_part_milling",
+  "name_zh": "一般零件铣削+孔",
+  "description": "碳鋼/鋁通用預設；硬料請改 material_profile=high_hardness",
+  "defaults": {
+    "material_profile": "carbon_steel",
+    "program_group": "PROGRAM",
+    "mcs_name": "MCS_MAIN",
+    "safe_clearance_mm": 3.0,
+    "spot_before_drill": true
+  },
+  "feature_policy": {
+    "holes": "use_hole_rules",
+    "slots": "use_hole_rules",
+    "faces": "use_hole_rules",
+    "surfaces": "manual_review"
+  }
+}

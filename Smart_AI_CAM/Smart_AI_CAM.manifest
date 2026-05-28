@@ -1,0 +1,11 @@
+{
+  "autodeskProduct": "Fusion",
+  "type": "addin",
+  "version": "2.0458.0",
+  "author": "",
+  "description": {
+    "": "Smart AI CAM Fusion V2.0458"
+  },
+  "supportedOS": "windows|mac",
+  "editEnabled": true
+}

@@ -1,0 +1,22 @@
+# 加工方案（參照星空「加工方案配置」— 可擴充多方案）
+id: default_part_milling
+name_zh: 一般零件铣削+孔
+description: 碳鋼/鋁通用預設；硬料請改 material_profile=high_hardness
+
+defaults:
+  material_profile: carbon_steel
+  program_group: PROGRAM
+  mcs_name: MCS_MAIN
+  safe_clearance_mm: 3.0
+  spot_before_drill: true
+
+feature_policy:
+  holes: use_hole_rules
+  slots: use_hole_rules
+  faces: use_hole_rules
+  surfaces: manual_review
+
+material_overrides:
+  high_hardness:
+  # 硬料可縮短步距、改 cut_method — 細節在 material_profiles.yaml
+    notes: 建議降低 F、優先 GoldCobra / 硬料 resolver

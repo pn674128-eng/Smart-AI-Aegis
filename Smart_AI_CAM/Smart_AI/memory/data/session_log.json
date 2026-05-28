@@ -1,0 +1,3110 @@
+{
+  "sessions": [
+    {
+      "session_id": "3a1a9b7c",
+      "timestamp": "2026-05-25T20:25:44",
+      "ops": []
+    },
+    {
+      "session_id": "aef1499c",
+      "timestamp": "2026-05-25T20:26:17",
+      "ops": []
+    },
+    {
+      "session_id": "f05ee9fa",
+      "timestamp": "2026-05-25T20:28:34",
+      "ops": []
+    },
+    {
+      "session_id": "70f5b5ee",
+      "timestamp": "2026-05-25T20:36:49",
+      "ops": []
+    },
+    {
+      "session_id": "ac34bb86",
+      "timestamp": "2026-05-25T20:50:43",
+      "ops": []
+    },
+    {
+      "session_id": "825553e7",
+      "timestamp": "2026-05-25T21:21:01",
+      "ops": []
+    },
+    {
+      "session_id": "f815d533",
+      "timestamp": "2026-05-25T21:21:24",
+      "ops": []
+    },
+    {
+      "session_id": "116b7dbe",
+      "timestamp": "2026-05-26T09:36:48",
+      "ops": []
+    },
+    {
+      "session_id": "5d4d75cd",
+      "timestamp": "2026-05-26T10:17:02",
+      "ops": []
+    },
+    {
+      "session_id": "f84d567e",
+      "timestamp": "2026-05-26T10:29:52",
+      "ops": []
+    },
+    {
+      "session_id": "d50ccc00",
+      "timestamp": "2026-05-26T10:35:05",
+      "ops": []
+    },
+    {
+      "session_id": "627f3afe",
+      "timestamp": "2026-05-26T10:37:03",
+      "ops": []
+    },
+    {
+      "session_id": "16e1e87a",
+      "timestamp": "2026-05-26T11:05:15",
+      "ops": []
+    },
+    {
+      "session_id": "b92fbf20",
+      "timestamp": "2026-05-26T11:15:03",
+      "ops": []
+    },
+    {
+      "session_id": "57189969",
+      "timestamp": "2026-05-26T11:17:16",
+      "ops": []
+    },
+    {
+      "session_id": "a49c74f9",
+      "timestamp": "2026-05-26T11:22:35",
+      "ops": []
+    },
+    {
+      "session_id": "eb237488",
+      "timestamp": "2026-05-26T11:43:34",
+      "ops": []
+    },
+    {
+      "session_id": "13396bee",
+      "timestamp": "2026-05-26T11:58:47",
+      "ops": []
+    },
+    {
+      "session_id": "2b42b901",
+      "timestamp": "2026-05-26T14:09:48",
+      "ops": []
+    },
+    {
+      "session_id": "4d2c146f",
+      "timestamp": "2026-05-26T14:33:25",
+      "ops": []
+    },
+    {
+      "session_id": "05ff7882",
+      "timestamp": "2026-05-26T14:49:58",
+      "ops": []
+    },
+    {
+      "session_id": "5df4562b",
+      "timestamp": "2026-05-26T14:57:37",
+      "ops": []
+    },
+    {
+      "session_id": "a3128055",
+      "timestamp": "2026-05-26T20:55:01",
+      "ops": []
+    },
+    {
+      "session_id": "f91191d9",
+      "timestamp": "2026-05-26T21:32:08",
+      "ops": []
+    },
+    {
+      "session_id": "d41ec8dd",
+      "timestamp": "2026-05-27T08:47:53",
+      "ops": [
+        {
+          "id": "e9a1838a-34b",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D3.5"
+        },
+        {
+          "id": "f9800779-e10",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "73e1c1cc-e65",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4a3b3159-993",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        }
+      ]
+    },
+    {
+      "session_id": "d41ec8dd",
+      "timestamp": "2026-05-27T08:48:07",
+      "ops": [
+        {
+          "id": "e9a1838a-34b",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D3.5"
+        },
+        {
+          "id": "f9800779-e10",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "73e1c1cc-e65",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4a3b3159-993",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "b49e74a8-103",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D3.4"
+        },
+        {
+          "id": "ffcc85a9-d91",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "d73db872-e03",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "558b9fe5-28b",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "d41ec8dd",
+      "timestamp": "2026-05-27T08:52:44",
+      "ops": [
+        {
+          "id": "e9a1838a-34b",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D3.5"
+        },
+        {
+          "id": "f9800779-e10",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "73e1c1cc-e65",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4a3b3159-993",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "b49e74a8-103",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D3.4"
+        },
+        {
+          "id": "ffcc85a9-d91",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "d73db872-e03",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "558b9fe5-28b",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "9b6620c5-331",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D4.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "fdf22ff6-e30",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "9b176feb-016",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9f3343b7-7b4",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "d41ec8dd",
+      "timestamp": "2026-05-27T09:06:37",
+      "ops": [
+        {
+          "id": "e9a1838a-34b",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D3.5"
+        },
+        {
+          "id": "f9800779-e10",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "73e1c1cc-e65",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4a3b3159-993",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "b49e74a8-103",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D3.4"
+        },
+        {
+          "id": "ffcc85a9-d91",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "d73db872-e03",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "558b9fe5-28b",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D6.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "9b6620c5-331",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D4.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "fdf22ff6-e30",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "9b176feb-016",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9f3343b7-7b4",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "5a5e2977",
+      "timestamp": "2026-05-27T11:40:23",
+      "ops": [
+        {
+          "id": "60b91ad0-320",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D7.0 + 【孔倒角 M8】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "f8800673-50f",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.3 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "5a5e2977",
+      "timestamp": "2026-05-27T11:42:39",
+      "ops": [
+        {
+          "id": "60b91ad0-320",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D7.0 + 【孔倒角 M8】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "f8800673-50f",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "cfc28ba5-0e3",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "牙孔 M4-0.7 + 【孔倒角 M4】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "2817a938-719",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D3.5"
+        }
+      ]
+    },
+    {
+      "session_id": "5a5e2977",
+      "timestamp": "2026-05-27T14:17:12",
+      "ops": [
+        {
+          "id": "60b91ad0-320",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D7.0 + 【孔倒角 M8】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "f8800673-50f",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "cfc28ba5-0e3",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "牙孔 M4-0.7 + 【孔倒角 M4】 倒角C0.3 【S50C】"
+        },
+        {
+          "id": "2817a938-719",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D3.5"
+        }
+      ]
+    },
+    {
+      "session_id": "e9ec196d",
+      "timestamp": "2026-05-27T14:38:05",
+      "ops": []
+    },
+    {
+      "session_id": "f491af1b",
+      "timestamp": "2026-05-27T14:40:54",
+      "ops": []
+    },
+    {
+      "session_id": "477f9a29",
+      "timestamp": "2026-05-27T14:46:49",
+      "ops": [
+        {
+          "id": "71c4059e-a01",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "牙孔 M4-0.7 + 【孔倒角 M4】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "1075bb74-69e",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "f24392e8-db7",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D11.0 + 【孔倒角 D11.0】 倒角C0.2 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "477f9a29",
+      "timestamp": "2026-05-27T15:15:02",
+      "ops": [
+        {
+          "id": "71c4059e-a01",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "牙孔 M4-0.7 + 【孔倒角 M4】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "1075bb74-69e",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "f24392e8-db7",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D11.0 + 【孔倒角 D11.0】 倒角C0.2 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "4cd5d83d",
+      "timestamp": "2026-05-27T15:15:30",
+      "ops": [
+        {
+          "id": "05e84da7-cf9",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "8f4c9099-710",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "4cd5d83d",
+      "timestamp": "2026-05-27T15:22:48",
+      "ops": [
+        {
+          "id": "05e84da7-cf9",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "8f4c9099-710",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "6d9ba9fc-044",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "6d9ad485-221",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "adbca059-7a5",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D11.0 + 【孔倒角 D11.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "ebe2fc51-6dd",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D22.0】 倒角C0.2 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "4cd5d83d",
+      "timestamp": "2026-05-27T15:51:31",
+      "ops": [
+        {
+          "id": "05e84da7-cf9",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "8f4c9099-710",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "6d9ba9fc-044",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D6.6】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "6d9ad485-221",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "adbca059-7a5",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D11.0 + 【孔倒角 D11.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "ebe2fc51-6dd",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D22.0】 倒角C0.2 【S50C】"
+        }
+      ]
+    },
+    {
+      "session_id": "66e613fc",
+      "timestamp": "2026-05-28T08:19:52",
+      "ops": [
+        {
+          "id": "e7cb5b52-4ce",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "f1e53d80-9ec",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M6-1 + 【孔倒角 M6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "0f4b10a5-b45",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "c10db577-c79",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "afd58f3a-326",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "f99f34c8-321",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9085d0b1-0d3",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "66e613fc",
+      "timestamp": "2026-05-28T08:25:37",
+      "ops": [
+        {
+          "id": "e7cb5b52-4ce",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "f1e53d80-9ec",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M6-1 + 【孔倒角 M6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "0f4b10a5-b45",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "c10db577-c79",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "afd58f3a-326",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "f99f34c8-321",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9085d0b1-0d3",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "af6fa351-661",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "a29016fe-f6b",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M6-1 + 【孔倒角 M6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "ef492d12-ad2",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "4d9ea24a-f16",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D11.0 + 【孔倒角 D11.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "f8a204de-624",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "0f8049be-6bc",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "f31999e8-d3a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "4a5bee2e-bdc",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "66e613fc",
+      "timestamp": "2026-05-28T08:45:35",
+      "ops": [
+        {
+          "id": "e7cb5b52-4ce",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "f1e53d80-9ec",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M6-1 + 【孔倒角 M6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "0f4b10a5-b45",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "c10db577-c79",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "afd58f3a-326",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "f99f34c8-321",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9085d0b1-0d3",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "af6fa351-661",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "a29016fe-f6b",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M6-1 + 【孔倒角 M6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "ef492d12-ad2",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D6.6 + 【孔倒角 D6.6】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "4d9ea24a-f16",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D11.0 + 【孔倒角 D11.0】 倒角C0.3 【AL6061】"
+        },
+        {
+          "id": "f8a204de-624",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "0f8049be-6bc",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "f31999e8-d3a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "4a5bee2e-bdc",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T08:51:20",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T08:55:34",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T09:06:34",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T09:08:30",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d64cd8c2-b80",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46e5911f-5e9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "eee64e47-3d6",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2725b56d-32c",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "018d57fd-d20",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3460808a-313",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "903ce83a-02b",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "1ad71888-8c4",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9fcba141-c8d",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T09:18:20",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d64cd8c2-b80",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46e5911f-5e9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "eee64e47-3d6",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2725b56d-32c",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "018d57fd-d20",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3460808a-313",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "903ce83a-02b",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "1ad71888-8c4",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9fcba141-c8d",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "09cc0271-fe1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "0e64355f-551",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "27670316-f77",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "6730cf10-2d4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "17ed0060-b0f",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5611733a-e9c",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "f37794ba-9b6",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "53869ce6-7e8",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "94270050-962",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T09:31:04",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d64cd8c2-b80",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46e5911f-5e9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "eee64e47-3d6",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2725b56d-32c",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "018d57fd-d20",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3460808a-313",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "903ce83a-02b",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "1ad71888-8c4",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9fcba141-c8d",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "09cc0271-fe1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "0e64355f-551",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "27670316-f77",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "6730cf10-2d4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "17ed0060-b0f",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5611733a-e9c",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "f37794ba-9b6",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "53869ce6-7e8",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "94270050-962",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "2be854d7-1ad",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "23ad9632-f3d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7364e9fe-d00",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3bb4580d-427",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "74857383-770",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4169bbd0-2ce",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "925be755-d3e",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "a5fdbcfe-b80",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "d3dac283-770",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T09:32:30",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d64cd8c2-b80",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46e5911f-5e9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "eee64e47-3d6",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2725b56d-32c",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "018d57fd-d20",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3460808a-313",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "903ce83a-02b",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "1ad71888-8c4",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9fcba141-c8d",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "09cc0271-fe1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "0e64355f-551",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "27670316-f77",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "6730cf10-2d4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "17ed0060-b0f",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5611733a-e9c",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "f37794ba-9b6",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "53869ce6-7e8",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "94270050-962",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "2be854d7-1ad",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "23ad9632-f3d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7364e9fe-d00",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3bb4580d-427",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "74857383-770",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4169bbd0-2ce",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "925be755-d3e",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "a5fdbcfe-b80",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "d3dac283-770",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d65f617a-019",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2827a713-139",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2c7695c8-eb9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "334102e2-15d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "db995b65-1c3",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46c5fbb5-ae0",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "313694b0-eda",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "911707f8-85c",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "bab1cc29-d1b",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T10:15:38",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d64cd8c2-b80",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46e5911f-5e9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "eee64e47-3d6",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2725b56d-32c",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "018d57fd-d20",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3460808a-313",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "903ce83a-02b",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "1ad71888-8c4",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9fcba141-c8d",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "09cc0271-fe1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "0e64355f-551",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "27670316-f77",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "6730cf10-2d4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "17ed0060-b0f",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5611733a-e9c",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "f37794ba-9b6",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "53869ce6-7e8",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "94270050-962",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "2be854d7-1ad",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "23ad9632-f3d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7364e9fe-d00",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3bb4580d-427",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "74857383-770",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4169bbd0-2ce",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "925be755-d3e",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "a5fdbcfe-b80",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "d3dac283-770",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d65f617a-019",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2827a713-139",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2c7695c8-eb9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "334102e2-15d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "db995b65-1c3",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46c5fbb5-ae0",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "313694b0-eda",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "911707f8-85c",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "bab1cc29-d1b",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "e7af7b03-0a0",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "7fcc58f9-f89",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "84502e8c-7ac",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "8cebbcee-7e7",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D63C15-面精銑"
+        },
+        {
+          "id": "8ce0018c-247",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "b5f22374-bc1",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-精-2D輪廓"
+        }
+      ]
+    },
+    {
+      "session_id": "bacb6c95",
+      "timestamp": "2026-05-28T10:35:25",
+      "ops": [
+        {
+          "id": "63d50126-3c4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7af45534-044",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D5.0 + 【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "f18bc3cc-b68",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "1515453d-4aa",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "28f59b7b-5e1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "c3ff38c7-dd1",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "c9d6a407-856",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "fac35b0f-2ef",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "8574bfa4-d14",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "f469100c-728",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "64f29371-5ab",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5a4d37c0-998",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "96490fdb-1d7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "fd9a8661-2d8",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "ec420e04-85d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D15.0 + 【孔倒角 D15.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "af3cfe7e-e4a",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "bd0bac8b-576",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "98c6f7ab-0a7",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "975140f7-0be",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "e1f46b97-618",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "de2cf6ed-438",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "92460fbd-0a4",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "21863864-43a",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "70fcae3e-62f",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d64cd8c2-b80",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46e5911f-5e9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "eee64e47-3d6",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2725b56d-32c",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "018d57fd-d20",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3460808a-313",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "903ce83a-02b",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "1ad71888-8c4",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "9fcba141-c8d",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "09cc0271-fe1",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "0e64355f-551",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D6.0 + 【孔倒角 D6.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "27670316-f77",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "6730cf10-2d4",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "17ed0060-b0f",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "沉頭孔 D10.0 + 【孔倒角 D10.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "5611733a-e9c",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "f37794ba-9b6",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "53869ce6-7e8",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "94270050-962",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "2be854d7-1ad",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "23ad9632-f3d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "7364e9fe-d00",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "3bb4580d-427",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "74857383-770",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "4169bbd0-2ce",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "925be755-d3e",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "a5fdbcfe-b80",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "d3dac283-770",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "d65f617a-019",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D3.0 + 【孔倒角 D3.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2827a713-139",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "定位孔 D4.0 + 【孔倒角 D4.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "2c7695c8-eb9",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "牙孔 M5-0.8 + 【孔倒角 M5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "334102e2-15d",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D5.5 + 【孔倒角 D5.5】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "db995b65-1c3",
+          "feature_type": "hole",
+          "material": "AL6061",
+          "template": "一般孔 D9.0 + 【孔倒角 D9.0】 倒角C0.2 【AL6061】"
+        },
+        {
+          "id": "46c5fbb5-ae0",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "313694b0-eda",
+          "feature_type": "face",
+          "material": "AL6061",
+          "template": "D26R0.8-面精銑"
+        },
+        {
+          "id": "911707f8-85c",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "bab1cc29-d1b",
+          "feature_type": "profile",
+          "material": "AL6061",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "e7af7b03-0a0",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "一般孔 D4.5 + 【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "7fcc58f9-f89",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "沉頭孔 D8.0 + 【孔倒角 D8.0】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "84502e8c-7ac",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "8cebbcee-7e7",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D63C15-面精銑"
+        },
+        {
+          "id": "8ce0018c-247",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-粗-擺線"
+        },
+        {
+          "id": "b5f22374-bc1",
+          "feature_type": "profile",
+          "material": "S50C",
+          "template": "D10-精-2D輪廓"
+        },
+        {
+          "id": "4aaaa3e0-734",
+          "feature_type": "hole",
+          "material": "S50C",
+          "template": "【孔倒角 D4.5】 倒角C0.2 【S50C】"
+        },
+        {
+          "id": "c93e2e9a-8ed",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D26R0.8-面粗銑"
+        },
+        {
+          "id": "815e5ce2-9ef",
+          "feature_type": "face",
+          "material": "S50C",
+          "template": "D63C15-面精銑"
+        }
+      ]
+    }
+  ]
+}

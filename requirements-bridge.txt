@@ -1,0 +1,6 @@
+# 本機雙 SDK 協作橋（可選依賴）
+# pip install -r requirements-bridge.txt
+
+cursor-sdk
+google-antigravity
+python-dotenv

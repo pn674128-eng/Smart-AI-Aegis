@@ -1,0 +1,10 @@
+{
+  "autodeskProduct": "Fusion",
+  "type": "addin",
+  "author": "ASUS",
+  "description": {
+    "": "Fusion API 參考手冊插件"
+  },
+  "supportedOS": "windows|mac",
+  "editEnabled": true
+}

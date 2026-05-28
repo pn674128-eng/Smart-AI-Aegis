@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8">
+<title>CAM Parameter API</title>
+<style>
+body{margin:0;padding:12px 14px;background:#1e1e1e;color:#e3e3e3;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.5}
+h1{font-size:19px;color:#8fd3ff;margin:0 0 8px}
+h2{font-size:16px;color:#ffd37f;margin:18px 0 8px}
+h3{font-size:14px;color:#b8e19a;margin:12px 0 6px}
+.muted{color:#a0a0a0;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;margin:8px 0 14px;background:#252525}
+th,td{border:1px solid #3f3f3f;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#333;color:#f0f0f0}
+code,pre{color:#93e2b1;font-family:Consolas,monospace}
+pre{background:#151515;border:1px solid #333;border-radius:6px;padding:10px;white-space:pre-wrap}
+.box{background:#242424;border:1px solid #3a3a3a;border-radius:6px;padding:10px;margin:10px 0}
+a{color:#8fd3ff;text-decoration:none}.nav{margin-bottom:12px}
+</style></head><body>
+<div class="nav"><a href="reference.html">&larr; åä¸»é </a></div>
+<h1>CAM Parameter API â å®æ¹å®æ´åè (adsk.cam)</h1>
+<div class="muted">ä¾æºï¼Fusion API Documentation (live query)ãææé¡å¥ãå±¬æ§ãæ¹æ³åä¾èªå®æ¹ APIã</div>
+<h2>CAMParameter â å®ä¸åæ¸ç©ä»¶</h2>
+<div class="muted">Base class for representing parameter of an operation.</div>
+<h3>Properties</h3>
+<table>
+<tr><th>å±¬æ§</th><th>èªªæ</th></tr>
+<tr><td><code>name</code></td><td>Gets the name (internal name) of the parameter</td></tr>
+<tr><td><code>title</code></td><td>Returns the title as seen in the user interface</td></tr>
+<tr><td><code>fullTitle</code></td><td>Returns the full title as seen in the user interface</td></tr>
+<tr><td><code>expression</code></td><td>Gets and sets the value expression of the parameter</td></tr>
+<tr><td><code>value</code></td><td>Returns ParameterValue subclass object (get/set value)</td></tr>
+<tr><td><code>isEnabled</code></td><td>Gets if this parameter is enabled</td></tr>
+<tr><td><code>isEditable</code></td><td>Returns whether expression/value can be modified</td></tr>
+<tr><td><code>isVisible</code></td><td>Gets if this parameter is visible in the UI</td></tr>
+<tr><td><code>isDeprecated</code></td><td>Gets if this parameter is deprecated</td></tr>
+<tr><td><code>error</code></td><td>Returns message for any active error on this parameter</td></tr>
+<tr><td><code>warning</code></td><td>Returns message for any active warning</td></tr>
+<tr><td><code>userDefaultExpression</code></td><td>Gets/sets the user default expression</td></tr>
+<tr><td><code>systemDefaultExpression</code></td><td>Returns the system default expression (read-only)</td></tr>
+</table>
+<h3>Methods</h3>
+<table>
+<tr><th>æ¹æ³</th><th>èªªæ</th></tr>
+<tr><td><code>saveExpressionAsUserDefault()</code></td><td>Saves the current expression as user default value</td></tr>
+</table>
+<h2>CAMParameters â åæ¸éå</h2>
+<div class="muted">Collection providing access to parameters of an existing operation.</div>
+<table>
+<tr><th>æå¡</th><th>èªªæ</th></tr>
+<tr><td><code>count</code></td><td>The number of items in the collection</td></tr>
+<tr><td><code>item(index)</code></td><td>Returns parameter at specified index</td></tr>
+<tr><td><code>itemByName(name)</code></td><td>Returns parameter by internal name</td></tr>
+<tr><td><code>resetToSystemDefaults()</code></td><td>Resets each parameter to its system default</td></tr>
+</table>
+<h2>ParameterValue å­é¡å¥</h2>
+<div class="muted">Base class: ParameterValue (has .parent property). Cast via adsk.cam.XxxParameterValue.cast(param.value)</div>
+<table>
+<tr><th>é¡å¥</th><th>value å±¬æ§ / æ¹æ³</th><th>èªªæ</th></tr>
+<tr><td><code>BooleanParameterValue</code></td><td>value: bool</td><td>Boolean parameter</td></tr>
+<tr><td><code>FloatParameterValue</code></td><td>value: float (internal units)<br>type: FloatParameterValueTypes</td><td>Float / physical quantity parameter</td></tr>
+<tr><td><code>ChoiceParameterValue</code></td><td>value: str<br>getChoices() -&gt; list</td><td>String choice (enum) parameter</td></tr>
+<tr><td><code>CadContours2dParameterValue</code></td><td>getCurveSelections()<br>applyCurveSelections(curves)</td><td>2D geometry contour parameter. Must re-apply after model update.</td></tr>
+<tr><td><code>CadMachineAvoidGroupsParameterValue</code></td><td>getMachineAvoidGroups()<br>applyMachineAvoidGroups(groups)</td><td>Machine avoid groups parameter</td></tr>
+</table>
+<h2>FloatParameterValueTypes â ç©çéåå¥æè</h2>
+<table>
+<tr><th>å¸¸æ¸</th><th>å®ä½</th><th>èªªæ</th></tr>
+<tr><td><code>UnspecifiedValueType</code></td><td>â</td><td>Unspecified, can represent any type</td></tr>
+<tr><td><code>LengthValueType</code></td><td>cm</td><td>Length</td></tr>
+<tr><td><code>AngleValueType</code></td><td>rad</td><td>Angle</td></tr>
+<tr><td><code>LinearVelocityValueType</code></td><td>mm/min</td><td>Linear velocity (feed rate)</td></tr>
+<tr><td><code>RotationalVelocityValueType</code></td><td>rpm</td><td>Rotational velocity (spindle speed)</td></tr>
+<tr><td><code>TimeValueType</code></td><td>s</td><td>Time</td></tr>
+<tr><td><code>WeightValueType</code></td><td>kg</td><td>Weight</td></tr>
+<tr><td><code>PowerValueType</code></td><td>W</td><td>Power</td></tr>
+<tr><td><code>FlowRateValueType</code></td><td>l/min</td><td>Flow rate</td></tr>
+<tr><td><code>AreaValueType</code></td><td>cm&sup2;</td><td>Area</td></tr>
+<tr><td><code>VolumeValueType</code></td><td>cm&sup3;</td><td>Volume</td></tr>
+<tr><td><code>TemperatureValueType</code></td><td>&deg;C</td><td>Temperature</td></tr>
+</table>
+<h2>ä½¿ç¨ç¯ä¾</h2>
+<pre>
+# dump all parameters of an operation
+def dump_params(op):
+    params = op.parameters
+    for i in range(params.count):
+        p = params.item(i)
+        print(f"[{i:03d}] {p.name:<42s} expr={p.expression}  editable={p.isEditable}")
+
+# set by expression (works for Boolean / Choice / Float)
+p = op.parameters.itemByName('cycleType')
+if p and p.isEditable:
+    p.expression = "'drilling'"
+
+# read float value in internal units
+fv = adsk.cam.FloatParameterValue.cast(op.parameters.itemByName('spindleSpeed').value)
+print(fv.value, fv.type)  # rpm
+
+# set 2D geometry
+cv = adsk.cam.CadContours2dParameterValue.cast(op.parameters.itemByName('geometries').value)
+curves = cv.getCurveSelections()
+curves.add(adsk.cam.CadCurve.createFaceContour(face))
+cv.applyCurveSelections(curves)
+</pre>
+</body></html>

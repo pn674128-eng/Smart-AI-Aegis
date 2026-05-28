@@ -1,0 +1,5176 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart AI CAM Fusion V2.0458</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --main-ui-width: 100%;
+    --main-ui-height: 100%;
+    --col-hole-width: 150px;
+    --col-template-width: 170px;
+    --col-count-width: 50px;
+    --col-depth-width: 70px;
+    --col-drill-mode-width: 120px;
+    --col-drill-depth-width: 85px;
+    --col-ream-mode-width: 120px;
+    --col-ream-depth-width: 85px;
+    --col-pitch-width: 90px;
+    --col-calc-width: 120px;
+
+    /* Curated Color System */
+    --bg-base: #0a0b0e;
+    --bg-surface: rgba(22, 25, 35, 0.65);
+    --bg-surface-solid: #161923;
+    --bg-surface-hover: rgba(30, 36, 50, 0.85);
+    --border-color: rgba(255, 255, 255, 0.05);
+    --border-glow: rgba(0, 242, 254, 0.15);
+    
+    /* Neon Accents */
+    --accent-blue: #00f2fe;
+    --accent-blue-rgb: 0, 242, 254;
+    --accent-purple: #9d6ade;
+    --accent-purple-rgb: 157, 106, 222;
+    --accent-cyan: #00e5ff;
+    --accent-green: #00e676;
+    --accent-red: #ff3366;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    
+    /* Gradients */
+    --grad-primary: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #6fb1fc 100%);
+    --grad-cyber: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    --grad-ai: linear-gradient(135deg, rgba(20, 24, 33, 0.95) 0%, rgba(35, 41, 53, 0.95) 100%);
+    --grad-purple: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+    --grad-btn-ai: linear-gradient(90deg, #5e35b1 0%, #9c6ade 100%);
+    --grad-btn-intuitive: linear-gradient(90deg, #00695c 0%, #00bfa5 100%);
+    --grad-btn-oneclick: linear-gradient(90deg, #00838f 0%, #00e676 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.35);
+    --shadow-glow-blue: 0 0 15px rgba(0, 242, 254, 0.3);
+    --shadow-glow-purple: 0 0 15px rgba(157, 106, 222, 0.3);
+  }
+
+  * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+  body {
+    font-size: 12px;
+    line-height: 1.5;
+    background-image: radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.9) 0%, #06080c 100%);
+  }
+
+  /* High-end Frosted Cards */
+  .section {
+    background: var(--bg-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .section:hover {
+    border-color: rgba(0, 242, 254, 0.15);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .tab-btn.active {
+    background: var(--grad-cyber) !important;
+    color: #06080c !important;
+    border-color: transparent !important;
+    font-weight: 700;
+    box-shadow: var(--shadow-glow-blue);
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 2px solid var(--accent-blue);
+    padding-left: 6px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+
+  .label {
+    flex: 0 0 70px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* Dropdowns and Inputs */
+  select, input[type=text] {
+    flex: 1;
+    background: rgba(10, 11, 15, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: inherit;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  select:focus, input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 242, 254, 0.25);
+    background-color: rgba(10, 11, 15, 0.95);
+  }
+  select option {
+    background-color: var(--bg-surface-solid);
+    color: var(--text-primary);
+  }
+
+  /* Table Custom Stylings */
+  .table-wrap {
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    background: rgba(10, 11, 15, 0.5);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 10.5px;
+    table-layout: auto;
+  }
+  th {
+    background: rgba(22, 26, 38, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+  }
+  tr {
+    position: relative;
+  }
+  tr:hover td { 
+    background: rgba(0, 242, 254, 0.06); 
+    color: #fff;
+    cursor: pointer;
+  }
+  tr.selected td { 
+    background: rgba(0, 242, 254, 0.12);
+    border-bottom-color: rgba(0, 242, 254, 0.3);
+    color: #fff;
+  }
+  tr.highlight td { 
+    background: rgba(255, 145, 0, 0.1);
+    border-bottom-color: rgba(255, 145, 0, 0.3);
+    color: #ffd080;
+  }
+  td select, td input {
+    width: 100%;
+    min-width: 0;
+    padding: 3px 6px;
+    border-radius: 4px;
+  }
+
+  /* Table Columns Fixes */
+  #hole_table th:nth-child(1), #hole_table td:nth-child(1) { width: var(--col-hole-width); }
+  #hole_table th:nth-child(2), #hole_table td:nth-child(2) { width: var(--col-template-width); }
+  #hole_table th:nth-child(3), #hole_table td:nth-child(3) { width: var(--col-count-width); }
+  #hole_table th:nth-child(4), #hole_table td:nth-child(4) { width: var(--col-depth-width); }
+  #hole_table th:nth-child(5), #hole_table td:nth-child(5) { width: var(--col-drill-mode-width); }
+  #hole_table th:nth-child(6), #hole_table td:nth-child(6) { width: var(--col-drill-depth-width); }
+  #hole_table th:nth-child(7), #hole_table td:nth-child(7) { width: var(--col-ream-mode-width); }
+  #hole_table th:nth-child(8), #hole_table td:nth-child(8) { width: var(--col-ream-depth-width); }
+  #hole_table th:nth-child(9), #hole_table td:nth-child(9) { width: var(--col-pitch-width); }
+  #hole_table th:nth-child(10), #hole_table td:nth-child(10) { width: var(--col-calc-width); }
+
+  /* Buttons Design */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  button {
+    flex: 1;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 11.5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn-primary {
+    background: var(--grad-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(67, 100, 247, 0.3);
+  }
+  .btn-primary:hover:not(:disabled) { 
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(67, 100, 247, 0.45);
+  }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .btn-secondary:hover:not(:disabled) { 
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+  .btn-primary:disabled {
+    background: #252833;
+    color: var(--text-muted);
+    box-shadow: none;
+    cursor: not-allowed;
+    border-color: transparent;
+  }
+  button:active:not(:disabled) {
+    transform: translateY(0);
+    filter: brightness(0.9);
+  }
+
+  /* Status badges */
+  #status {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    min-height: 18px;
+    font-weight: 500;
+  }
+  #status.ok  { 
+    color: var(--accent-green); 
+    text-shadow: 0 0 6px rgba(0, 230, 118, 0.2);
+  }
+  #status.err { 
+    color: var(--accent-red); 
+    text-shadow: 0 0 6px rgba(255, 51, 102, 0.2);
+  }
+
+  /* App Layout shell */
+  #app_root.app-shell {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .app-header-bar { 
+    flex-shrink: 0; 
+    margin-bottom: 0px; 
+    padding-bottom: 8px;
+  }
+  .header-action-btn {
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    height: 28px;
+    border-radius: 4px;
+    flex: 0 0 auto;
+  }
+  .header-inline-status {
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: min(220px, 20vw);
+    line-height: 1.3;
+  }
+  .header-template-warn {
+    color: var(--accent-red);
+    font-size: 11px;
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(255, 51, 102, 0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: min(520px, 38vw);
+    display: none;
+  }
+  .status-bar-top {
+    flex-shrink: 0;
+    background: rgba(16, 24, 48, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    font-size: 10.5px;
+    color: #e2f1ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border-radius: 0 0 6px 6px;
+    min-height: 24px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  /* ==========================================================================
+     2D CONTOUR RECOGNITION GRID TABLE STYLES
+     ========================================================================== */
+  .contour-rec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: #e2f1ff;
+    background: rgba(16, 24, 48, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .contour-rec-table th {
+    background: rgba(255, 255, 255, 0.02);
+    color: #88a8c8;
+    text-align: left;
+    padding: 6px 10px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .contour-rec-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    vertical-align: middle;
+  }
+  .contour-rec-table tr:last-child td {
+    border-bottom: none;
+  }
+  .contour-rec-table .row-title {
+    font-weight: bold;
+    color: #a5f3fc;
+  }
+  .contour-rec-table .geo-spec {
+    color: #88a8c8;
+    line-height: 1.35;
+  }
+  .contour-rec-table .geo-spec strong {
+    color: #e2f1ff;
+  }
+  .contour-2d-header,
+  .hole-feature-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .contour-2d-header .section-title,
+  .hole-feature-header .section-title {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .contour-chamfer-bar,
+  .hole-drill-origin-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 1;
+    min-width: 0;
+  }
+  .contour-chamfer-bar label,
+  .hole-drill-origin-bar label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #bbb;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .contour-chamfer-bar .chamfer-bar-sep {
+    color: #777;
+  }
+  .contour-chamfer-bar .chamfer-bar-hint {
+    font-size: 11px;
+    color: #bbb;
+  }
+
+  .contour-rec-table td select {
+    width: 100%;
+    min-width: 0;
+    font-size: 10.5px;
+    padding: 2px 4px;
+  }
+  .contour-rec-table tr.c2d-unrecognized .row-title {
+    color: #9ca3af;
+  }
+
+  #mcp_progress_panel { flex-shrink: 0; }
+  .app-main {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    gap: 0;
+    overflow: hidden;
+  }
+  .panel-left {
+    flex: 0 0 var(--panel-left-width, 50%);
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+  }
+  .panel-splitter {
+    flex: 0 0 6px;
+    cursor: col-resize;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+  .panel-splitter:hover,
+  .panel-splitter.dragging {
+    background: rgba(0, 242, 254, 0.14);
+  }
+  .panel-splitter::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 36px;
+    border-radius: 2px;
+    background: rgba(0, 242, 254, 0.35);
+  }
+  .panel-left-top { flex-shrink: 0; margin-bottom: 0 !important; padding: 8px 10px !important; }
+  .panel-left-top .section-title { margin-bottom: 6px; }
+  .common-settings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .common-settings-labels,
+  .common-settings-values {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 0.75fr) minmax(0, 1.4fr);
+    gap: 6px;
+    align-items: center;
+  }
+  .common-settings-labels span {
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .common-settings-values select {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  #vision_section.panel-left-vision {
+    flex-shrink: 0;
+    margin-bottom: 0 !important;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  #vision_section.panel-left-vision:hover {
+    border: none;
+    box-shadow: none;
+  }
+  #vision_section.panel-left-vision .section-title {
+    margin-bottom: 6px;
+    padding-left: 2px;
+  }
+  #vision_2d_placeholder {
+    height: 240px !important;
+    border: 2px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(10, 11, 15, 0.4);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    font-size: 11px;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+  }
+  #vision_2d_placeholder:hover {
+    border-color: var(--accent-blue);
+    background: rgba(0, 242, 254, 0.02);
+  }
+  
+  /* ==========================================================================
+     2D FAST + 3D RAYCAST SUMMARY CARD & INFO BADGES
+     ========================================================================== */
+  .vision-summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+  .vision-summary-header {
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .vision-summary-header .mode-title {
+    color: #9bd2ff;
+    font-weight: 500;
+  }
+  .vision-summary-header .setup-tag {
+    color: #00f2fe;
+    font-weight: bold;
+  }
+  .vision-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .vision-feature-badge {
+    background: rgba(0, 242, 254, 0.05);
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    border-radius: 5px;
+    padding: 6px 4px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .vision-feature-badge:hover {
+    background: rgba(0, 242, 254, 0.1);
+    border-color: rgba(0, 242, 254, 0.3);
+    transform: translateY(-1px);
+  }
+  .vision-feature-badge .badge-val {
+    font-size: 13px;
+    font-weight: bold;
+    color: #00f2fe;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .vision-feature-badge .badge-lbl {
+    font-size: 9px;
+    color: #88a8c8;
+  }
+  .vision-feature-badge.empty-badge {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  .vision-feature-badge.empty-badge .badge-val {
+    color: #777;
+  }
+  .vision-feature-badge.empty-badge .badge-lbl {
+    color: #555;
+  }
+  .vision-physics-card {
+    background: rgba(16, 24, 48, 0.4);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 10px;
+  }
+  .vision-physics-card .physics-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vision-physics-card .physics-label {
+    color: #88a8c8;
+  }
+  .vision-physics-card .physics-value {
+    color: #e2f1ff;
+    font-weight: 500;
+  }
+  .vision-physics-card .physics-value strong {
+    color: #00f2fe;
+  }
+
+  /* ==========================================================================
+     COLLAPSIBLE SECTION STYLES (ACCORDION / DRAWER)
+     ========================================================================== */
+  .collapsible-section {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .collapsible-section:hover {
+    border-color: rgba(0, 242, 254, 0.15);
+    background: rgba(0, 242, 254, 0.01);
+  }
+  .collapsible-header {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+  }
+  .collapsible-header:hover {
+    background: rgba(0, 242, 254, 0.04);
+  }
+  .collapsible-header .collapsible-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #9bd2ff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .collapsible-header .collapsible-arrow {
+    font-size: 8px;
+    color: #88a8c8;
+    transition: transform 0.2s ease;
+  }
+  .collapsible-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 12px;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* Expanded State Styles */
+  .collapsible-section.expanded {
+    background: rgba(16, 24, 48, 0.2);
+    border-color: rgba(0, 242, 254, 0.08);
+  }
+  .collapsible-section.expanded .collapsible-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(0, 242, 254, 0.02);
+  }
+  .collapsible-section.expanded .collapsible-arrow {
+    transform: rotate(90deg);
+  }
+  .collapsible-section.expanded .collapsible-content {
+    max-height: 800px;
+    opacity: 1;
+    padding: 10px 12px 12px 12px;
+    transition: max-height 0.3s cubic-bezier(0.99, 0, 1, 1), padding 0.3s ease, opacity 0.3s ease;
+  }
+
+  #three_viewport_container {
+    width: 100%;
+    height: 400px !important;
+    min-height: 400px !important;
+    position: relative;
+    border: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  #panel_left_ai {
+    flex-shrink: 0;
+    margin-bottom: 0 !important;
+  }
+  #panel_left_ai .ai-report-textarea { min-height: 48px; max-height: 72px; }
+  .panel-right {
+    flex: 1 1 auto;
+    min-width: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+  }
+  .panel-right .section { margin-bottom: 12px; }
+  .panel-right .table-wrap { max-height: 420px; }
+  .panel-right-footer {
+    flex-shrink: 0;
+    background: var(--bg-base);
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 8px;
+  }
+  #app_root:not(.app-shell) {
+    width: var(--main-ui-width);
+    min-height: var(--main-ui-height);
+  }
+
+  /* Gorgeous Settings Modal with blur */
+  .settings-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 8, 12, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: all 0.3s ease;
+  }
+  .settings-modal.open { display: flex; }
+  .settings-panel {
+    width: 480px;
+    max-width: 92vw;
+    max-height: 88vh;
+    overflow-y: auto;
+    background: rgba(22, 25, 35, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+  .settings-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .settings-tab {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .settings-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  .settings-tab.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #06080c;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 242, 254, 0.25);
+  }
+  .settings-group {
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: rgba(10, 11, 15, 0.3);
+  }
+  .settings-group.active { display: block; }
+  .settings-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .settings-row label {
+    width: 150px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .settings-row label.checkbox-label {
+    width: auto;
+    flex: 1;
+    cursor: pointer;
+  }
+  .settings-row input {
+    width: 120px;
+    background: rgba(10, 11, 15, 0.8);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  .settings-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+  }
+  .settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  
+  /* Cyberpunk AI Glass Panels */
+  .ai-section {
+    background: linear-gradient(135deg, rgba(14, 18, 28, 0.95) 0%, rgba(26, 31, 46, 0.95) 100%);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 229, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  .ai-section:hover {
+    border-color: rgba(0, 229, 255, 0.45);
+    box-shadow: 0 8px 32px rgba(0, 229, 255, 0.15);
+  }
+  .ai-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  }
+  .btn-ai-opt {
+    background: var(--grad-cyber);
+    border: none;
+    color: #06080c;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 11.5px;
+    letter-spacing: 0.8px;
+  }
+  .btn-ai-opt:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.45);
+    transform: translateY(-1px);
+  }
+  .intuitive-block {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 229, 255, 0.12);
+  }
+  .intuitive-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .btn-ai-intuitive {
+    background: var(--grad-btn-intuitive);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    flex: 1;
+    min-width: 0;
+    box-shadow: 0 4px 12px rgba(0, 191, 165, 0.2);
+  }
+  .btn-ai-intuitive:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 191, 165, 0.35);
+  }
+  .btn-ai-oneclick {
+    background: var(--grad-btn-oneclick);
+    border: none;
+    color: #06080c;
+    font-weight: 800;
+    padding: 9px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 12.5px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.25);
+    transition: all 0.3s ease;
+  }
+  .btn-ai-oneclick:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 230, 118, 0.45);
+  }
+  .btn-ai-intuitive-secondary {
+    background: rgba(0, 191, 165, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    color: #b2fff5;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    flex: 1;
+    min-width: 0;
+  }
+  .btn-ai-intuitive-secondary:hover {
+    background: rgba(0, 191, 165, 0.15);
+    border-color: var(--accent-cyan);
+    transform: translateY(-1px);
+  }
+  .thinking-block {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(157, 106, 222, 0.2);
+  }
+  .thinking-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-purple);
+    margin-bottom: 8px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .btn-ai-thinking {
+    background: var(--grad-btn-ai);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    flex: 1;
+    min-width: 0;
+    box-shadow: 0 4px 12px rgba(157, 106, 222, 0.2);
+  }
+  .btn-ai-thinking:hover { 
+    filter: brightness(1.1); 
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(157, 106, 222, 0.35);
+  }
+  .btn-ai-thinking-secondary {
+    background: rgba(156, 106, 222, 0.08);
+    border: 1px solid rgba(180, 130, 255, 0.3);
+    color: #e8d4ff;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    flex: 1;
+    min-width: 0;
+    transition: all 0.2s ease;
+  }
+  .btn-ai-thinking-secondary:hover {
+    background: rgba(156, 106, 222, 0.15);
+    border-color: var(--accent-purple);
+    transform: translateY(-1px);
+  }
+  .btn-ai-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10.5px;
+    flex: 1;
+    min-width: 0;
+  }
+  .btn-ai-secondary:hover {
+    background: rgba(0, 242, 254, 0.08);
+    border-color: var(--accent-blue);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .btn-ai-danger {
+    background: linear-gradient(90deg, #6a1b9a 0%, #8e24aa 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10.5px;
+    flex: 1;
+    min-width: 0;
+    box-shadow: 0 4px 12px rgba(142, 36, 170, 0.2);
+  }
+  .btn-ai-danger:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(142, 36, 170, 0.35);
+  }
+  .ai-btn-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .ai-hint {
+    font-size: 10.5px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  .ai-report-wrap {
+    margin-top: 8px;
+    background: rgba(10, 11, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+  }
+  .ai-report-textarea {
+    width: 100%;
+    height: 100px;
+    background: transparent;
+    border: none;
+    color: #00ffc4;
+    font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    font-size: 10px;
+    resize: vertical;
+    outline: none;
+    line-height: 1.5;
+  }
+
+  /* Custom Slim Scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(10, 11, 15, 0.3);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 242, 254, 0.3);
+  }
+
+  /* Advanced Scrollable Button Row */
+  .advanced-scroll-row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 2px;
+    scrollbar-width: thin;
+    margin-bottom: 8px;
+  }
+  .advanced-scroll-row button {
+    flex: 0 0 auto;
+    width: 105px;
+    height: 48px;
+    font-size: 10.5px;
+    line-height: 1.35;
+    white-space: normal;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 4px;
+    background: rgba(156, 106, 222, 0.08);
+    border: 1px solid rgba(180, 130, 255, 0.25);
+    color: #e8d4ff;
+    transition: all 0.2s ease;
+  }
+  .advanced-scroll-row button:hover {
+    background: rgba(156, 106, 222, 0.18);
+    border-color: var(--accent-purple);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(157, 106, 222, 0.2);
+  }
+  .advanced-scroll-row button.btn-secondary-cs {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+  }
+  .advanced-scroll-row button.btn-secondary-cs:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Collapsible Details Accordion */
+  .ai-advanced-details {
+    margin-top: 10px;
+    border-top: 1px solid rgba(0, 229, 255, 0.12);
+  }
+  .ai-advanced-details[open] {
+    padding-bottom: 8px;
+  }
+  .ai-advanced-summary {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px 0;
+    list-style: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.2s;
+  }
+  .ai-advanced-summary:hover {
+    color: var(--accent-cyan);
+  }
+  .ai-advanced-summary::-webkit-details-marker {
+    display: none;
+  }
+  .ai-advanced-summary::after {
+    content: "▼";
+    font-size: 8px;
+    transition: transform 0.3s;
+    color: var(--text-muted);
+  }
+  .ai-advanced-details[open] .ai-advanced-summary::after {
+    transform: rotate(180deg);
+    color: var(--accent-cyan);
+  }
+
+  /* Recognition Tabs styling */
+  .recognition-tabs {
+    display: none !important;
+  }
+  .recognition-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .recognition-tab:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .recognition-tab.active {
+    background: var(--grad-cyber);
+    color: #06080c !important;
+    font-weight: 700;
+    box-shadow: var(--shadow-glow-blue);
+  }
+  .tab-content-panel {
+    display: block !important;
+    margin-bottom: 16px;
+  }
+  .tab-content-panel.active {
+    display: block;
+  }
+  
+  @keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+<body>
+<div id="app_root" class="app-shell">
+<div class="app-header-bar" style="display:flex;align-items:center;justify-content:space-between;">
+  <!-- Left Side: Brand Logo -->
+  <div style="display:flex;align-items:baseline;gap:6px;flex-shrink:0;">
+    <span style="font-size:12.5px;font-weight:700;color:#e8e8e8;letter-spacing:0.5px;">Smart AI CAM</span>
+    <span id="addin_version_badge" style="font-size:9.5px;color:#777;font-weight:500;">V2.0458</span>
+  </div>
+
+  <!-- Actions + inline status: 執行 → 重新掃描 → 綠字 → 紅字 → 設置 -->
+  <div style="display:flex;align-items:center;gap:8px;flex:1;justify-content:flex-end;margin:0 10px;flex-shrink:0;min-width:0;">
+    <button class="btn-primary header-action-btn" id="btn_exec" onclick="onExecute()" disabled style="box-shadow: 0 0 8px rgba(0, 242, 254, 0.2);">執行（先2D後3D）</button>
+    <button class="btn-secondary header-action-btn" onclick="onRescan()" title="僅依目前模型重掃孔/槽與工序顯示，不會重新讀取磁碟上的模板檔索引。若要更新模板請到「調整 → 程序診斷 → 重新快取模板」。">重新掃描</button>
+    <span id="status" class="header-inline-status">準備就緒</span>
+    <span id="header_template_warn" class="header-template-warn"></span>
+    <button type="button" class="btn-secondary header-action-btn" id="btn_palette_fullscreen" onclick="togglePaletteFullscreen()" title="全螢幕顯示／還原面板">⛶</button>
+    <button class="btn-secondary header-action-btn" onclick="openSettings()">設置</button>
+  </div>
+</div>
+
+<!-- MCP Progress Bar Panel -->
+<div id="mcp_progress_panel" class="section" style="display:none; background: linear-gradient(135deg, #2b1b3b, #1b2b3b); border: 1px solid #7b1fa2; box-shadow: 0 0 10px rgba(123, 31, 162, 0.4); margin-bottom: 8px; transition: opacity 0.5s ease;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+    <span id="mcp_status_title" style="font-weight:600; color:#e040fb; font-size:11px; letter-spacing: 0.5px;">AI 智慧編程執行中...</span>
+    <span id="mcp_status_pct" style="color:#00e5ff; font-weight:700; font-size:11px;">0%</span>
+  </div>
+  <div style="background:#222; border-radius: 4px; height: 6px; overflow: hidden; position: relative;">
+    <div id="mcp_status_bar" style="width:0%; height:100%; background: linear-gradient(90deg, #e040fb, #00e5ff); box-shadow: 0 0 8px #00e5ff; transition: width 0.3s ease; border-radius: 4px;"></div>
+  </div>
+  <div id="mcp_status_text" style="color:#aaa; font-size:10px; margin-top: 4px; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">準備中...</div>
+</div>
+
+<div class="app-main">
+<div class="panel-left">
+
+<div class="section panel-left-top">
+  <div class="section-title">共用設定</div>
+  <div class="common-settings-grid">
+    <div class="common-settings-labels">
+      <span>Setup</span>
+      <span>材質 (Material)</span>
+      <span>機台 (Machine)</span>
+    </div>
+    <div class="common-settings-values">
+      <select id="setup_sel" onchange="onSetupChange()"></select>
+      <select id="material_sel" onchange="onMaterialChange()"></select>
+      <select id="machine_sel" onchange="onMachineChange()"></select>
+    </div>
+  </div>
+</div>
+
+
+<div class="section panel-left-vision" id="vision_section">
+  <div class="section-title">mesh 實體顯示</div>
+  <div class="vision-viewport-stack">
+  <div id="three_viewport_container" style="position:relative; width:100%; background:#ffffff; display:block; overflow:hidden;">
+    <div id="three_canvas_div" style="width:100%; height:100%;"></div>
+    
+    <div style="position:absolute; top:6px; right:6px; display:flex; gap:4px; z-index:10;">
+      <button type="button" onclick="resetThreeCamera()" style="background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:3px; padding:2px 6px; font-size:10px; cursor:pointer;" title="重置視角">🏠</button>
+      <button type="button" id="btn_toggle_axes" onclick="toggleThreeAxes()" style="background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:3px; padding:2px 6px; font-size:10px; cursor:pointer;" title="顯示/隱藏座標軸">🌐</button>
+    </div>
+    
+    <div id="three_legend" style="position:absolute; bottom:6px; left:6px; background:rgba(0,0,0,0.7); border:1px solid #555; border-radius:4px; padding:4px 8px; font-size:9px; color:#9cdcfe; pointer-events:none; z-index:10;">mesh 實體顯示 · WCS Z↑</div>
+    
+    <div id="three_wcs_overlay" style="position:absolute; bottom:6px; right:6px; background:rgba(0,0,0,0.75); border:1px solid #555; border-radius:4px; padding:4px 8px; font-size:9px; color:#ccc; pointer-events:none; z-index:10; line-height:1.45;">
+      <div style="color:#9cdcfe; font-weight:bold;">WCS · <span id="three_wcs_setup">—</span></div>
+      <div><span style="color:#ff5555;">X</span> <span style="color:#55dd55;">Y</span> <span style="color:#5599ff;">Z+</span> · 原點</div>
+    </div>
+    
+    <div id="three_overlay_status" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:#666; font-size:12px; pointer-events:none; z-index:5; text-align:center;">
+      掃描中，請稍候...
+    </div>
+  </div>
+  </div>
+
+</div>
+
+
+<!-- AI Intelligent Machining Assistant Panel -->
+<div class="section ai-section" id="panel_left_ai">
+  <div class="ai-title">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #00e5ff; filter: drop-shadow(0 0 2px #00e5ff);"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12c0-2.4 1.35-4.5 3.5-5.5"></path><path d="M12 6V2"></path><path d="M12 22v-4"></path><path d="M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 1 0-6 0"></path><path d="M2 12h4"></path><path d="M18 12h4"></path></svg>
+    AI 智能編程助手
+  </div>
+  
+  <!-- Simplified Primary Workflows -->
+  <div class="ai-btn-row">
+    <button type="button" class="btn-ai-secondary" onclick="triggerAIAnalysisOnly()" title="① 僅分析：只產生報告，不改面板。">① 僅 AI 分析</button>
+    <button type="button" class="btn-ai-secondary" onclick="triggerAIApplyToPanel()" title="② 套用建議：填入模板與 2D 工序，您仍可手改每一列。">② 套用 AI 建議</button>
+    <button type="button" class="btn-ai-danger" onclick="triggerAIApplyAndExecute()" title="③ 套用並執行：需確認後走既有「執行（先2D後3D）」流程。">③ 套用並執行</button>
+  </div>
+  
+  <button type="button" class="btn-ai-oneclick" onclick="triggerIntuitiveOneClick()" title="掃描→直覺式資格→套用已定模板→執行（先2D後3D）；不通過不執行">
+    ⚡ 一鍵直覺式編程 (簡單件推薦)
+  </button>
+
+  <!-- Collapsible Details Accordion for Advanced Steps -->
+  <details class="ai-advanced-details">
+    <summary class="ai-advanced-summary">⚙️ 展開進階編程選項 (直覺/思考式)</summary>
+    
+    <div class="intuitive-block" style="border-top: none; margin-top: 4px; padding-top: 4px;">
+      <div class="intuitive-subtitle">直覺式進階步驟</div>
+      <div class="ai-btn-row">
+        <button type="button" class="btn-ai-intuitive-secondary" onclick="triggerIntuitiveEligibilityCheck()">檢查直覺式資格</button>
+        <button type="button" class="btn-ai-intuitive" onclick="triggerIntuitiveProgramming()">直覺式編程</button>
+      </div>
+    </div>
+    
+    <div class="thinking-block">
+      <div class="thinking-subtitle">思考式進階步驟 (橫向卷軸滾動)</div>
+      
+      <!-- Horizontal Scrollable Row for the 7 Thinking Buttons -->
+      <div class="advanced-scroll-row">
+        <button type="button" class="btn-secondary-cs" onclick="triggerThinkingEligibilityCheck()">檢查思考資格</button>
+        <button type="button" onclick="triggerThinkingProgramming()">思考式 L0</button>
+        <button type="button" class="btn-secondary-cs" onclick="triggerThinkingL1EligibilityCheck()">檢查 L1 資格</button>
+        <button type="button" onclick="triggerThinkingL1Programming()">思考式 L1</button>
+        <button type="button" class="btn-secondary-cs" onclick="triggerThinkingL2EligibilityCheck()">檢查 L2 資格</button>
+        <button type="button" onclick="triggerThinkingL2Programming()">思考式 L2 Setup1</button>
+        <button type="button" class="btn-secondary-cs" onclick="triggerThinkingL2Resume()">L2 繼續 Setup2</button>
+      </div>
+    </div>
+  </details>
+
+  <!-- AI Thought Track Panel -->
+  <div class="ai-thought-track-panel" id="ai_thought_track_panel" style="display:none; margin-top: 10px; padding: 10px; background: rgba(156, 106, 222, 0.08); border: 1px solid rgba(180, 130, 255, 0.25); border-radius: 8px; box-shadow: inset 0 1px 4px rgba(0,0,0,0.5); margin-bottom: 10px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; border-bottom: 1px solid rgba(180, 130, 255, 0.15); padding-bottom: 4px;">
+      <span style="font-weight:700; color:#e8d4ff; font-size:11.5px; letter-spacing:0.5px; text-shadow: 0 0 4px rgba(180,130,255,0.4);">🎯 Smart_AI 思考軌跡 (Thought Track)</span>
+      <span class="thinking-spinner" id="thinking_spinner" style="display:none; width:12px; height:12px; border:2px solid #00e5ff; border-top-color:transparent; border-radius:50%; animation: spin 1s linear infinite;"></span>
+    </div>
+    <div id="ai_thought_content" style="font-size:10.5px; color:#cda3ff; line-height:1.5; font-family: 'JetBrains Mono', Consolas, monospace; max-height: 180px; overflow-y: auto; padding-right: 4px;">
+      AI 思考日誌為空。點選 AI 分析以觀察思考鏈。
+    </div>
+  </div>
+  <style>
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <div class="ai-report-wrap">
+    <textarea id="ai_report_text" class="ai-report-textarea" readonly placeholder="點擊「一鍵 AI 智能加工優化」後，將在本地利用物理公式帶入材質密度與切削能，動態生成優化的主軸轉速、進給率與加工安全警告分析報告..."></textarea>
+  </div>
+</div>
+
+</div>
+
+<div id="panel_splitter" class="panel-splitter" title="拖曳調整左右欄寬度"></div>
+
+<div class="panel-right">
+  <!-- Right-Hand Tab Header -->
+  <div class="recognition-tabs">
+    <button class="recognition-tab active" onclick="switchRightTab('tab_overview')">📊 概覽與輪廓</button>
+    <button class="recognition-tab" onclick="switchRightTab('tab_holes')">🕳️ 孔特徵</button>
+    <button class="recognition-tab" onclick="switchRightTab('tab_pockets')">⚡ 槽與口袋</button>
+  </div>
+
+  <!-- Tab Panel 1: Overview & 2D Contours -->
+  <div id="tab_overview" class="tab-content-panel active">
+    <div class="collapsible-section" id="vision_summary_panel">
+      <div class="collapsible-header" onclick="toggleCollapsible('vision_summary_panel')">
+        <span class="collapsible-title">
+          <span style="display:inline-block; width:3px; height:10px; background:#00f2fe; border-radius:1px;"></span>
+          2D FAST + 3D 射線
+        </span>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span id="vision_mode_badge_right" style="background:rgba(0,120,212,0.2);color:#0078d4;border:1px solid #0078d4;padding:1px 4px;border-radius:3px;font-size:9px;font-weight:bold;">2D+3D</span>
+          <span class="collapsible-arrow">▶</span>
+        </div>
+      </div>
+      <div class="collapsible-content">
+        <div id="vision_summary" class="vision-summary-container">
+          <div style="font-size: 11px; color: var(--text-secondary); text-align: center; padding: 12px 0;">掃描後顯示孔／槽／輪廓摘要…</div>
+        </div>
+        <div class="row" style="margin-top:8px; margin-bottom:4px;">
+          <button type="button" id="btn_draw_recognition_sketch" title="依視線法快照（vision_snapshot）畫孔／槽／外輪廓＋斜角邊，對照是否正確">
+            繪製視線法草圖
+          </button>
+          <span id="recognition_sketch_status" style="font-size:11px;color:#aaa;margin-left:8px;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapsible-section" id="section_flat_depths_wrap" style="display:none;">
+      <div class="collapsible-header" onclick="toggleCollapsible('section_flat_depths_wrap')">
+        <span class="collapsible-title">
+          <span style="display:inline-block; width:3px; height:10px; background:#00f2fe; border-radius:1px;"></span>
+          朝上水平平面深度（AI面銑/外輪廓參考）
+        </span>
+        <span class="collapsible-arrow">▶</span>
+      </div>
+      <div class="collapsible-content">
+        <div class="flat-depths-summary" style="font-size:11px;color:#aaa;margin-bottom:8px;display:flex;gap:16px;flex-wrap:wrap;">
+          <span>Setup Z0 基準: <strong id="flat_max_z" style="color:#0ff;">0.00</strong> mm</span>
+          <span id="flat_stock_size_wrap" style="display:none;">坯料尺寸: <strong id="flat_stock_size" style="color:#0ff;">—</strong></span>
+          <span>頂面胚料厚度: <strong id="flat_stock_to_top" style="color:#0ff;">0.00</strong> mm</span>
+          <span>WCS Z0→工件底面: <strong id="flat_z0_bottom" style="color:#0ff;">0.00</strong> mm</span>
+          <span>工件厚度: <strong id="flat_span_z" style="color:#ff5f85;">0.00</strong> mm</span>
+          <span>坯料剩余厚度: <strong id="flat_stock_remaining" style="color:#ff5f85;">—</strong> mm</span>
+        </div>
+        <div class="table-wrap" style="max-height:150px;">
+          <table id="flat_depths_table">
+            <thead>
+              <tr>
+                <th>相對頂面</th>
+                <th>距 WCS Z0 深度</th>
+                <th>平面總面積</th>
+              </tr>
+            </thead>
+            <tbody id="flat_depths_body">
+              <tr><td colspan="3" style="color:#666;text-align:center">無資料</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="section_contour_2d">
+      <div class="contour-2d-header">
+        <div class="section-title" style="border-left-color: var(--accent-blue);">2D 輪廓</div>
+        <div class="contour-chamfer-bar">
+          <span class="chamfer-bar-hint">倒角</span>
+          <label><input type="checkbox" id="chk_c02" checked onchange="onChamferFilterToggle('c02')">C0.2</label>
+          <label><input type="checkbox" id="chk_c03" onchange="onChamferFilterToggle('c03')">C0.3</label>
+          <label><input type="checkbox" id="chk_no_chamfer" onchange="onChamferFilterToggle('noChamfer')">不指定倒角</label>
+          <span class="chamfer-bar-sep">|</span>
+          <span class="chamfer-bar-hint">快捷</span>
+          <label><input type="checkbox" id="chamfer_only_toggle" onchange="onChamferOnlyToggle()">僅倒角模板</label>
+        </div>
+      </div>
+      <table class="contour-rec-table">
+        <thead>
+          <tr>
+            <th style="width:17%;">工序</th>
+            <th style="width:28%;">幾何</th>
+            <th style="width:27%;">粗銑</th>
+            <th style="width:28%;">精銑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="c2d_row_top">
+            <td class="row-title">頂面面銑</td>
+            <td class="geo-spec" id="c2d_top_geo">重新掃描後顯示…</td>
+            <td>
+              <select id="top_face_rough_sel" title="頂面粗加工"></select>
+            </td>
+            <td>
+              <select id="top_face_finish_sel" title="頂面精加工"></select>
+            </td>
+          </tr>
+          <tr id="c2d_row_profile">
+            <td class="row-title">外輪廓銑削</td>
+            <td class="geo-spec" id="c2d_profile_geo">重新掃描後顯示…</td>
+            <td>
+              <select id="profile_rough_sel" title="外輪廓粗加工"></select>
+            </td>
+            <td>
+              <select id="profile_finish_sel" title="外輪廓精加工"></select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="c2d_chamfer_note" class="ai-hint" style="margin:4px 0 8px; display:none;"></div>
+      <div class="ai-btn-row" style="margin-bottom:8px;">
+        <button type="button" class="btn-ai-secondary" onclick="applyContour2dFromRecognition(false)">特徵辨識並帶入工序</button>
+        <button type="button" class="btn-ai-secondary" onclick="applyContour2dFromRecognition(true)" title="重新掃描幾何後再帶入">重新辨識並帶入</button>
+      </div>
+    </div>
+
+  <!-- Tab Panel 2: Holes -->
+  <div id="tab_holes" class="tab-content-panel">
+    <div class="section">
+      <div class="hole-feature-header">
+        <div class="section-title" style="border-left-color: var(--accent-blue);">孔加工特徵</div>
+        <div class="hole-drill-origin-bar">
+          <span class="chamfer-bar-hint">鑽孔起點</span>
+          <label><input type="checkbox" id="hole_top_surface_chk" onchange="onHoleTopModeToggle('surface')">模型頂</label>
+          <label><input type="checkbox" id="hole_top_hole_chk" onchange="onHoleTopModeToggle('hole')">毛胚頂</label>
+        </div>
+      </div>
+      <div class="table-wrap" style="max-height: 480px;">
+        <table id="hole_table">
+          <thead>
+            <tr>
+              <th>孔</th>
+              <th>模板</th>
+              <th>數</th>
+              <th>深(mm)</th>
+              <th>鑽模式</th>
+              <th>鑽深</th>
+              <th>鉸模式</th>
+              <th>鉸深</th>
+              <th>節距</th>
+              <th>計算</th>
+            </tr>
+          </thead>
+          <tbody id="hole_body">
+            <tr><td colspan="10" style="color:#666;text-align:center">讀取中...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Panel 3: Pockets & Slots -->
+  <div id="tab_pockets" class="tab-content-panel">
+    <div id="section_pocket_slot_wrap" class="section" style="display:none;">
+      <div class="section-title" style="border-left-color: var(--accent-blue);">口袋槽辨識</div>
+      <div class="table-wrap" style="max-height:220px;">
+        <table id="pocket_slot_table">
+          <thead>
+            <tr>
+              <th>類型</th>
+              <th>規格</th>
+              <th>深(mm)</th>
+              <th>通/盲</th>
+              <th>數</th>
+              <th>模板</th>
+            </tr>
+          </thead>
+          <tbody id="pocket_slot_body">
+            <tr><td colspan="6" style="color:#666;text-align:center">讀取中...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div id="section_official_slot_wrap" class="section" style="display:none;">
+      <div class="section-title" style="border-left-color: var(--accent-blue);">官方長條孔（RecognizedPocket）</div>
+      <div id="fusion_official_summary" class="ai-hint" style="margin-bottom:6px;">重新掃描後顯示…</div>
+      <div class="table-wrap" style="max-height:160px;">
+        <table id="official_slot_table">
+          <thead>
+            <tr>
+              <th>標籤</th>
+              <th>規格</th>
+              <th>通/盲</th>
+              <th>綁定</th>
+              <th>2D模板</th>
+              <th>3D模板</th>
+            </tr>
+          </thead>
+          <tbody id="official_slot_body">
+            <tr><td colspan="6" style="color:#666;text-align:center">無</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div id="section_official_pocket_slot_wrap" class="section" style="display:none;">
+      <div class="section-title" style="border-left-color: var(--accent-blue);">官方口袋槽（RecognizedPocket）</div>
+      <div class="table-wrap" style="max-height:160px;">
+        <table id="official_pocket_slot_table">
+          <thead>
+            <tr>
+              <th>標籤</th>
+              <th>規格</th>
+              <th>通/盲</th>
+              <th>封閉</th>
+              <th>綁定</th>
+              <th>2D模板</th>
+              <th>3D模板</th>
+            </tr>
+          </thead>
+          <tbody id="official_pocket_slot_body">
+            <tr><td colspan="7" style="color:#666;text-align:center">無</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer components shifted to top Header bar for superior UX efficiency -->
+</div></div></div>
+
+<div id="settings_modal" class="settings-modal" onclick="onSettingsBackdrop(event)">
+  <div class="settings-panel" onclick="event.stopPropagation()">
+    <div class="section-title" style="margin-bottom:8px;">調整選單</div>
+    <div class="settings-tabs">
+      <button class="settings-tab active" id="tab_ui" onclick="switchSettingsTab('ui')">介面</button>
+      <button class="settings-tab" id="tab_ray" onclick="switchSettingsTab('ray')">射線法</button>
+      <button class="settings-tab" id="tab_diag" onclick="switchSettingsTab('diag')">程序診斷</button>
+    </div>
+
+    <div class="settings-group active" id="group_ui">
+      <div class="settings-row">
+        <label for="set_main_width">主視窗寬度 (px)</label>
+        <input id="set_main_width" type="number" min="360" step="10">
+      </div>
+      <div class="settings-row">
+        <label for="set_main_height">主視窗高度 (px)</label>
+        <input id="set_main_height" type="number" min="360" step="10">
+      </div>
+      <div class="settings-row">
+        <label for="set_palette_width">Palette 寬度 (px)</label>
+        <input id="set_palette_width" type="number" min="360" step="10">
+      </div>
+      <div class="settings-row">
+        <label for="set_palette_height">Palette 高度 (px)</label>
+        <input id="set_palette_height" type="number" min="360" step="10">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_hole_width">孔欄寬 (px)</label>
+        <input id="set_col_hole_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_template_width">模板欄寬 (px)</label>
+        <input id="set_col_template_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_count_width">數欄寬 (px)</label>
+        <input id="set_col_count_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_depth_width">深度欄寬 (px)</label>
+        <input id="set_col_depth_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_drill_mode_width">鑽模式欄寬 (px)</label>
+        <input id="set_col_drill_mode_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_drill_depth_width">鑽深欄寬 (px)</label>
+        <input id="set_col_drill_depth_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_ream_mode_width">鉸模式欄寬 (px)</label>
+        <input id="set_col_ream_mode_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_ream_depth_width">鉸深欄寬 (px)</label>
+        <input id="set_col_ream_depth_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row">
+        <label for="set_col_pitch_width">節距欄寬 (px)</label>
+        <input id="set_col_pitch_width" type="number" min="1" step="1">
+      </div>
+      <div class="settings-row" style="margin-bottom:0;">
+        <label for="set_col_calc_width">計算欄寬 (px)</label>
+        <input id="set_col_calc_width" type="number" min="1" step="1">
+      </div>
+      <div style="margin-top:8px;color:#9aa;font-size:11px;">
+        提示：調整後按「套用」，可改變主畫面視窗寬高。
+      </div>
+    </div>
+
+    <div class="settings-group" id="group_ray">
+      <div class="settings-row" style="margin-bottom:0;">
+        <label for="set_ray_dia">比孔徑小 (mm)</label>
+        <input id="set_ray_dia" type="number" min="0.001" step="0.001" placeholder="例: 0.005">
+      </div>
+      <div class="settings-row" style="margin-top:8px;margin-bottom:0;">
+        <label for="set_chamfer_interference_dia">倒角干涉刀徑 (mm)</label>
+        <input id="set_chamfer_interference_dia" type="number" min="0.1" step="0.1" placeholder="例: 6.0">
+      </div>
+      <div class="settings-row" style="margin-top:8px;margin-bottom:0;">
+        <label for="set_chamfer_interference_tol">干涉高差容差 (mm)</label>
+        <input id="set_chamfer_interference_tol" type="number" min="0" step="0.01" placeholder="例: 0.05">
+      </div>
+    </div>
+
+    <div class="settings-group" id="group_diag">
+      <div class="settings-row">
+        <label for="diag_toggle">診斷視窗</label>
+        <label class="checkbox-label" style="display:flex;align-items:center;gap:6px;color:#ddd;">
+          <input type="checkbox" id="diag_toggle" onchange="onDiagToggle()">
+          顯示診斷輸出
+        </label>
+      </div>
+      <div class="settings-row" style="margin-bottom:0;">
+        <label for="hole_debug_toggle">孔辨識除錯</label>
+        <label class="checkbox-label" style="display:flex;align-items:center;gap:6px;color:#ddd;">
+          <input type="checkbox" id="hole_debug_toggle" onchange="onHoleDebugToggle()">
+          顯示孔辨識原始資料
+        </label>
+      </div>
+      <div class="settings-row" style="margin-bottom:0;">
+        <label for="slot_debug_toggle">口袋槽辨識除錯</label>
+        <label class="checkbox-label" style="display:flex;align-items:center;gap:6px;color:#ddd;">
+          <input type="checkbox" id="slot_debug_toggle" onchange="onSlotDebugToggle()">
+          顯示長條孔（槽）辨識診斷摘要
+        </label>
+      </div>
+      <div class="settings-row" style="margin-top:10px;">
+        <label>回歸健檢</label>
+        <button class="btn-secondary" style="flex:0 0 auto;padding:4px 10px;" onclick="runRegressionCheck()">執行健檢</button>
+      </div>
+      <div class="settings-row">
+        <label>參數傾印</label>
+        <button class="btn-secondary" style="flex:0 0 auto;padding:4px 10px;" onclick="dumpCurrentOpParams()">Dump 目前工序參數</button>
+      </div>
+      <div class="settings-row">
+        <label>模板快取</label>
+        <button class="btn-secondary" style="flex:0 0 auto;padding:4px 10px;" onclick="refreshTemplateCache(event)" title="使外掛重新建立模板映射（含磁碟模板快取），診斷視窗會出現 [template-cache] 開頭的紀錄。">重新快取模板</button>
+      </div>
+    </div>
+
+
+
+    <div class="settings-actions">
+      <button class="btn-secondary" style="flex:0 0 auto;" onclick="closeSettings()">取消</button>
+      <button class="btn-secondary" style="flex:0 0 auto;" onclick="saveDefaultsNow()">存成預設值</button>
+      <button class="btn-primary" style="flex:0 0 auto;" onclick="applySettings()">套用</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// State
+var holeData = [];
+var slotData = [];
+var pocketCornerRData = [];
+var officialSlotPocketData = [];
+var officialPocketSlotData = [];
+var officialPocketData = [];
+
+// Request init data when page is ready
+window.addEventListener('load', function() {
+  loadSettingsPrefs();
+  applyUISettingsToDOM();
+  var btnSketch = document.getElementById('btn_draw_recognition_sketch');
+  if (btnSketch) {
+    btnSketch.addEventListener('click', function() {
+      var st = document.getElementById('recognition_sketch_status');
+      if (st) st.textContent = '繪製中…';
+      btnSketch.disabled = true;
+      if (window._visionSketchDrawTimer) {
+        clearTimeout(window._visionSketchDrawTimer);
+      }
+      window._visionSketchDrawTimer = setTimeout(function() {
+        btnSketch.disabled = false;
+        if (st && st.textContent === '繪製中…') {
+          st.textContent = '逾時：請重新掃描後再試，或重啟外掛';
+          setStatus('視線法草圖逾時（未收到 Fusion 回覆）', 'err');
+        }
+      }, 45000);
+      sendToFusion('draw_recognition_sketch', {});
+    });
+  }
+  setTimeout(function() {
+    adsk.fusionSendData('requestInit', '{}');
+  }, 300);
+  setInterval(function() {
+    if (document.hidden) return;
+    adsk.fusionSendData('sync_display', JSON.stringify({setupCount: setupList.length}));
+  }, 8000);
+});
+
+var setupList = [];
+var currentSetup = "";
+var materialList = [];
+var currentMaterial = "AL6061";
+var topFaceRoughList = [];
+var topFaceFinishList = [];
+var profileRoughList = [];
+var profileFinishList = [];
+var machineList = [];
+var currentMachine = "未指定機台 (常規 12,000 RPM)";
+var chamferOnlyMode = false;
+var chamferFilter = { c02: true, c03: false, noChamfer: false };
+var PREF_KEY = "semi_auto_cam_ui_prefs_v1";
+var diagnosticsEnabled = false;
+var holeDebugEnabled = false;
+var slotDebugEnabled = false;
+var hasInitHydratedFromFusion = false;
+var hasAppliedOperatorPrefsFromFusion = false;
+var settingsState = {
+  mainWidth: 1280,
+  mainHeight: 900,
+  paletteWidth: 1280,
+  paletteHeight: 900,
+  colHoleWidth: 150,
+  colTemplateWidth: 170,
+  colCountWidth: 50,
+  colDepthWidth: 70,
+  colDrillModeWidth: 120,
+  colDrillDepthWidth: 85,
+  colReamModeWidth: 120,
+  colReamDepthWidth: 85,
+  colPitchWidth: 90,
+  colCalcWidth: 120,
+  rayDiameterDeltaMM: null,
+  chamferInterferenceToolDiaMM: 6.0,
+  chamferInterferenceTopDeltaTolMM: 0.05,
+  holeTopHeightMode: "from surface top",
+  topFaceRough: "",
+  topFaceFinish: "",
+  topFaceLegacy: "",
+  profileRough: "",
+  profileFinish: "",
+  profileLegacy: "",
+  generalHole: "",
+  tapHole: "",
+  locatingHole: "",
+  countersinkHole: "",
+  slotHole: "",
+  holeChamfer: "",
+  contourChamfer: ""
+};
+
+function loadSettingsPrefs() {
+  var p = loadPrefs();
+  settingsState.mainWidth = Number(p.mainWidth || 650);
+  settingsState.mainHeight = Number(p.mainHeight || 900);
+  settingsState.paletteWidth = Number(p.paletteWidth || settingsState.mainWidth || 650);
+  settingsState.paletteHeight = Number(p.paletteHeight || settingsState.mainHeight || 900);
+  settingsState.colHoleWidth = Number(p.colHoleWidth || 150);
+  settingsState.colTemplateWidth = Number(p.colTemplateWidth || p.subColWidth || 170);
+  settingsState.colCountWidth = Number(p.colCountWidth || 50);
+  settingsState.colDepthWidth = Number(p.colDepthWidth || 70);
+  settingsState.colDrillModeWidth = Number(p.colDrillModeWidth || 120);
+  settingsState.colDrillDepthWidth = Number(p.colDrillDepthWidth || 85);
+  settingsState.colReamModeWidth = Number(p.colReamModeWidth || 120);
+  settingsState.colReamDepthWidth = Number(p.colReamDepthWidth || 85);
+  settingsState.colPitchWidth = Number(p.colPitchWidth || 90);
+  settingsState.colCalcWidth = Number(p.colCalcWidth || 120);
+  settingsState.rayDiameterDeltaMM = (p.rayDiameterDeltaMM == null || p.rayDiameterDeltaMM === "") ? null : Number(p.rayDiameterDeltaMM);
+  settingsState.chamferInterferenceToolDiaMM = (p.chamferInterferenceToolDiaMM == null || p.chamferInterferenceToolDiaMM === "") ? 6.0 : Number(p.chamferInterferenceToolDiaMM);
+  settingsState.chamferInterferenceTopDeltaTolMM = (p.chamferInterferenceTopDeltaTolMM == null || p.chamferInterferenceTopDeltaTolMM === "") ? 0.05 : Number(p.chamferInterferenceTopDeltaTolMM);
+  // 每次啟動預設：模型頂面
+  settingsState.holeTopHeightMode = "from surface top";
+  settingsState.topFaceRough = p.topFaceRough || "";
+  settingsState.topFaceFinish = p.topFaceFinish || "";
+  settingsState.topFaceLegacy = p.topFaceLegacy || "";
+  settingsState.profileRough = p.profileRough || "";
+  settingsState.profileFinish = p.profileFinish || "";
+  settingsState.profileLegacy = p.profileLegacy || "";
+  settingsState.generalHole = p.generalHole || "";
+  settingsState.tapHole = p.tapHole || "";
+  settingsState.locatingHole = p.locatingHole || "";
+  settingsState.countersinkHole = p.countersinkHole || "";
+  settingsState.slotHole = p.slotHole || "";
+  settingsState.holeChamfer = p.holeChamfer || "";
+  settingsState.contourChamfer = p.contourChamfer || "";
+}
+
+function saveSettingsPrefs() {
+  var p = loadPrefs();
+  p.mainWidth = settingsState.mainWidth;
+  p.mainHeight = settingsState.mainHeight;
+  p.paletteWidth = settingsState.paletteWidth;
+  p.paletteHeight = settingsState.paletteHeight;
+  p.colHoleWidth = settingsState.colHoleWidth;
+  p.colTemplateWidth = settingsState.colTemplateWidth;
+  p.colCountWidth = settingsState.colCountWidth;
+  p.colDepthWidth = settingsState.colDepthWidth;
+  p.colDrillModeWidth = settingsState.colDrillModeWidth;
+  p.colDrillDepthWidth = settingsState.colDrillDepthWidth;
+  p.colReamModeWidth = settingsState.colReamModeWidth;
+  p.colReamDepthWidth = settingsState.colReamDepthWidth;
+  p.colPitchWidth = settingsState.colPitchWidth;
+  p.colCalcWidth = settingsState.colCalcWidth;
+  p.subColWidth = settingsState.colTemplateWidth;
+  p.rayDiameterDeltaMM = settingsState.rayDiameterDeltaMM;
+  p.chamferInterferenceToolDiaMM = settingsState.chamferInterferenceToolDiaMM;
+  p.chamferInterferenceTopDeltaTolMM = settingsState.chamferInterferenceTopDeltaTolMM;
+  p.holeTopHeightMode = settingsState.holeTopHeightMode;
+  p.topFaceRough = settingsState.topFaceRough;
+  p.topFaceFinish = settingsState.topFaceFinish;
+  p.topFaceLegacy = settingsState.topFaceLegacy;
+  p.profileRough = settingsState.profileRough;
+  p.profileFinish = settingsState.profileFinish;
+  p.profileLegacy = settingsState.profileLegacy;
+  p.generalHole = settingsState.generalHole;
+  p.tapHole = settingsState.tapHole;
+  p.locatingHole = settingsState.locatingHole;
+  p.countersinkHole = settingsState.countersinkHole;
+  p.slotHole = settingsState.slotHole;
+  p.holeChamfer = settingsState.holeChamfer;
+  p.contourChamfer = settingsState.contourChamfer;
+  savePrefs(p);
+}
+
+function applyUISettingsToDOM() {
+  var root = document.documentElement;
+  root.style.setProperty('--main-ui-width', '100%');
+  root.style.setProperty('--main-ui-height', '100%');
+  root.style.setProperty('--col-hole-width', Math.max(settingsState.colHoleWidth, 1) + 'px');
+  root.style.setProperty('--col-template-width', Math.max(settingsState.colTemplateWidth, 1) + 'px');
+  root.style.setProperty('--col-count-width', Math.max(settingsState.colCountWidth, 1) + 'px');
+  root.style.setProperty('--col-depth-width', Math.max(settingsState.colDepthWidth, 1) + 'px');
+  root.style.setProperty('--col-drill-mode-width', Math.max(settingsState.colDrillModeWidth, 1) + 'px');
+  root.style.setProperty('--col-drill-depth-width', Math.max(settingsState.colDrillDepthWidth, 1) + 'px');
+  root.style.setProperty('--col-ream-mode-width', Math.max(settingsState.colReamModeWidth, 1) + 'px');
+  root.style.setProperty('--col-ream-depth-width', Math.max(settingsState.colReamDepthWidth, 1) + 'px');
+  root.style.setProperty('--col-pitch-width', Math.max(settingsState.colPitchWidth, 1) + 'px');
+  root.style.setProperty('--col-calc-width', Math.max(settingsState.colCalcWidth, 1) + 'px');
+}
+
+function openSettings() {
+  var m = document.getElementById("settings_modal");
+  if (m) m.classList.add("open");
+  var w = document.getElementById("set_main_width");
+  var h = document.getElementById("set_main_height");
+  var pw = document.getElementById("set_palette_width");
+  var ph = document.getElementById("set_palette_height");
+  var c1 = document.getElementById("set_col_hole_width");
+  var c2 = document.getElementById("set_col_template_width");
+  var c3 = document.getElementById("set_col_count_width");
+  var c4 = document.getElementById("set_col_depth_width");
+  var c5 = document.getElementById("set_col_drill_mode_width");
+  var c6 = document.getElementById("set_col_drill_depth_width");
+  var c7 = document.getElementById("set_col_ream_mode_width");
+  var c8 = document.getElementById("set_col_ream_depth_width");
+  var c9 = document.getElementById("set_col_pitch_width");
+  var c10 = document.getElementById("set_col_calc_width");
+  var r = document.getElementById("set_ray_dia");
+  var cr = document.getElementById("set_chamfer_interference_dia");
+  var ct = document.getElementById("set_chamfer_interference_tol");
+  if (w) w.value = settingsState.mainWidth;
+  if (h) h.value = settingsState.mainHeight;
+  if (pw) pw.value = settingsState.paletteWidth;
+  if (ph) ph.value = settingsState.paletteHeight;
+  if (c1) c1.value = settingsState.colHoleWidth;
+  if (c2) c2.value = settingsState.colTemplateWidth;
+  if (c3) c3.value = settingsState.colCountWidth;
+  if (c4) c4.value = settingsState.colDepthWidth;
+  if (c5) c5.value = settingsState.colDrillModeWidth;
+  if (c6) c6.value = settingsState.colDrillDepthWidth;
+  if (c7) c7.value = settingsState.colReamModeWidth;
+  if (c8) c8.value = settingsState.colReamDepthWidth;
+  if (c9) c9.value = settingsState.colPitchWidth;
+  if (c10) c10.value = settingsState.colCalcWidth;
+  if (r) r.value = (settingsState.rayDiameterDeltaMM == null ? "" : settingsState.rayDiameterDeltaMM);
+  if (cr) cr.value = (settingsState.chamferInterferenceToolDiaMM == null ? "" : settingsState.chamferInterferenceToolDiaMM);
+  if (ct) ct.value = (settingsState.chamferInterferenceTopDeltaTolMM == null ? "" : settingsState.chamferInterferenceTopDeltaTolMM);
+}
+
+function onHoleTopModeToggle(mode) {
+  if (mode === "hole") {
+    settingsState.holeTopHeightMode = "from hole top";
+  } else {
+    settingsState.holeTopHeightMode = "from surface top";
+  }
+  var s = document.getElementById("hole_top_surface_chk");
+  var h = document.getElementById("hole_top_hole_chk");
+  if (s) s.checked = (settingsState.holeTopHeightMode === "from surface top");
+  if (h) h.checked = (settingsState.holeTopHeightMode === "from hole top");
+}
+
+function closeSettings() {
+  var m = document.getElementById("settings_modal");
+  if (m) m.classList.remove("open");
+}
+
+function onSettingsBackdrop(e) {
+  if (e && e.target && e.target.id === "settings_modal") closeSettings();
+}
+
+function switchSettingsTab(tab) {
+  var isUI = (tab === "ui");
+  var isRay = (tab === "ray");
+  var isDiag = (tab === "diag");
+  var isPath = (tab === "path");
+  var uiTab = document.getElementById("tab_ui");
+  var rayTab = document.getElementById("tab_ray");
+  var diagTab = document.getElementById("tab_diag");
+  var pathTab = document.getElementById("tab_path");
+  var uiGroup = document.getElementById("group_ui");
+  var rayGroup = document.getElementById("group_ray");
+  var diagGroup = document.getElementById("group_diag");
+  var pathGroup = document.getElementById("group_path");
+  if (uiTab) uiTab.classList.toggle("active", isUI);
+  if (rayTab) rayTab.classList.toggle("active", isRay);
+  if (diagTab) diagTab.classList.toggle("active", isDiag);
+  if (pathTab) pathTab.classList.toggle("active", isPath);
+  if (uiGroup) uiGroup.classList.toggle("active", isUI);
+  if (rayGroup) rayGroup.classList.toggle("active", isRay);
+  if (diagGroup) diagGroup.classList.toggle("active", isDiag);
+  if (pathGroup) pathGroup.classList.toggle("active", isPath);
+}
+
+function applySettings() {
+  var w = document.getElementById("set_main_width");
+  var h = document.getElementById("set_main_height");
+  var pw = document.getElementById("set_palette_width");
+  var ph = document.getElementById("set_palette_height");
+  var c1 = document.getElementById("set_col_hole_width");
+  var c2 = document.getElementById("set_col_template_width");
+  var c3 = document.getElementById("set_col_count_width");
+  var c4 = document.getElementById("set_col_depth_width");
+  var c5 = document.getElementById("set_col_drill_mode_width");
+  var c6 = document.getElementById("set_col_drill_depth_width");
+  var c7 = document.getElementById("set_col_ream_mode_width");
+  var c8 = document.getElementById("set_col_ream_depth_width");
+  var c9 = document.getElementById("set_col_pitch_width");
+  var c10 = document.getElementById("set_col_calc_width");
+  var r = document.getElementById("set_ray_dia");
+  var cr = document.getElementById("set_chamfer_interference_dia");
+  var ct = document.getElementById("set_chamfer_interference_tol");
+  var widthVal = w ? parseFloat(w.value) : settingsState.mainWidth;
+  var heightVal = h ? parseFloat(h.value) : settingsState.mainHeight;
+  var paletteWidthVal = pw ? parseFloat(pw.value) : settingsState.paletteWidth;
+  var paletteHeightVal = ph ? parseFloat(ph.value) : settingsState.paletteHeight;
+  var colHoleVal = c1 ? parseFloat(c1.value) : settingsState.colHoleWidth;
+  var colTemplateVal = c2 ? parseFloat(c2.value) : settingsState.colTemplateWidth;
+  var colCountVal = c3 ? parseFloat(c3.value) : settingsState.colCountWidth;
+  var colDepthVal = c4 ? parseFloat(c4.value) : settingsState.colDepthWidth;
+  var colDrillModeVal = c5 ? parseFloat(c5.value) : settingsState.colDrillModeWidth;
+  var colDrillDepthVal = c6 ? parseFloat(c6.value) : settingsState.colDrillDepthWidth;
+  var colReamModeVal = c7 ? parseFloat(c7.value) : settingsState.colReamModeWidth;
+  var colReamDepthVal = c8 ? parseFloat(c8.value) : settingsState.colReamDepthWidth;
+  var colPitchVal = c9 ? parseFloat(c9.value) : settingsState.colPitchWidth;
+  var colCalcVal = c10 ? parseFloat(c10.value) : settingsState.colCalcWidth;
+  var rayText = r ? String(r.value || "").trim() : "";
+  var chamferRayText = cr ? String(cr.value || "").trim() : "";
+  var chamferTolText = ct ? String(ct.value || "").trim() : "";
+
+  settingsState.mainWidth = isNaN(widthVal) ? settingsState.mainWidth : Math.max(widthVal, 360);
+  settingsState.mainHeight = isNaN(heightVal) ? settingsState.mainHeight : Math.max(heightVal, 360);
+  settingsState.paletteWidth = isNaN(paletteWidthVal) ? settingsState.paletteWidth : Math.max(paletteWidthVal, 360);
+  settingsState.paletteHeight = isNaN(paletteHeightVal) ? settingsState.paletteHeight : Math.max(paletteHeightVal, 360);
+  settingsState.colHoleWidth = isNaN(colHoleVal) ? settingsState.colHoleWidth : Math.max(colHoleVal, 1);
+  settingsState.colTemplateWidth = isNaN(colTemplateVal) ? settingsState.colTemplateWidth : Math.max(colTemplateVal, 1);
+  settingsState.colCountWidth = isNaN(colCountVal) ? settingsState.colCountWidth : Math.max(colCountVal, 1);
+  settingsState.colDepthWidth = isNaN(colDepthVal) ? settingsState.colDepthWidth : Math.max(colDepthVal, 1);
+  settingsState.colDrillModeWidth = isNaN(colDrillModeVal) ? settingsState.colDrillModeWidth : Math.max(colDrillModeVal, 1);
+  settingsState.colDrillDepthWidth = isNaN(colDrillDepthVal) ? settingsState.colDrillDepthWidth : Math.max(colDrillDepthVal, 1);
+  settingsState.colReamModeWidth = isNaN(colReamModeVal) ? settingsState.colReamModeWidth : Math.max(colReamModeVal, 1);
+  settingsState.colReamDepthWidth = isNaN(colReamDepthVal) ? settingsState.colReamDepthWidth : Math.max(colReamDepthVal, 1);
+  settingsState.colPitchWidth = isNaN(colPitchVal) ? settingsState.colPitchWidth : Math.max(colPitchVal, 1);
+  settingsState.colCalcWidth = isNaN(colCalcVal) ? settingsState.colCalcWidth : Math.max(colCalcVal, 1);
+  settingsState.rayDiameterDeltaMM = (rayText === "" || isNaN(parseFloat(rayText))) ? null : Math.max(parseFloat(rayText), 0.001);
+  settingsState.chamferInterferenceToolDiaMM = (chamferRayText === "" || isNaN(parseFloat(chamferRayText))) ? settingsState.chamferInterferenceToolDiaMM : Math.max(parseFloat(chamferRayText), 0.1);
+  settingsState.chamferInterferenceTopDeltaTolMM = (chamferTolText === "" || isNaN(parseFloat(chamferTolText))) ? settingsState.chamferInterferenceTopDeltaTolMM : Math.max(parseFloat(chamferTolText), 0.0);
+
+  applyUISettingsToDOM();
+  saveSettingsPrefs();
+  sendToFusion("settings_update", currentSettingsPayload());
+  setStatus("設置已套用", "ok");
+  closeSettings();
+}
+
+function currentSettingsPayload() {
+  return {
+    rayDiameterDeltaMM: settingsState.rayDiameterDeltaMM,
+    chamferInterferenceToolDiaMM: settingsState.chamferInterferenceToolDiaMM,
+    chamferInterferenceTopDeltaTolMM: settingsState.chamferInterferenceTopDeltaTolMM,
+    holeTopHeightMode: settingsState.holeTopHeightMode,
+    mainWidth: settingsState.mainWidth,
+    mainHeight: settingsState.mainHeight,
+    paletteWidth: settingsState.paletteWidth,
+    paletteHeight: settingsState.paletteHeight,
+    colHoleWidth: settingsState.colHoleWidth,
+    colTemplateWidth: settingsState.colTemplateWidth,
+    colCountWidth: settingsState.colCountWidth,
+    colDepthWidth: settingsState.colDepthWidth,
+    colDrillModeWidth: settingsState.colDrillModeWidth,
+    colDrillDepthWidth: settingsState.colDrillDepthWidth,
+    colReamModeWidth: settingsState.colReamModeWidth,
+    colReamDepthWidth: settingsState.colReamDepthWidth,
+    colPitchWidth: settingsState.colPitchWidth,
+    colCalcWidth: settingsState.colCalcWidth
+  };
+}
+
+function saveDefaultsNow() {
+  sendToFusion("save_defaults", currentSettingsPayload());
+  setStatus("已寫入插件預設值", "ok");
+}
+
+function runRegressionCheck() {
+  sendToFusion("regression_check", {});
+  setStatus("回歸健檢執行中...", "");
+}
+
+function dumpCurrentOpParams() {
+  sendToFusion("dump_op_params", {});
+  setStatus("正在輸出工序參數到診斷視窗...", "");
+}
+
+function refreshTemplateCache(ev) {
+  if (ev && ev.stopPropagation) ev.stopPropagation();
+  // Backend：reason=template_cache 走 refresh_template_cache（invalidate + 映射 + rebuild 孔表 + init），
+  // 失敗才後備 full_rescan；與主面板「重新掃描」之一般 rescan 分開。
+  var sel = document.getElementById("setup_sel");
+  var setupName = (sel && sel.value) ? sel.value : (currentSetup || "");
+  // #status 在設定視窗（z-index:99）後方，先關閉設定使用者才看得到主畫面狀態列。
+  closeSettings();
+  setStatus("已送出重新快取模板（rescan）…", "");
+  sendToFusion("rescan", {setup: setupName, reason: "template_cache"});
+}
+
+function loadPrefs() {
+  try {
+    return JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
+  } catch (e) {
+    return {};
+  }
+}
+function savePrefs(p) {
+  try {
+    localStorage.setItem(PREF_KEY, JSON.stringify(p || {}));
+  } catch (e) {}
+}
+function onDiagToggle() {
+  var chk = document.getElementById("diag_toggle");
+  diagnosticsEnabled = !!(chk && chk.checked);
+  sendToFusion("diag_toggle", {enabled: diagnosticsEnabled});
+}
+function onHoleDebugToggle() {
+  var chk = document.getElementById("hole_debug_toggle");
+  holeDebugEnabled = !!(chk && chk.checked);
+  sendToFusion("hole_debug_toggle", {enabled: holeDebugEnabled});
+  setStatus(holeDebugEnabled ? "孔辨識除錯已啟用" : "孔辨識除錯已停用", "");
+}
+function onSlotDebugToggle() {
+  var chk = document.getElementById("slot_debug_toggle");
+  slotDebugEnabled = !!(chk && chk.checked);
+  sendToFusion("slot_debug_toggle", {enabled: slotDebugEnabled});
+  setStatus(slotDebugEnabled ? "口袋槽辨識除錯已啟用" : "口袋槽辨識除錯已停用", "");
+}
+function saveOperatorPrefs() {
+  var p = loadPrefs();
+  var mat = document.getElementById("material_sel");
+  var tfR = document.getElementById("top_face_rough_sel");
+  var tfF = document.getElementById("top_face_finish_sel");
+  p.material = mat ? mat.value : "";
+  p.topFaceRough = tfR ? tfR.value : "";
+  p.topFaceFinish = tfF ? tfF.value : "";
+  var prR = document.getElementById("profile_rough_sel");
+  var prF = document.getElementById("profile_finish_sel");
+  p.profileRough = prR ? prR.value : "";
+  p.profileFinish = prF ? prF.value : "";
+  
+  var mac = document.getElementById("machine_sel");
+  p.machine = mac ? mac.value : "";
+  
+  savePrefs(p);
+}
+function applyOperatorPrefs(options) {
+  options = options || {};
+  var allowMaterialSwitch = !!options.allowMaterialSwitch;
+  var p = loadPrefs();
+  var matSel = document.getElementById("material_sel");
+  var tfR = document.getElementById("top_face_rough_sel");
+  var tfF = document.getElementById("top_face_finish_sel");
+  var changedMaterial = false;
+
+  if (allowMaterialSwitch && matSel && p.material && Array.from(matSel.options).some(function(o){ return o.value === p.material; })) {
+    if (matSel.value !== p.material) {
+      matSel.value = p.material;
+      currentMaterial = p.material;
+      changedMaterial = true;
+    }
+  }
+  if (changedMaterial) {
+    onMaterialChange();
+  }
+
+  var macSel = document.getElementById("machine_sel");
+  if (macSel && p.machine && Array.from(macSel.options).some(function(o){ return o.value === p.machine; })) {
+    if (macSel.value !== p.machine) {
+      macSel.value = p.machine;
+      currentMachine = p.machine;
+      // Triggers python backend sync
+      onMachineChange();
+    }
+  }
+
+  if (tfR && p.topFaceRough && Array.from(tfR.options).some(function(o){ return o.value === p.topFaceRough; })) {
+    tfR.value = p.topFaceRough;
+  }
+  if (tfF && p.topFaceFinish && Array.from(tfF.options).some(function(o){ return o.value === p.topFaceFinish; })) {
+    tfF.value = p.topFaceFinish;
+  }
+  var prR = document.getElementById("profile_rough_sel");
+  var prF = document.getElementById("profile_finish_sel");
+  if (prR && p.profileRough && Array.from(prR.options).some(function(o){ return o.value === p.profileRough; })) {
+    prR.value = p.profileRough;
+  }
+  if (prF && p.profileFinish && Array.from(prF.options).some(function(o){ return o.value === p.profileFinish; })) {
+    prF.value = p.profileFinish;
+  }
+}
+
+function renderFusionOfficialSummary(fo) {
+  var el = document.getElementById("fusion_official_summary");
+  if (!el) return;
+  if (!fo) {
+    el.innerHTML = '<span style="color:#888;">無 Fusion 官方辨識資料</span>';
+    return;
+  }
+  if (!fo.ok && fo.reason) {
+    el.innerHTML = '<span style="color:#ffd27f;">官方辨識：' + escHtml(fo.reason) + '（可能需 Manufacturing Extension）</span>';
+    return;
+  }
+  var slotN = fo.official_slot_count != null ? fo.official_slot_count : 0;
+  var pocketN = fo.official_pocket_slot_count != null ? fo.official_pocket_slot_count : 0;
+  var excluded = fo.pockets_excluded_as_holes != null ? fo.pockets_excluded_as_holes : 0;
+  var html =
+    '孔組 ' + (fo.hole_group_count != null ? fo.hole_group_count : 0) +
+    ' · 官方長條 ' + slotN +
+    ' · 官方口袋槽 ' + pocketN +
+    ' · 設計螺紋 ' + (fo.thread_feature_count != null ? fo.thread_feature_count : 0);
+  if (excluded > 0) {
+    html += ' · <span style="color:#888;">已過濾圓孔誤判 ' + excluded + '</span>';
+  }
+  el.innerHTML = html;
+}
+
+function _officialPocketSelectOptions(items, selIdx) {
+  var opts = "";
+  for (var i = 0; i < (items || []).length; i++) {
+    var it = items[i] || {};
+    var lab = hideFullWidthBracketsForDisplay(it.listDisplay || it.label || "");
+    opts += "<option value='" + i + "'" + (i === selIdx ? " selected" : "") + ">" + escHtml(lab) + "</option>";
+  }
+  return opts;
+}
+
+function _officialBindOptions(p) {
+  var bindModes = p.bindModes || [
+    { value: "auto", label: "自動" },
+    { value: "2d_only", label: "僅2D" },
+    { value: "3d_only", label: "僅3D" },
+    { value: "2d_then_3d", label: "2D→3D" }
+  ];
+  var bindVal = p.bindMode || "auto";
+  var bindOpts = "";
+  for (var b = 0; b < bindModes.length; b++) {
+    var bm = bindModes[b] || {};
+    bindOpts += "<option value='" + escHtml(bm.value || "") + "'" +
+      ((bm.value || "") === bindVal ? " selected" : "") + ">" + escHtml(bm.label || bm.value || "") + "</option>";
+  }
+  return bindOpts;
+}
+
+function _renderOfficialPocketTableRows(dataArr, tbodyId, wrapId, idPrefix, showClosed) {
+  var wrap = document.getElementById(wrapId);
+  var tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  if (!dataArr.length) {
+    if (wrap) wrap.style.display = "none";
+    return;
+  }
+  if (wrap) wrap.style.display = "block";
+  dataArr.forEach(function(p, idx) {
+    var bindOpts = _officialBindOptions(p);
+    var d2 = p.dropItems2d || p.dropItems || [];
+    var d3 = p.dropItems3d || [];
+    var i2 = (typeof p._tmpl2dIdx === "number") ? p._tmpl2dIdx : (p.tmpl2dIdx || 0);
+    var i3 = (typeof p._tmpl3dIdx === "number") ? p._tmpl3dIdx : (p.tmpl3dIdx || 0);
+    var spec = p.spec || "—";
+    var tr = document.createElement("tr");
+    var closedCell = showClosed
+      ? "<td>" + (p.is_closed ? "封閉" : "開放") + "</td>"
+      : "";
+    tr.innerHTML =
+      "<td>" + escHtml(p.label || ("#" + (idx + 1))) + "</td>" +
+      "<td>" + escHtml(spec) + "</td>" +
+      "<td>" + (p.through ? "通" : "盲") + "</td>" +
+      closedCell +
+      "<td><select id='" + idPrefix + "_bind_" + idx + "' onchange='onOfficialRowBindChange(\"" + idPrefix + "\"," + idx + ")'>" + bindOpts + "</select></td>" +
+      "<td><select id='" + idPrefix + "_tmpl2d_" + idx + "' onchange='onOfficialRowTmpl2dChange(\"" + idPrefix + "\"," + idx + ")'>" + _officialPocketSelectOptions(d2, i2) + "</select></td>" +
+      "<td><select id='" + idPrefix + "_tmpl3d_" + idx + "' onchange='onOfficialRowTmpl3dChange(\"" + idPrefix + "\"," + idx + ")'>" + _officialPocketSelectOptions(d3, i3) + "</select></td>";
+    tbody.appendChild(tr);
+  });
+}
+
+function _officialDataForPrefix(prefix) {
+  if (prefix === "official_slot") return officialSlotPocketData;
+  if (prefix === "official_pocket_slot") return officialPocketSlotData;
+  return officialPocketData;
+}
+
+function onOfficialRowBindChange(prefix, i) {
+  var arr = _officialDataForPrefix(prefix);
+  var sel = document.getElementById(prefix + "_bind_" + i);
+  if (!sel || !arr[i]) return;
+  arr[i].bindMode = sel.value;
+}
+
+function onOfficialRowTmpl2dChange(prefix, i) {
+  var arr = _officialDataForPrefix(prefix);
+  var sel = document.getElementById(prefix + "_tmpl2d_" + i);
+  if (!sel || !arr[i]) return;
+  arr[i]._tmpl2dIdx = parseInt(sel.value, 10) || 0;
+}
+
+function onOfficialRowTmpl3dChange(prefix, i) {
+  var arr = _officialDataForPrefix(prefix);
+  var sel = document.getElementById(prefix + "_tmpl3d_" + i);
+  if (!sel || !arr[i]) return;
+  arr[i]._tmpl3dIdx = parseInt(sel.value, 10) || 0;
+}
+
+function renderOfficialSlotPocketTable() {
+  _renderOfficialPocketTableRows(
+    officialSlotPocketData,
+    "official_slot_body",
+    "section_official_slot_wrap",
+    "official_slot",
+    false
+  );
+}
+
+function renderOfficialPocketSlotTable() {
+  _renderOfficialPocketTableRows(
+    officialPocketSlotData,
+    "official_pocket_slot_body",
+    "section_official_pocket_slot_wrap",
+    "official_pocket_slot",
+    true
+  );
+}
+
+function renderOfficialPocketTable() {
+  renderOfficialSlotPocketTable();
+  renderOfficialPocketSlotTable();
+}
+
+function renderContour2dRecognition(r) {
+  var topGeo = document.getElementById("c2d_top_geo");
+  var profGeo = document.getElementById("c2d_profile_geo");
+  var rowTop = document.getElementById("c2d_row_top");
+  var rowProf = document.getElementById("c2d_row_profile");
+  var chamferNote = document.getElementById("c2d_chamfer_note");
+  var legacyEl = document.getElementById("contour_2d_recognition_summary");
+  if (!topGeo && legacyEl) {
+    topGeo = legacyEl;
+  }
+  if (!topGeo) return;
+
+  function setRowState(row, recognized) {
+    if (!row) return;
+    if (recognized) row.classList.remove("c2d-unrecognized");
+    else row.classList.add("c2d-unrecognized");
+  }
+
+  if (!r || !r.ok) {
+    var reason = (r && r.reason) ? escHtml(r.reason) : "尚未辨識（請先重新掃描）";
+    topGeo.innerHTML = '<span style="color:#888;">' + reason + '</span>';
+    if (profGeo) profGeo.innerHTML = '<span style="color:#888;">' + reason + '</span>';
+    setRowState(rowTop, false);
+    setRowState(rowProf, false);
+    if (chamferNote) chamferNote.style.display = "none";
+    return;
+  }
+
+  if (r.top_face) {
+    var topParts = [];
+    if (r.primary_area_mm2 != null && !isNaN(r.primary_area_mm2)) {
+      topParts.push("<strong>面積</strong> " + Number(r.primary_area_mm2).toLocaleString(undefined, { maximumFractionDigits: 0 }) + " mm²");
+    } else {
+      var planeCount = r.plane_count != null ? r.plane_count : "?";
+      topParts.push("朝上平面 " + planeCount + " 層");
+    }
+    var stockOff = r.job_stock_fixed_z_offset_mm != null ? r.job_stock_fixed_z_offset_mm : r.stock_to_part_top_mm;
+    if (stockOff != null && !isNaN(stockOff)) {
+      topParts.push("<strong>頂面胚料厚度</strong> " + Number(stockOff).toFixed(2) + " mm");
+    }
+    var removeVol = r.top_face_stock_remove_volume_mm3;
+    if (removeVol == null && r.primary_area_mm2 != null && stockOff != null && !isNaN(r.primary_area_mm2) && !isNaN(stockOff) && Number(stockOff) > 0.001) {
+      removeVol = Number(r.primary_area_mm2) * Number(stockOff);
+    }
+    if (removeVol != null && !isNaN(removeVol) && Number(removeVol) > 0.001) {
+      topParts.push("<strong>除顶面坯料体积</strong> " + Number(removeVol).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " mm³");
+    }
+    topGeo.innerHTML = topParts.join("<br>");
+    setRowState(rowTop, true);
+  } else {
+    topGeo.innerHTML = '<span style="color:#9ca3af;">未辨識到可面銑之朝上水平面</span>';
+    setRowState(rowTop, false);
+  }
+
+  if (r.outer_contour) {
+    var profParts = [];
+    if (r.z_span_mm != null && !isNaN(r.z_span_mm)) {
+      profParts.push("<strong>落差</strong> " + Number(r.z_span_mm).toFixed(2) + " mm");
+    }
+    if (r.perimeter_mm != null && !isNaN(r.perimeter_mm)) {
+      profParts.push("<strong>周長</strong> " + Number(r.perimeter_mm).toFixed(1) + " mm");
+    }
+    if (!profParts.length && r.contour_count != null) {
+      profParts.push("輪廓列 " + r.contour_count);
+    }
+    if (profGeo) profGeo.innerHTML = profParts.join("<br>");
+    setRowState(rowProf, true);
+  } else {
+    if (profGeo) profGeo.innerHTML = '<span style="color:#9ca3af;">特徵不足，無外輪廓路徑推薦</span>';
+    setRowState(rowProf, false);
+  }
+
+  var rec = r.recommended_templates || {};
+  if (chamferNote) {
+    if (rec.contourChamfer && rec.contourChamfer !== "(不使用)") {
+      chamferNote.style.display = "block";
+      chamferNote.innerHTML = '<span style="color:#c084fc;">輪廓倒角適配：' + escHtml(rec.contourChamfer) + '</span>';
+    } else {
+      chamferNote.style.display = "none";
+      chamferNote.innerHTML = "";
+    }
+  }
+}
+
+function applyContour2dTemplates(recTmpls) {
+  if (!recTmpls) return false;
+  applyAiPanelPatch({ recommended_templates: recTmpls, apply_2d_templates: true }, null);
+  return true;
+}
+
+function applyContour2dFromRecognition(forceRescan) {
+  if (forceRescan) {
+    setStatus("2D 輪廓特徵重新辨識中…", "warn");
+    sendToFusion("recognize_contour_2d", { material: currentMaterial, apply: true, rescan: true });
+    return;
+  }
+  var r = window._contour2dRecognition;
+  if (r && r.ok && r.recommended_templates) {
+    applyContour2dTemplates(r.recommended_templates);
+    saveOperatorPrefs();
+    setStatus("已依特徵辨識帶入 2D 頂面／外輪廓／輪廓倒角工序（可手動修改）", "ok");
+    return;
+  }
+  setStatus("2D 輪廓辨識中…", "warn");
+  sendToFusion("recognize_contour_2d", { material: currentMaterial, apply: true });
+}
+
+function renderVisionSummary(v) {
+  var el = document.getElementById("vision_summary");
+  if (!el) return;
+  if (!v || !v.enabled) {
+    el.innerHTML = '<div style="font-size:11px;color:#888;text-align:center;padding:12px 0;">視線法已關閉</div>';
+    return;
+  }
+  if (!v.ok) {
+    el.innerHTML = '<div style="font-size:11px;color:#ff9898;text-align:center;padding:12px 0;">視線：' + (v.reason || '失敗') + '</div>';
+    return;
+  }
+  var c = v.counts || {};
+  var setupName = v.setup_name || '';
+  var modeStr = v.vision_mode || 'FAST_2D';
+  
+  var hi = (c.hole_instances != null ? c.hole_instances : 0);
+  var hl = (c.holes_list != null ? c.holes_list : 0);
+  var slotsVal = (c.slots != null ? c.slots : 0);
+  var contoursVal = (c.contours_primary != null ? c.contours_primary : (c.contours != null ? c.contours : 0));
+  
+  var html = '';
+  
+  // Header
+  html += '<div class="vision-summary-header">';
+  html += '  <span class="mode-title">模式 ' + modeStr + '</span>';
+  if (setupName) {
+    html += '  <span class="setup-tag">' + setupName + '</span>';
+  }
+  html += '</div>';
+  
+  // Feature Grid
+  html += '<div class="vision-feature-grid">';
+  
+  // Holes Badge
+  var holeClass = hi > 0 ? '' : ' empty-badge';
+  html += '  <div class="vision-feature-badge' + holeClass + '">';
+  html += '    <span class="badge-val">' + hi + ' <span style="font-size:9px;font-weight:normal;color:#88a8c8;">(' + hl + ')</span></span>';
+  html += '    <span class="badge-lbl">孔實例 (合併)</span>';
+  html += '  </div>';
+  
+  // Slots Badge
+  var slotClass = slotsVal > 0 ? '' : ' empty-badge';
+  html += '  <div class="vision-feature-badge' + slotClass + '">';
+  html += '    <span class="badge-val">' + slotsVal + '</span>';
+  html += '    <span class="badge-lbl">槽特徵</span>';
+  html += '  </div>';
+  
+  // Contours Badge
+  var contourClass = contoursVal > 0 ? '' : ' empty-badge';
+  html += '  <div class="vision-feature-badge' + contourClass + '">';
+  html += '    <span class="badge-val">' + contoursVal + '</span>';
+  html += '    <span class="badge-lbl">外輪廓</span>';
+  html += '  </div>';
+  
+  html += '</div>'; // End grid
+  
+  // Physics & Perimeter Card
+  var hasPerimeter = (v.outer_perimeter_mm != null && !isNaN(v.outer_perimeter_mm));
+  var hasErrors = (v.errors && v.errors.length);
+  
+  if (hasPerimeter || hasErrors) {
+    html += '<div class="vision-physics-card">';
+    if (hasPerimeter) {
+      html += '  <div class="physics-row">';
+      html += '    <span class="physics-label">外框周長</span>';
+      html += '    <span class="physics-value">約 <strong>' + Number(v.outer_perimeter_mm).toFixed(1) + '</strong> mm</span>';
+      html += '  </div>';
+    }
+    if (hasErrors) {
+      html += '  <div class="physics-row" style="margin-top:2px;border-top:1px solid rgba(255,255,255,0.05);padding-top:4px;">';
+      html += '    <span class="physics-label" style="color:#ffd27f;">診斷提示</span>';
+      html += '    <span class="physics-value" style="color:#ffd27f;font-size:9px;">' + v.errors.join(' · ') + '</span>';
+      html += '  </div>';
+    }
+    html += '</div>';
+  }
+  
+  el.innerHTML = html;
+  
+
+}
+
+// ---- Receive data from Python ----
+window.fusionJavaScriptHandler = {
+  handle: function(action, data) {
+    try {
+      var d = JSON.parse(data);
+      if (action === "init") {
+        setupList   = d.setups   || [];
+        materialList= d.materials|| ["AL6061","S50C"];
+        machineList = d.machines || ["未指定機台 (常規 12,000 RPM)"];
+        topFaceRoughList = d.topFaceRough || d.topFace || [];
+        topFaceFinishList = d.topFaceFinish || d.topFace || [];
+        profileRoughList = d.profileRough || d.profile || [];
+        profileFinishList = d.profileFinish || d.profile || [];
+        holeData    = d.holes    || [];
+        slotData    = d.slots    || [];
+        pocketCornerRData = d.pocket_corner_r || [];
+        officialSlotPocketData = d.official_slot_pockets || [];
+        officialPocketSlotData = d.official_pocket_slots || [];
+        officialPocketData = d.official_pockets || (officialSlotPocketData.concat(officialPocketSlotData));
+        renderFusionOfficialSummary(d.fusionOfficial);
+        renderOfficialPocketTable();
+        
+        // 優先保留面板下拉已選 Setup；僅在無有效 UI 選擇時採用後端 activeSetup
+        var _setupSel = document.getElementById("setup_sel");
+        var _uiSetup = (_setupSel && _setupSel.value) ? _setupSel.value : (currentSetup || "");
+        var _pySetup = d.activeSetup || "";
+        if (_uiSetup && setupList.indexOf(_uiSetup) >= 0) {
+          currentSetup = _uiSetup;
+        } else {
+          currentSetup = _pySetup;
+        }
+        
+        currentMaterial = d.material  || "AL6061";
+        currentMachine = d.machine || "未指定機台 (常規 12,000 RPM)";
+        var verBadge = document.getElementById("addin_version_badge");
+        if (verBadge && d.addinVersion) {
+          verBadge.textContent = d.addinVersion;
+        }
+        renderVisionSummary(d.vision);
+        syncVisionModeUI(d.vision && d.vision.vision_mode);
+        // 每次 init 與 Python 同步除錯開關（避免僅首次載入後 UI 與後端不一致、長條孔開關看似無效）
+        if (d.settings) {
+          holeDebugEnabled = !!d.settings.holeRecognitionDebug;
+          var holeDebugChk0 = document.getElementById("hole_debug_toggle");
+          if (holeDebugChk0) holeDebugChk0.checked = holeDebugEnabled;
+          slotDebugEnabled = !!d.settings.slotRecognitionDebug;
+          var slotDebugChk0 = document.getElementById("slot_debug_toggle");
+          if (slotDebugChk0) slotDebugChk0.checked = slotDebugEnabled;
+        }
+        if (d.settings && !hasInitHydratedFromFusion) {
+          if (d.settings.rayDiameterDeltaMM != null && !isNaN(parseFloat(d.settings.rayDiameterDeltaMM))) {
+            settingsState.rayDiameterDeltaMM = parseFloat(d.settings.rayDiameterDeltaMM);
+          }
+          if (d.settings.chamferInterferenceToolDiaMM != null && !isNaN(parseFloat(d.settings.chamferInterferenceToolDiaMM))) {
+            settingsState.chamferInterferenceToolDiaMM = parseFloat(d.settings.chamferInterferenceToolDiaMM);
+          }
+          if (d.settings.chamferInterferenceTopDeltaTolMM != null && !isNaN(parseFloat(d.settings.chamferInterferenceTopDeltaTolMM))) {
+            settingsState.chamferInterferenceTopDeltaTolMM = parseFloat(d.settings.chamferInterferenceTopDeltaTolMM);
+          }
+          // 啟動固定預設模型頂面，不覆蓋為上次值。
+          settingsState.holeTopHeightMode = "from surface top";
+          if (d.settings.mainWidth != null && !isNaN(parseFloat(d.settings.mainWidth))) {
+            settingsState.mainWidth = parseFloat(d.settings.mainWidth);
+          }
+          if (d.settings.mainHeight != null && !isNaN(parseFloat(d.settings.mainHeight))) {
+            settingsState.mainHeight = parseFloat(d.settings.mainHeight);
+          }
+          if (d.settings.paletteWidth != null && !isNaN(parseFloat(d.settings.paletteWidth))) {
+            settingsState.paletteWidth = parseFloat(d.settings.paletteWidth);
+          }
+          if (d.settings.paletteHeight != null && !isNaN(parseFloat(d.settings.paletteHeight))) {
+            settingsState.paletteHeight = parseFloat(d.settings.paletteHeight);
+          }
+          if (d.settings.colHoleWidth != null && !isNaN(parseFloat(d.settings.colHoleWidth))) settingsState.colHoleWidth = parseFloat(d.settings.colHoleWidth);
+          if (d.settings.colTemplateWidth != null && !isNaN(parseFloat(d.settings.colTemplateWidth))) settingsState.colTemplateWidth = parseFloat(d.settings.colTemplateWidth);
+          if (d.settings.colCountWidth != null && !isNaN(parseFloat(d.settings.colCountWidth))) settingsState.colCountWidth = parseFloat(d.settings.colCountWidth);
+          if (d.settings.colDepthWidth != null && !isNaN(parseFloat(d.settings.colDepthWidth))) settingsState.colDepthWidth = parseFloat(d.settings.colDepthWidth);
+          if (d.settings.colDrillModeWidth != null && !isNaN(parseFloat(d.settings.colDrillModeWidth))) settingsState.colDrillModeWidth = parseFloat(d.settings.colDrillModeWidth);
+          if (d.settings.colDrillDepthWidth != null && !isNaN(parseFloat(d.settings.colDrillDepthWidth))) settingsState.colDrillDepthWidth = parseFloat(d.settings.colDrillDepthWidth);
+          if (d.settings.colReamModeWidth != null && !isNaN(parseFloat(d.settings.colReamModeWidth))) settingsState.colReamModeWidth = parseFloat(d.settings.colReamModeWidth);
+          if (d.settings.colReamDepthWidth != null && !isNaN(parseFloat(d.settings.colReamDepthWidth))) settingsState.colReamDepthWidth = parseFloat(d.settings.colReamDepthWidth);
+          if (d.settings.colPitchWidth != null && !isNaN(parseFloat(d.settings.colPitchWidth))) settingsState.colPitchWidth = parseFloat(d.settings.colPitchWidth);
+          if (d.settings.colCalcWidth != null && !isNaN(parseFloat(d.settings.colCalcWidth))) settingsState.colCalcWidth = parseFloat(d.settings.colCalcWidth);
+          applyUISettingsToDOM();
+          hasInitHydratedFromFusion = true;
+        }
+        ensureIntegratedVisionMode();
+        renderSetups();
+        renderMaterials();
+        renderMachines();
+        var topModeSurface = document.getElementById("hole_top_surface_chk");
+        var topModeHole = document.getElementById("hole_top_hole_chk");
+        if (topModeSurface) topModeSurface.checked = (settingsState.holeTopHeightMode === "from surface top");
+        if (topModeHole) topModeHole.checked = (settingsState.holeTopHeightMode === "from hole top");
+        renderTopFace();
+        renderProfile();
+        // 僅首次 init 套用本地材質偏好，避免每次 full_rescan 後又被舊 localStorage 材質覆蓋，
+        // 造成「模板快取看似沒刷新」的假象。
+        applyOperatorPrefs({ allowMaterialSwitch: !hasAppliedOperatorPrefsFromFusion });
+        hasAppliedOperatorPrefsFromFusion = true;
+        try {
+          renderTable();
+          renderPocketSlotTable();
+        } catch (rtErr) {
+          setStatus("孔表渲染失敗: " + rtErr.message, "err");
+        }
+        var flatDepthsData = d.flat_depths || null;
+        renderFlatDepths(flatDepthsData);
+        window._contour2dRecognition = d.contour2dRecognition || null;
+        renderContour2dRecognition(window._contour2dRecognition);
+        var warnings = d.templateWarnings || [];
+        warnings = warnings.concat(_computePerDiameterTemplateWarnings());
+        setHeaderTemplateWarnings(warnings);
+        setStatus("已載入", "ok");
+        document.getElementById("btn_exec").disabled = false;
+      } else if (action === "contour_2d_recognition") {
+        window._contour2dRecognition = d.contour2dRecognition || d;
+        renderContour2dRecognition(window._contour2dRecognition);
+        if (d.applyTemplates) {
+          applyContour2dTemplates(d.recommended_templates || (d.contour2dRecognition && d.contour2dRecognition.recommended_templates));
+        }
+      } else if (action === "intuitive_eligibility") {
+        var rptElig = document.getElementById("ai_report_text");
+        if (rptElig) {
+          rptElig.value = d.report_text || d.summary || "";
+        }
+        setStatus(
+          d.eligible ? "直覺式資格通過，可執行直覺式編程" : "直覺式資格未通過（見報告）",
+          d.eligible ? "ok" : "err"
+        );
+      } else if (action === "intuitive_programming") {
+        handleProgrammingModeResult(d, "直覺式");
+      } else if (action === "thinking_eligibility") {
+        var rptThElig = document.getElementById("ai_report_text");
+        if (rptThElig) rptThElig.value = d.report_text || d.summary || "";
+        var layerTag = d.thinking_layer || "";
+        var ok = !!d.eligible;
+        var msg = ok ? ("思考式資格通過（" + layerTag + "）") : ("思考式資格未通過（" + layerTag + "）");
+        setStatus(msg, ok ? "ok" : "err");
+      } else if (action === "thinking_programming") {
+        handleThinkingProgrammingResult(d);
+      } else if (action === "ai_recommendations") {
+        window._lastAiPlan = d;
+        if (d.contour2dRecognition) {
+          window._contour2dRecognition = d.contour2dRecognition;
+          renderContour2dRecognition(d.contour2dRecognition);
+        }
+        var reportArea = document.getElementById("ai_report_text");
+        if (reportArea) {
+          reportArea.value = d.overall_report || "";
+        }
+        if (d.success === false) {
+          setStatus("AI 分析失敗（見報告）", "err");
+          window._aiApplyMode = "";
+          window._aiPendingExecuteAfterApply = false;
+          return;
+        }
+        var pendingExec = !!window._aiPendingExecuteAfterApply;
+        window._aiPendingExecuteAfterApply = false;
+        if (window._aiApplyMode === "apply" || window._aiApplyMode === "execute" || pendingExec) {
+          applyAiPanelPatch(d.panel_apply || null, d);
+          if (pendingExec || window._aiApplyMode === "execute") {
+            setStatus("AI 已套用建議，即將執行（先2D後3D）…", "warn");
+            sendExecute();
+          } else {
+            setStatus("AI 建議已填入面板，請檢查後手動按「執行」", "ok");
+          }
+        } else {
+          setStatus("AI 分析完成（未改動面板）", "ok");
+        }
+        window._aiApplyMode = "";
+      } else if (action === "ai_thought_track") {
+        renderAIThoughtTrack(d);
+      } else if (action === "material_data") {
+        topFaceRoughList = d.topFaceRough || d.topFace || [];
+        topFaceFinishList = d.topFaceFinish || d.topFace || [];
+        profileRoughList = d.profileRough || d.profile || [];
+        profileFinishList = d.profileFinish || d.profile || [];
+        renderTopFace();
+        renderProfile();
+        // material_data 回來時只套用模板下拉偏好，不再切換材質（材質應以後端 currentMaterial 為準）。
+        applyOperatorPrefs({ allowMaterialSwitch: false });
+      } else if (action === "vision_snapshot") {
+        try {
+          var snap = typeof d === "object" ? d : JSON.parse(data);
+          syncVisionModeUI(snap.vision_mode);
+          handleVisionSnapshot(snap);
+        } catch (vex) {
+          console.error("vision_snapshot parse failed", vex);
+        }
+      } else if (action === "holes") {
+        holeData = d.holes || [];
+        slotData = d.slots || [];
+        pocketCornerRData = d.pocket_corner_r || [];
+        renderTable();
+        renderPocketSlotTable();
+        var flatDepthsData = d.flat_depths || null;
+        renderFlatDepths(flatDepthsData);
+        if (d.contour2dRecognition) {
+          window._contour2dRecognition = d.contour2dRecognition;
+          renderContour2dRecognition(d.contour2dRecognition);
+        }
+        var warnings2 = _computePerDiameterTemplateWarnings();
+        setHeaderTemplateWarnings(warnings2);
+        setStatus("掃描完成", "ok");
+      } else if (action === "updateRowVisibility") {
+        var idx = d.idx;
+        var row = holeData[idx];
+        if (row) {
+          row.hasDrill = d.hasDrill;
+          row.showReamerControl = d.showReamerControl;
+          row.showPitch = d.showPitch;
+          // 防止後端瞬間回寫覆蓋前端正確狀態：以「目前選中模板」再校正一次。
+          var items = row.dropItems || [];
+          var ti = (typeof row._tmplIdx === "number") ? row._tmplIdx : 0;
+          var chosen = (ti >= 0 && ti < items.length) ? (items[ti] || {}) : {};
+          var cycleType = String(chosen.cycleType || "").toLowerCase();
+          var toolType = String(chosen.toolType || "").toLowerCase();
+          var hasDrillUrl = (chosen.drillUrl != null) && (String(chosen.drillUrl).trim() !== "");
+          if (cycleType === "bore-milling" || toolType === "flat end mill") {
+            row.showPitch = true;
+          } else if (cycleType === "reaming" || toolType === "reamer") {
+            row.showReamerControl = true;
+            row.hasDrill = true;
+          } else if (cycleType === "deep-drilling" || toolType === "drill") {
+            row.hasDrill = true;
+          } else if (row.isCBLarge && hasDrillUrl) {
+            row.showPitch = true;
+            row.hasDrill = true;
+          }
+          if (row.isCBLarge) {
+            row._useCalcDrillDepth = false;
+          }
+          syncRowControlVisibility(idx);
+        }
+      } else if (action === "updateActiveSetup") {
+        currentSetup = d.setup;
+        var sel = document.getElementById("setup_sel");
+        if (sel) sel.value = currentSetup;
+      } else if (action === "calcResult") {
+        if (holeData[d.idx]) {
+          holeData[d.idx]._drillDepthCalcMM = (d.calcMM == null || isNaN(parseFloat(d.calcMM))) ? null : parseFloat(d.calcMM);
+          holeData[d.idx]._useCalcDrillDepth = true;
+        }
+        var el = document.getElementById('calc_' + d.idx);
+        if (el) el.textContent = d.msg;
+        syncRowControlVisibility(d.idx);
+      } else if (action === "status") {
+        setStatus(d.msg, d.level || "");
+        if (d.msg && (d.msg.indexOf('SemiAuto_VisionSketch') >= 0 || d.msg.indexOf('vision holes=') >= 0 || d.msg.indexOf('視線法') >= 0 || d.msg.indexOf('快照') >= 0)) {
+          var stStatus = document.getElementById('recognition_sketch_status');
+          var btnVs = document.getElementById('btn_draw_recognition_sketch');
+          if (btnVs) btnVs.disabled = false;
+          if (window._visionSketchDrawTimer) {
+            clearTimeout(window._visionSketchDrawTimer);
+            window._visionSketchDrawTimer = null;
+          }
+          if (stStatus) stStatus.textContent = d.msg;
+        }
+      } else if (action === "highlight") {
+        highlightRow(d.idx);
+      } else if (action === "diag_closed") {
+        diagnosticsEnabled = false;
+        var chk = document.getElementById("diag_toggle");
+        if (chk) chk.checked = false;
+      } else if (action === "finish_exec") {
+        setStatus("執行完成", "ok");
+        document.getElementById("btn_exec").disabled = false;
+      } else if (action === "mcp_status") {
+        if (typeof updateMCPProgress === "function") {
+          updateMCPProgress(d.percentage, d.status);
+        }
+      } else if (action === "recognition_sketch_result") {
+        var stEl = document.getElementById('recognition_sketch_status');
+        var btnVs2 = document.getElementById('btn_draw_recognition_sketch');
+        if (btnVs2) btnVs2.disabled = false;
+        if (window._visionSketchDrawTimer) {
+          clearTimeout(window._visionSketchDrawTimer);
+          window._visionSketchDrawTimer = null;
+        }
+        if (d.ok) {
+          var msg = (d.sketch_name || '草圖') + '：' + (d.message || '完成');
+          if (stEl) stEl.textContent = msg;
+          setStatus('視線法草圖已建立 — ' + msg, 'ok');
+        } else {
+          if (stEl) stEl.textContent = d.message || '失敗';
+          setStatus('視線法草圖失敗：' + (d.message || ''), 'err');
+        }
+      } else if (action === "template_path_selected") {
+        var key = d.key;
+        var path = d.path;
+        if (key && path) {
+          settingsState[key] = path;
+          var el = document.getElementById("set_path_" + key);
+          if (el) {
+            el.value = path;
+          }
+        }
+      }
+    } catch(e) {
+      setStatus("處理錯誤: " + e.message, "err");
+    }
+    return true;
+  }
+};
+
+// ---- Render helpers ----
+function renderSetups() {
+  var sel = document.getElementById("setup_sel");
+  sel.innerHTML = "";
+  setupList.forEach(function(s) {
+    var o = document.createElement("option");
+    o.value = s; o.text = s;
+    if (s === currentSetup) o.selected = true;
+    sel.appendChild(o);
+  });
+  if (currentSetup) {
+    sel.value = currentSetup;
+  }
+}
+function renderMaterials() {
+  var sel = document.getElementById("material_sel");
+  sel.innerHTML = "";
+  materialList.forEach(function(m) {
+    var o = document.createElement("option");
+    o.value = m; o.text = m;
+    if (m === currentMaterial) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+function renderMachines() {
+  var sel = document.getElementById("machine_sel");
+  if (!sel) return;
+  sel.innerHTML = "";
+  machineList.forEach(function(m) {
+    var o = document.createElement("option");
+    o.value = m; o.text = m;
+    if (m === currentMachine) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+function fillPair(selId, arr) {
+  var sel = document.getElementById(selId);
+  if (!sel) return;
+  sel.innerHTML = "<option value=''>不使用</option>";
+  (arr || []).forEach(function(t) {
+    var o = document.createElement("option");
+    o.value = t; o.text = t;
+    sel.appendChild(o);
+  });
+}
+function renderTopFace() {
+  fillPair("top_face_rough_sel", topFaceRoughList);
+  fillPair("top_face_finish_sel", topFaceFinishList);
+}
+function renderProfile() {
+  fillPair("profile_rough_sel", profileRoughList);
+  fillPair("profile_finish_sel", profileFinishList);
+}
+function renderAIThoughtTrack(d) {
+  var panel = document.getElementById("ai_thought_track_panel");
+  var content = document.getElementById("ai_thought_content");
+  if (!panel || !content) return;
+  
+  panel.style.display = "block";
+  var html = "";
+  
+  if (d.intent) {
+    html += "<div style='color:#e8d4ff; font-weight:700; margin-bottom:4px;'>🎯 意圖: " + d.intent + "</div>";
+  }
+  
+  if (d.observations && d.observations.length) {
+    html += "<div style='color:#00e5ff; font-weight:700; margin-top:6px; margin-bottom:2px;'>🔍 觀察與 API 查證:</div>";
+    d.observations.forEach(function(o) {
+      var linked = o.replace(/\[參照手冊\s+([^\]]+)\]/g, function(match, filename) {
+        return "<a href='#' onclick='openApiReferenceFile(\"" + filename + "\"); return false;' style='color:#00e5ff; font-weight:700; text-decoration:underline;'>[已引用 API: " + filename + "]</a>";
+      });
+      html += "<div style='margin-left:8px; margin-bottom:2px;'>• " + linked + "</div>";
+    });
+  }
+  
+  if (d.hypothesis && d.hypothesis.length) {
+    html += "<div style='color:#ff8ca6; font-weight:700; margin-top:6px; margin-bottom:2px;'>💡 方案假說與權衡:</div>";
+    d.hypothesis.forEach(function(h) {
+      html += "<div style='margin-left:8px; margin-bottom:2px;'>• " + h + "</div>";
+    });
+  }
+  
+  if (d.reasoning_steps && d.reasoning_steps.length) {
+    html += "<div style='color:#bda3ff; font-weight:700; margin-top:6px; margin-bottom:2px;'>⚙️ 推理步驟:</div>";
+    d.reasoning_steps.forEach(function(s) {
+      html += "<div style='margin-left:8px; margin-bottom:2px;'>• " + s + "</div>";
+    });
+  }
+  
+  content.innerHTML = html;
+}
+
+function openApiReferenceFile(filename) {
+  adsk.fusionSendData("open_api_reference_page", JSON.stringify({ filename: filename }));
+}
+
+function renderTable() {
+  var tbody = document.getElementById("hole_body");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  if (!holeData.length) {
+    tbody.innerHTML = "<tr><td colspan='10' style='color:#666;text-align:center'> 未發現孔</td></tr>";
+    updateRecognitionTabBadges();
+    return;
+  }
+  holeData.forEach(function(h, i) {
+    var srcItems = h.dropItems || [];
+    var filteredByChamfer = srcItems
+      .map(function(it, idx) { return { idx: idx, item: it }; })
+      .filter(function(x) {
+        var it = x.item || {};
+        var label = String(it.label || "").toUpperCase().replace(/\s+/g, "");
+        var isUnused = label === "(不使用)";
+        var hasChamfer = !!it.hasChamfer;
+        if (isUnused) return true;
+        // 「不指定倒角」= 不限制 C 值，連未套用倒角模板項目也顯示。
+        if (chamferFilter.noChamfer) return true;
+        if (!hasChamfer) return false;
+        var isC02 = label.indexOf("C0.2") >= 0;
+        var isC03 = label.indexOf("C0.3") >= 0;
+        if (isC02 && chamferFilter.c02) return true;
+        if (isC03 && chamferFilter.c03) return true;
+        return false;
+      });
+    // 沉頭列若模板命名未帶 C0.2/C0.3，避免被過濾到只剩(不使用)。
+    if (h.isCBLarge && !chamferFilter.noChamfer) {
+      var hasTaggedChamfer = filteredByChamfer.some(function(x) {
+        var it = x.item || {};
+        return !!it.hasChamfer && String(it.label || "") !== "(不使用)";
+      });
+      if (!hasTaggedChamfer) {
+        filteredByChamfer = srcItems
+          .map(function(it, idx) { return { idx: idx, item: it }; })
+          .filter(function(x) {
+            var it = x.item || {};
+            return !!it.hasChamfer || String(it.label || "") === "(不使用)";
+          });
+      }
+    }
+    // 一般孔列：篩「只顯示 C0.2/C0.3」時若無任何含倒角選項，仍顯示純鑽（避免只剩 (不使用) 被誤判為無倒角檔）。
+    if (!h.isCBLarge && !chamferFilter.noChamfer) {
+      var hasTaggedChamferGen = filteredByChamfer.some(function(x) {
+        var it = x.item || {};
+        return !!it.hasChamfer && String(it.label || "") !== "(不使用)";
+      });
+      if (!hasTaggedChamferGen) {
+        filteredByChamfer = srcItems
+          .map(function(it, idx) { return { idx: idx, item: it }; })
+          .filter(function(x) {
+            var it = x.item || {};
+            if (String(it.label || "") === "(不使用)") return true;
+            if (!it.hasChamfer) return true;
+            var label = String(it.label || "").toUpperCase().replace(/\s+/g, "");
+            var isC02 = label.indexOf("C0.2") >= 0;
+            var isC03 = label.indexOf("C0.3") >= 0;
+            if (isC02 && chamferFilter.c02) return true;
+            if (isC03 && chamferFilter.c03) return true;
+            return false;
+          });
+      }
+    }
+    if (!filteredByChamfer.length) {
+      filteredByChamfer = srcItems.map(function(it, idx) { return { idx: idx, item: it }; });
+    }
+    var visibleItems;
+    if (chamferOnlyMode) {
+      visibleItems = filteredByChamfer
+        .filter(function(x) {
+          var it = x.item || {};
+          var hasDrill = !!it.hasDrill;
+          var hasChamfer = !!it.hasChamfer;
+          var isUnused = (it.label || "") === "(不使用)";
+          return (hasChamfer && !hasDrill) || isUnused;
+        });
+      if (!visibleItems.length) {
+        visibleItems = filteredByChamfer.length ? filteredByChamfer : srcItems.map(function(it, idx) { return { idx: idx, item: it }; });
+      }
+    } else {
+      visibleItems = filteredByChamfer;
+    }
+    var selectedIdx = (typeof h._tmplIdx === "number") ? h._tmplIdx : 0;
+    var exists = visibleItems.some(function(x){ return x.idx === selectedIdx; });
+    if (!exists) selectedIdx = visibleItems.length ? visibleItems[0].idx : 0;
+    h._tmplIdx = selectedIdx;
+
+    // 篩選後僅剩「(不使用)」但完整列表仍有其他模板時，代表多為缺可見的倒角模板（純鑽被濾掉）。
+    var hadNonUnusedSrc = srcItems.some(function(it) {
+      return String((it || {}).label || "") !== "(不使用)";
+    });
+    var onlyUnusedVisible = visibleItems.length === 1 &&
+      String(((visibleItems[0] || {}).item || {}).label || "") === "(不使用)";
+    var showChamferMissingHint = onlyUnusedVisible && hadNonUnusedSrc;
+
+    var tr = document.createElement("tr");
+    tr.id = "row" + i;
+    tr.onclick = function() { selectRow(i); };
+    
+    // 方向映射
+    var dirMap = {'Z+': '正面', 'Z-': '背面', 'Z-(CB)': '反面沉頭'};
+    var dirName = dirMap[h.dir] || h.dir;
+    
+    // Label cell
+    var label;
+    if (h.isCBLarge) {
+      label = "D" + h.dia + " 沉頭 (" + dirName + ")";
+    } else {
+      label = "D" + h.dia + " " + (h.through ? "通" : "盲") + " (" + dirName + ")";
+    }
+    if (h.cbTopDia || h.cbDepth) {
+      label += " [沉孔 D" + (h.cbTopDia || "-") + " 深" + (h.cbDepth || "-") + "]";
+    }
+    var isAdjustable = !h.isCBLarge;
+    var drillModeDefault = h.isCBLarge ? "鑽深預設" : (h.through ? "鑽深預設" : "修改深度");
+    var reamModeDefault = h.through ? "鉸深預設" : "修改深度";
+    var drillDepthDefault = h.through ? 1.5 : parseFloat(h.depth || 0);
+    var reamDepthDefault = h.through ? 1.0 : Math.max((parseFloat(h.depth || 0) - 1.0), 0.0);
+    h._drillMode = h._drillMode || drillModeDefault;
+    h._reamMode = h._reamMode || reamModeDefault;
+    h._pitchMode = h._pitchMode || "預設";
+    if (h._drillDepth == null) h._drillDepth = drillDepthDefault;
+    if (h._reamDepth == null) h._reamDepth = reamDepthDefault;
+    if (h._pitchVal == null) h._pitchVal = 0.06;
+    if (h._useCalcDrillDepth == null) h._useCalcDrillDepth = false;
+    if (h.showReamerControl && !h.through && !h.isCBLarge) h._useCalcDrillDepth = true;
+    if (h._drillDepthCalcMM == null) h._drillDepthCalcMM = null;
+
+    // 使用 Python 傳來的顯示控制標記
+    var drillModeVisible = h.hasDrill;
+    var drillDepthVisible = h.hasDrill && ((h._drillMode !== "鑽深預設") || !!h.isCBLarge) && !h.showReamerControl;
+    var drillTipVisible = h.hasDrill && h.through && (h._drillMode === "鑽過孔底部" || h._drillMode === "鑽過毛坯底部");
+    var drillModeLocked = h.showReamerControl && !h.through;
+    
+    var reamModeVisible = h.showReamerControl;
+    var reamDepthVisible = h.showReamerControl && h._reamMode !== "鉸深預設";
+    var reamTipVisible = h.showReamerControl && h.through && (h._reamMode === "鉸過孔底部" || h._reamMode === "鉸過毛坯底部");
+    
+    var pitchModeVisible = h.showPitch;
+    var pitchValVisible = h.showPitch && h._pitchMode === "修改節距";
+
+    var calcVisible = h.showReamerControl && !h.through;
+
+    // 沉頭列：不顯示鑽模式/鑽深（沉頭孔銑不應提供鑽深調整）。
+    if (h.isCBLarge) {
+      drillModeVisible = false;
+      drillDepthVisible = false;
+      drillTipVisible = false;
+      reamModeVisible = false;
+      reamDepthVisible = false;
+      reamTipVisible = false;
+      calcVisible = false;
+    }
+
+    // 僅倒角模板（全項目）時，關閉鑽/鉸深度相關控制，避免誤操作。
+    if (chamferOnlyMode) {
+      drillModeVisible = false;
+      drillDepthVisible = false;
+      drillTipVisible = false;
+      reamModeVisible = false;
+      reamDepthVisible = false;
+      reamTipVisible = false;
+      calcVisible = false;
+    }
+
+    var drillModeOptions = h.isCBLarge
+      ? ["鑽深預設", "修改深度"]
+      : (h.through
+        ? ["鑽深預設", "鑽過孔底部", "鑽過毛坯底部"]
+        : ["修改深度"]);
+    var reamModeOptions = h.through
+      ? ["鉸深預設", "鉸過孔底部", "鉸過毛坯底部"]
+      : ["修改深度"];
+    var pitchModeOptions = ["預設", "修改節距"];
+
+    tr.innerHTML =
+      "<td>" + label + "</td>" +
+      "<td><select id='tmpl" + i + "' onchange='onTmplChange(" + i + ")'>" +
+        visibleItems.map(function(x) {
+          var it = x.item || {};
+          var selected = (x.idx === selectedIdx) ? " selected" : "";
+          var rawLab = String(it.label || "");
+          var disp = (it.listDisplay != null && String(it.listDisplay).length > 0)
+            ? String(it.listDisplay)
+            : hideFullWidthBracketsForDisplay(rawLab);
+          if (showChamferMissingHint && rawLab === "(不使用)") {
+            disp = "【未偵測到倒角模板】";
+          }
+          return "<option value='" + x.idx + "'" + selected + ">" + escHtml(disp) + "</option>";
+        }).join("") +
+      "</select></td>" +
+      "<td>" + h.count + "</td>" +
+      "<td>" + h.depth + "</td>" +
+      "<td><select id='drill_mode_" + i + "' onchange='onDrillModeChange(" + i + ")' style='" + (drillModeVisible ? "" : "display:none;") + "'>" +
+        drillModeOptions.map(function(m) {
+          var lbl = m;
+          if (h.isCBLarge) {
+            if (m === "鑽深預設") lbl = "銑深預設";
+            if (m === "修改深度") lbl = "修改銑深";
+          }
+          return "<option value='" + m + "'" + (h._drillMode === m ? " selected" : "") + ">" + lbl + "</option>";
+        }).join("") +
+      "</select></td>" +
+      "<td>" + (drillModeVisible ?
+        "<input id='drill_depth_" + i + "' type='number' value='" + h._drillDepth +
+        "' min='0' step='0.1' style='" + (drillDepthVisible ? "width:100%;min-width:0;box-sizing:border-box;" : "display:none;") + "'>" +
+        "<span id='drill_depth_auto_" + i + "' style='display:none;color:#8cf;font-size:12px;'>依計算結果</span>" +
+        "<label id='drill_tip_lab_" + i + "' title='鑽頭突破' style='font-size:10px;" + (drillTipVisible ? "" : "display:none;") + "'>" +
+        "<input id='drill_tip_" + i + "' type='checkbox' " + (h.drillTip ? "checked" : "") + ">鑽尖</label>" : "-") + "</td>" +
+      "<td><select id='ream_mode_" + i + "' onchange='onReamModeChange(" + i + ")' style='" + (reamModeVisible ? "" : "display:none;") + "'>" +
+        reamModeOptions.map(function(m) {
+          return "<option value='" + m + "'" + (h._reamMode === m ? " selected" : "") + ">" + m + "</option>";
+        }).join("") +
+      "</select></td>" +
+      "<td>" + (reamModeVisible ?
+        "<input id='ream_depth_" + i + "' type='number' value='" + h._reamDepth +
+        "' min='0' step='0.1' style='" + (reamDepthVisible ? "width:100%;min-width:0;box-sizing:border-box;" : "display:none;") + "' onchange='onReamDepthChange(" + i + ")'>" +
+        "<label id='ream_tip_lab_" + i + "' title='鉸頭突破' style='font-size:10px;" + (reamTipVisible ? "" : "display:none;") + "'>" +
+        "<input id='ream_tip_" + i + "' type='checkbox' " + (h.reamTip ? "checked" : "") + ">鉸尖</label>" : "-") + "</td>" +
+      "<td>" +
+        "<select id='pitch_mode_" + i + "' onchange='onPitchModeChange(" + i + ")' style='" + (pitchModeVisible ? "" : "display:none;") + "'>" +
+          pitchModeOptions.map(function(m) {
+            return "<option value='" + m + "'" + (h._pitchMode === m ? " selected" : "") + ">" + m + "</option>";
+          }).join("") +
+        "</select>" +
+        "<input id='pitch_val_" + i + "' type='number' value='" + h._pitchVal +
+        "' min='0' step='0.01' style='" + (pitchValVisible ? "width:100%;min-width:0;box-sizing:border-box;" : "display:none;") + "' onchange='onPitchValChange(" + i + ")'>" +
+      "</td>" +
+      "<td><span id='calc_" + i + "' style='color:#8cf;font-size:10px;" + (calcVisible ? "" : "display:none;") + "'></span></td>";
+    tbody.appendChild(tr);
+    var drillModeEl = document.getElementById("drill_mode_" + i);
+    if (drillModeEl) {
+      drillModeEl.disabled = !!drillModeLocked;
+      if (drillModeLocked) {
+        drillModeEl.value = "修改深度";
+        h._drillMode = "修改深度";
+      }
+    }
+    syncRowControlVisibility(i);
+    requestCalcForReamerRow(i);
+
+  });
+  updateRecognitionTabBadges();
+}
+
+function updateRecognitionTabBadges() {
+  var holeTab = document.querySelector('[onclick="switchRightTab(\'tab_holes\')"]');
+  var pocketTab = document.querySelector('[onclick="switchRightTab(\'tab_pockets\')"]');
+  var holeCount = (holeData || []).length;
+  var slotCount = (slotData || []).length;
+  if (holeTab) {
+    holeTab.textContent = holeCount > 0 ? ("🕳️ 孔特徵 (" + holeCount + ")") : "🕳️ 孔特徵";
+  }
+  if (pocketTab) {
+    pocketTab.textContent = slotCount > 0 ? ("⚡ 槽與口袋 (" + slotCount + ")") : "⚡ 槽與口袋";
+  }
+}
+
+function _computePerDiameterTemplateWarnings() {
+  var missDrillDias = [];
+  var missChamferDias = [];
+  (holeData || []).forEach(function(h) {
+    if (!h) return;
+    var dia = String(h.dia || "");
+    var items = h.dropItems || [];
+    var hasDrillTemplate = items.some(function(it) {
+      var label = String((it || {}).label || "");
+      return label !== "(不使用)" && !!(it && it.hasDrill);
+    });
+    var hasChamferTemplate = items.some(function(it) {
+      var label = String((it || {}).label || "");
+      return label !== "(不使用)" && !!(it && it.hasChamfer);
+    });
+    if (!h.isCBLarge && !hasDrillTemplate && dia && missDrillDias.indexOf(dia) < 0) missDrillDias.push(dia);
+    if (!hasChamferTemplate && dia && missChamferDias.indexOf(dia) < 0) missChamferDias.push(dia);
+  });
+  missDrillDias.sort(function(a, b) { return parseFloat(a) - parseFloat(b); });
+  missChamferDias.sort(function(a, b) { return parseFloat(a) - parseFloat(b); });
+  var msgs = [];
+  if (missDrillDias.length) msgs.push("【未搜尋到孔加工模板: D" + missDrillDias.join(", D") + "】");
+  if (missChamferDias.length) msgs.push("【未搜尋到倒角模板: D" + missChamferDias.join(", D") + "】");
+  return msgs;
+}
+
+function _buildSlotTemplateOptions(s, idx) {
+  var selectedIdx = (typeof s._tmplIdx === "number") ? s._tmplIdx : (typeof s.tmplIdx === "number" ? s.tmplIdx : 0);
+  var srcItems = s.dropItems || [];
+  function slotRowHasSlot(it) {
+    return !!(it && (it.hasSlot || (it.slotUrl && String(it.slotUrl).trim())));
+  }
+  function slotRowHasChamfer(it) {
+    return !!(it && (it.hasChamfer || (it.chamferUrl && String(it.chamferUrl).trim())));
+  }
+  var filteredByChamfer = srcItems
+    .map(function(it, i) { return { idx: i, item: it || {} }; })
+    .filter(function(x) {
+      var it = x.item || {};
+      var label = String(it.label || "").toUpperCase().replace(/\s+/g, "");
+      var isUnused = label === "(不使用)";
+      var hasChamfer = slotRowHasChamfer(it);
+      if (isUnused) return true;
+      if (chamferFilter.noChamfer) return true;
+      if (!hasChamfer) return false;
+      var buck = String(it.chamferBucket || "").toUpperCase().replace(/\s+/g, "");
+      var isC02 = label.indexOf("C0.2") >= 0 || buck.indexOf("C0.2") >= 0;
+      var isC03 = label.indexOf("C0.3") >= 0 || buck.indexOf("C0.3") >= 0;
+      if (isC02 && chamferFilter.c02) return true;
+      if (isC03 && chamferFilter.c03) return true;
+      return false;
+    });
+  if (!chamferFilter.noChamfer) {
+    var hasTaggedChamfer = filteredByChamfer.some(function(x) {
+      var it = x.item || {};
+      if (!slotRowHasChamfer(it)) return false;
+      var lab = String(it.label || "").toUpperCase();
+      var buck = String(it.chamferBucket || "").toUpperCase();
+      return lab.indexOf("C0.2") >= 0 || lab.indexOf("C0.3") >= 0 || buck.indexOf("C0.2") >= 0 || buck.indexOf("C0.3") >= 0;
+    });
+    if (!hasTaggedChamfer) {
+      filteredByChamfer = srcItems
+        .map(function(it, i) { return { idx: i, item: it || {} }; })
+        .filter(function(x) {
+          var it = x.item || {};
+          return slotRowHasChamfer(it) || String(it.label || "") === "(不使用)";
+        });
+    }
+  }
+  if (!filteredByChamfer.length) {
+    filteredByChamfer = srcItems.map(function(it, i) { return { idx: i, item: it || {} }; });
+  }
+  var visibleItems;
+  if (chamferOnlyMode) {
+    visibleItems = filteredByChamfer.filter(function(x) {
+      var it = x.item || {};
+      var hasSlot = slotRowHasSlot(it);
+      var hasChamfer = slotRowHasChamfer(it);
+      var isUnused = (it.label || "") === "(不使用)";
+      return (hasChamfer && !hasSlot) || isUnused;
+    });
+    if (!visibleItems.length) {
+      visibleItems = filteredByChamfer.length ? filteredByChamfer : srcItems.map(function(it, i) { return { idx: i, item: it || {} }; });
+    }
+  } else {
+    visibleItems = filteredByChamfer;
+  }
+  if (!visibleItems.length) {
+    visibleItems = srcItems.map(function(it, i) { return { idx: i, item: it || {} }; });
+  }
+  var hasSelected = visibleItems.some(function(x) { return x.idx === selectedIdx; });
+  if (!hasSelected) selectedIdx = visibleItems.length ? visibleItems[0].idx : 0;
+  s._tmplIdx = selectedIdx;
+  var options = "";
+  for (var i = 0; i < visibleItems.length; i++) {
+    var x = visibleItems[i];
+    var it = x.item || {};
+    var lab = (it.listDisplay != null && String(it.listDisplay).length > 0)
+      ? String(it.listDisplay)
+      : hideFullWidthBracketsForDisplay(String(it.label || ""));
+    var sel = (x.idx === selectedIdx) ? " selected" : "";
+    options += "<option value='" + x.idx + "'" + sel + ">" + escHtml(lab) + "</option>";
+  }
+  return options;
+}
+
+function _buildPcrTemplateOptions(row) {
+  var srcItems = row.dropItems || [];
+  var visibleItems = srcItems.map(function(it, i) { return { idx: i, item: it || {} }; });
+  var selectedIdx = (typeof row._tmplIdx === "number")
+    ? row._tmplIdx
+    : (typeof row.tmplIdx === "number" ? row.tmplIdx : (visibleItems.length ? visibleItems[visibleItems.length - 1].idx : 0));
+  var hasSelected = visibleItems.some(function(x) { return x.idx === selectedIdx; });
+  if (!hasSelected) {
+    selectedIdx = visibleItems.length ? visibleItems[visibleItems.length - 1].idx : 0;
+  }
+  row._tmplIdx = selectedIdx;
+  var options = "";
+  for (var j = 0; j < visibleItems.length; j++) {
+    var x = visibleItems[j];
+    var it = x.item || {};
+    var lab = (it.listDisplay != null && String(it.listDisplay).length > 0)
+      ? String(it.listDisplay)
+      : hideFullWidthBracketsForDisplay(String(it.label || ""));
+    var sel = (x.idx === selectedIdx) ? " selected" : "";
+    options += "<option value='" + x.idx + "'" + sel + ">" + escHtml(lab) + "</option>";
+  }
+  return options;
+}
+
+function renderPocketSlotTable() {
+  var tbody = document.getElementById("pocket_slot_body");
+  var wrap = document.getElementById("section_pocket_slot_wrap");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  if (!slotData.length && !pocketCornerRData.length) {
+    if (wrap) wrap.style.display = "none";
+    return;
+  }
+  if (wrap) wrap.style.display = "block";
+  var unified = [];
+  slotData.forEach(function(s, idx) {
+    var w = Number(s.width_mm || 0);
+    var len = Number(s.length_mm || 0);
+    var spec = "W" + w.toFixed(3);
+    if (len > 0) spec += "×L" + len.toFixed(3);
+    unified.push({
+      kind: "slot",
+      sourceIdx: idx,
+      typeLabel: "腰形槽",
+      spec: spec,
+      depth: Number(s.depth_mm || 0),
+      through: !!s.through,
+      count: Number(s.count || 0),
+      sortKey: "0_" + w.toFixed(3) + "_" + len.toFixed(3)
+    });
+  });
+  pocketCornerRData.forEach(function(row, idx) {
+    var dirMap = { "Z+": "正面", "Z-": "背面", "Z-(CB)": "反面沉頭" };
+    var dirName = dirMap[row.dir] || row.dir || "";
+    unified.push({
+      kind: "corner_r",
+      sourceIdx: idx,
+      typeLabel: "槽內R角",
+      spec: "R" + Number(row.r_mm || 0).toFixed(3) + (dirName ? "·" + dirName : ""),
+      depth: Number(row.depth_mm || 0),
+      through: !!row.through,
+      count: Number(row.count || 0),
+      sortKey: "1_" + Number(row.r_mm || 0).toFixed(3)
+    });
+  });
+  unified.sort(function(a, b) {
+    if (a.sortKey < b.sortKey) return -1;
+    if (a.sortKey > b.sortKey) return 1;
+    return 0;
+  });
+  unified.forEach(function(u, uiIdx) {
+    var options = "";
+    if (u.kind === "slot") {
+      options = _buildSlotTemplateOptions(slotData[u.sourceIdx], u.sourceIdx);
+    } else {
+      options = _buildPcrTemplateOptions(pocketCornerRData[u.sourceIdx]);
+    }
+    var throughText = u.through ? "通" : "盲";
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      "<td>" + escHtml(u.typeLabel) + "</td>" +
+      "<td>" + escHtml(u.spec) + "</td>" +
+      "<td>" + u.depth.toFixed(3) + "</td>" +
+      "<td>" + throughText + "</td>" +
+      "<td>" + u.count.toFixed(0) + "</td>" +
+      "<td><select id='pocket_slot_tmpl_" + uiIdx + "' data-kind='" + u.kind + "' data-source-idx='" + u.sourceIdx + "' onchange='onPocketSlotTmplChange(this)'>" + options + "</select></td>";
+    tbody.appendChild(tr);
+  });
+}
+
+function renderSlotTable() {
+  renderPocketSlotTable();
+}
+
+function renderPocketCornerRTable() {
+  renderPocketSlotTable();
+}
+
+function _syncPocketSlotSelectionsFromUI() {
+  var tbody = document.getElementById("pocket_slot_body");
+  if (!tbody) return;
+  var selects = tbody.querySelectorAll("select[data-kind][data-source-idx]");
+  for (var i = 0; i < selects.length; i++) {
+    var sel = selects[i];
+    var kind = sel.getAttribute("data-kind");
+    var src = parseInt(sel.getAttribute("data-source-idx"), 10);
+    var v = parseInt(sel.value, 10);
+    if (isNaN(v)) v = 0;
+    if (kind === "slot" && slotData[src]) slotData[src]._tmplIdx = v;
+    if (kind === "corner_r" && pocketCornerRData[src]) pocketCornerRData[src]._tmplIdx = v;
+  }
+}
+
+function onPocketSlotTmplChange(selEl) {
+  if (!selEl) return;
+  var kind = selEl.getAttribute("data-kind");
+  var src = parseInt(selEl.getAttribute("data-source-idx"), 10);
+  var v = parseInt(selEl.value, 10);
+  if (isNaN(v)) v = 0;
+  if (kind === "slot" && slotData[src]) slotData[src]._tmplIdx = v;
+  if (kind === "corner_r" && pocketCornerRData[src]) pocketCornerRData[src]._tmplIdx = v;
+}
+
+function toggleCollapsible(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle("expanded");
+}
+
+function renderFlatDepths(d) {
+  var wrap = document.getElementById("section_flat_depths_wrap");
+  var tbody = document.getElementById("flat_depths_body");
+  var maxZEl = document.getElementById("flat_max_z");
+  var spanZEl = document.getElementById("flat_span_z");
+  var stockWrap = document.getElementById("flat_stock_size_wrap");
+  var stockEl = document.getElementById("flat_stock_size");
+  var stockTopEl = document.getElementById("flat_stock_to_top");
+  var z0BottomEl = document.getElementById("flat_z0_bottom");
+
+  if (!wrap || !tbody) return;
+
+  if (!d || !d.planes || !d.planes.length) {
+    wrap.style.display = "none";
+    wrap.classList.remove("expanded");
+    tbody.innerHTML = "<tr><td colspan='3' style='color:#666;text-align:center'>無資料</td></tr>";
+    return;
+  }
+
+  wrap.style.display = "block";
+  if (maxZEl) maxZEl.textContent = "0.00";
+  var partThickness = Number(d.part_thickness_mm != null ? d.part_thickness_mm : d.z_span_mm);
+  if (spanZEl) spanZEl.textContent = (isNaN(partThickness) ? 0 : partThickness).toFixed(2);
+
+  var stock = d.stock || {};
+  var fx = Number(stock.size_x_mm != null ? stock.size_x_mm : stock.fixed_x_mm);
+  var fy = Number(stock.size_y_mm != null ? stock.size_y_mm : stock.fixed_y_mm);
+  var fz = Number(stock.size_z_mm != null ? stock.size_z_mm : stock.fixed_z_mm);
+  if (stockWrap && stockEl && !isNaN(fx) && !isNaN(fy) && !isNaN(fz) && fx > 0 && fy > 0 && fz > 0) {
+    stockWrap.style.display = "";
+    stockEl.textContent = fx.toFixed(2) + " × " + fy.toFixed(2) + " × " + fz.toFixed(2) + " mm";
+  } else if (stockWrap) {
+    stockWrap.style.display = "none";
+  }
+
+  var stockTopOff = Number(
+    d.job_stock_fixed_z_offset_mm != null ? d.job_stock_fixed_z_offset_mm : d.stock_to_part_top_mm
+  );
+  if (isNaN(stockTopOff)) stockTopOff = 0;
+  if (stockTopEl) stockTopEl.textContent = stockTopOff.toFixed(2);
+
+  var z0Bottom = Number(d.z0_to_part_bottom_mm);
+  if (isNaN(z0Bottom)) z0Bottom = 0;
+  if (z0BottomEl) z0BottomEl.textContent = z0Bottom.toFixed(2);
+
+  var stockRemainEl = document.getElementById("flat_stock_remaining");
+  var stockRemain = Number(d.stock_remaining_thickness_mm);
+  if (stockRemainEl) {
+    stockRemainEl.textContent = isNaN(stockRemain) ? "—" : stockRemain.toFixed(2);
+  }
+
+  tbody.innerHTML = d.planes.map(function(p) {
+    var depthZ0 = Number(p.depth_from_z0_mm);
+    if (isNaN(depthZ0)) depthZ0 = Math.max(0, -Number(p.z_height_mm || 0));
+    return "<tr>" +
+      "<td style='color:#ff5f85;font-weight:bold;'>+" + Number(p.relative_depth_mm || 0).toFixed(2) + " mm</td>" +
+      "<td>" + depthZ0.toFixed(2) + " mm</td>" +
+      "<td style='color:#8cf;'>" + Number(p.area_mm2 || 0).toLocaleString() + " mm²</td>" +
+      "</tr>";
+  }).join("");
+}
+
+function onPcrTmplChange(i) {
+  if (pocketCornerRData[i]) pocketCornerRData[i]._tmplIdx = pocketCornerRData[i]._tmplIdx || 0;
+  _syncPocketSlotSelectionsFromUI();
+}
+
+function onSlotTmplChange(i) {
+  if (slotData[i]) slotData[i]._tmplIdx = slotData[i]._tmplIdx || 0;
+  _syncPocketSlotSelectionsFromUI();
+}
+
+function collectSlotRows() {
+  _syncPocketSlotSelectionsFromUI();
+  var rows = [];
+  slotData.forEach(function(s, i) {
+    var idx = (typeof s._tmplIdx === "number") ? s._tmplIdx : (s.tmplIdx || 0);
+    rows.push({
+      idx: i,
+      tmplIdx: idx,
+      widthMM: Number(s.width_mm || 0),
+      depthMM: Number(s.depth_mm || 0),
+      count: Number(s.count || 0),
+      through: !!s.through
+    });
+  });
+  return rows;
+}
+
+function _collectOfficialPocketRowsFrom(dataArr, idPrefix) {
+  var rows = [];
+  dataArr.forEach(function(p, i) {
+    var bindSel = document.getElementById(idPrefix + "_bind_" + i);
+    var sel2d = document.getElementById(idPrefix + "_tmpl2d_" + i);
+    var sel3d = document.getElementById(idPrefix + "_tmpl3d_" + i);
+    var bindMode = bindSel ? bindSel.value : (p.bindMode || "auto");
+    var tmpl2dIdx = sel2d ? parseInt(sel2d.value, 10) : (p._tmpl2dIdx != null ? p._tmpl2dIdx : (p.tmpl2dIdx || 0));
+    var tmpl3dIdx = sel3d ? parseInt(sel3d.value, 10) : (p._tmpl3dIdx != null ? p._tmpl3dIdx : (p.tmpl3dIdx || 0));
+    if (isNaN(tmpl2dIdx)) tmpl2dIdx = 0;
+    if (isNaN(tmpl3dIdx)) tmpl3dIdx = 0;
+    rows.push({
+      idx: i,
+      panel_row_index: (p.panel_row_index != null) ? p.panel_row_index : i,
+      body_token: p.body_token || "",
+      pocket_index: (p.pocket_index != null) ? p.pocket_index : 0,
+      bindMode: bindMode,
+      tmpl2dIdx: tmpl2dIdx,
+      tmpl3dIdx: tmpl3dIdx,
+      through: !!p.through,
+      pocket_kind: p.pocket_kind || ""
+    });
+  });
+  return rows;
+}
+
+function collectOfficialSlotPocketRows() {
+  return _collectOfficialPocketRowsFrom(officialSlotPocketData, "official_slot");
+}
+
+function collectOfficialPocketSlotRows() {
+  return _collectOfficialPocketRowsFrom(officialPocketSlotData, "official_pocket_slot");
+}
+
+function collectOfficialPocketRows() {
+  return collectOfficialSlotPocketRows().concat(collectOfficialPocketSlotRows());
+}
+
+function collectPocketCornerRRows() {
+  _syncPocketSlotSelectionsFromUI();
+  var rows = [];
+  pocketCornerRData.forEach(function(r, i) {
+    var idx = (typeof r._tmplIdx === "number") ? r._tmplIdx : (r.tmplIdx || 0);
+    rows.push({
+      idx: i,
+      tmplIdx: idx,
+      rMM: Number(r.r_mm || 0),
+      depthMM: Number(r.depth_mm || 0),
+      count: Number(r.count || 0),
+      through: !!r.through
+    });
+  });
+  return rows;
+}
+/** 模板下拉顯示用：隱藏全形【…】整段（含【】），與 Python `_mask_fullwidth_bracket_segments`／`_native_drop_label_display` 一致。 */
+function hideFullWidthBracketsForDisplay(s) {
+  var t = String(s || "");
+  return t.replace(/[\u3010][^\u3011]*[\u3011]/g, "").replace(/^\s+|\s+$/g, "");
+}
+function escHtml(s) {
+  return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function selectRow(i) {
+  document.querySelectorAll("#hole_body tr").forEach(function(r){ r.classList.remove("selected"); });
+  var r = document.getElementById("row" + i);
+  if (r) r.classList.add("selected");
+}
+function highlightRow(i) {
+  document.querySelectorAll("#hole_body tr").forEach(function(r){ r.classList.remove("highlight"); });
+  var r = document.getElementById("row" + i);
+  if (r) r.classList.add("highlight");
+}
+function setHeaderTemplateWarnings(warnings) {
+  var el = document.getElementById("header_template_warn");
+  if (!el) return;
+  var msgs = warnings || [];
+  if (msgs.length) {
+    el.textContent = msgs.join(" ");
+    el.style.display = "block";
+  } else {
+    el.textContent = "";
+    el.style.display = "none";
+  }
+}
+
+function setStatus(msg, level) {
+  var el = document.getElementById("status");
+  if (!el) return;
+  el.textContent = msg;
+  el.className = "header-inline-status" + (level ? (" " + level) : "");
+}
+
+// ---- Send to Python ----
+function sendToFusion(action, data) {
+  adsk.fusionSendData(action, JSON.stringify(data));
+}
+function _setAiReportLoading(msg) {
+  var rpt = document.getElementById("ai_report_text");
+  if (rpt) {
+    rpt.value = msg || (
+      "🤖 正在連線內部 AI 決策引擎...\n" +
+      "正在提取特徵幾何、載入刀具庫與「" + currentMaterial + "」物理參數…"
+    );
+  }
+}
+
+function requestAiRecommendations(applyMode) {
+  window._aiApplyMode = applyMode || "";
+  setStatus(applyMode === "apply" ? "AI 分析並套用建議中…" : "AI 分析中…", "warn");
+  _setAiReportLoading();
+  sendToFusion("get_ai_recommendations", {material: currentMaterial});
+}
+
+function triggerAIAnalysisOnly() {
+  window._aiPendingExecuteAfterApply = false;
+  requestAiRecommendations("");
+}
+
+function triggerAIApplyToPanel() {
+  window._aiPendingExecuteAfterApply = false;
+  requestAiRecommendations("apply");
+}
+
+function triggerAIApplyAndExecute() {
+  if (!confirm(
+    "將依 AI 建議填入孔／槽／2D 模板，並立即執行「先2D後3D」。\n\n" +
+    "您仍可在執行前快速檢查面板；執行後請於 Fusion 檢視刀路。\n\n是否繼續？"
+  )) {
+    return;
+  }
+  window._aiPendingExecuteAfterApply = true;
+  requestAiRecommendations("execute");
+}
+
+function triggerIntuitiveOneClick() {
+  if (!confirm(
+    "【一鍵直覺式編程】\n\n" +
+    "將依序：檢查模板 → 掃描特徵 → 直覺式資格 → 套用您已訂製的模板 → 執行（先2D後3D）。\n" +
+    "資格未通過將不執行。請確認已開啟 CAM Setup 與正確材質。\n\n是否繼續？"
+  )) {
+    return;
+  }
+  setStatus("一鍵直覺式執行中…", "warn");
+  var rpt = document.getElementById("ai_report_text");
+  if (rpt) {
+    rpt.value = "【一鍵直覺式】模板 → 掃描 → 資格 → 套版 → 執行…";
+  }
+  sendToFusion("run_intuitive_one_click", { material: currentMaterial, execute: true });
+}
+
+function triggerIntuitiveEligibilityCheck() {
+  setStatus("直覺式資格檢查中…", "warn");
+  var rpt = document.getElementById("ai_report_text");
+  if (rpt) {
+    rpt.value = "【直覺式編程】正在掃描零件並檢查白名單資格…\n材質：" + currentMaterial;
+  }
+  sendToFusion("check_intuitive_eligibility", { material: currentMaterial });
+}
+
+function triggerIntuitiveProgramming() {
+  if (!confirm(
+    "【直覺式編程】\n\n" +
+    "僅在資格通過時，使用您已訂製的頂面／外輪廓／孔模板填入面板並執行「先2D後3D」。\n" +
+    "不通過將不執行。翻面與第二 Setup 仍須人工處理。\n\n是否繼續？"
+  )) {
+    return;
+  }
+  setStatus("直覺式編程執行中…", "warn");
+  var rpt2 = document.getElementById("ai_report_text");
+  if (rpt2) {
+    rpt2.value = "【直覺式編程】資格檢查 → 分析 → 套用模板 → 執行…";
+  }
+  sendToFusion("run_intuitive_programming", { material: currentMaterial, execute: true });
+}
+
+function handleProgrammingModeResult(d, modeLabel) {
+  var eligFail = d.eligibility || {};
+  var rpt = document.getElementById("ai_report_text");
+  if (rpt) {
+    rpt.value = d.report_text || eligFail.report_text || eligFail.summary || d.error || "";
+  }
+  if (!d.success) {
+    setStatus(d.error || (modeLabel + "編程未執行"), "err");
+    return;
+  }
+  var aiPlan = d.ai_plan || {};
+  window._lastAiPlan = aiPlan;
+  if (aiPlan.contour2dRecognition) {
+    window._contour2dRecognition = aiPlan.contour2dRecognition;
+    renderContour2dRecognition(aiPlan.contour2dRecognition);
+  }
+  if (rpt && aiPlan.overall_report) {
+    rpt.value = aiPlan.overall_report;
+  }
+  applyAiPanelPatch(aiPlan.panel_apply || null, aiPlan);
+  if (d.executed) {
+    setStatus(modeLabel + "：已套用並執行（先2D後3D）", "ok");
+  } else {
+    setStatus(d.message || (modeLabel + "建議已套用（未執行）"), "ok");
+  }
+}
+
+function triggerThinkingEligibilityCheck() {
+  setStatus("思考式資格檢查中（L0＝直覺式基底）…", "warn");
+  var rpt = document.getElementById("ai_report_text");
+  if (rpt) {
+    rpt.value = "【思考式 L0】檢查是否具備直覺式基底資格…";
+  }
+  sendToFusion("check_thinking_eligibility", {
+    material: currentMaterial,
+    thinking_layer: "L0_intuitive_baseline"
+  });
+}
+
+function triggerThinkingProgramming() {
+  if (!confirm(
+    "【思考式編程 · L0】\n\n" +
+    "以直覺式加工方式為基底：相同白名單、相同模板與 execute。\n" +
+    "記錄標為「思考式」，供日後在基底上加深（L1/L2）。\n\n是否繼續？"
+  )) {
+    return;
+  }
+  setStatus("思考式編程（L0）執行中…", "warn");
+  var rpt2 = document.getElementById("ai_report_text");
+  if (rpt2) {
+    rpt2.value = "【思考式 L0】直覺式基底 → 分析 → 套用 → 執行…";
+  }
+  sendToFusion("run_thinking_programming", {
+    material: currentMaterial,
+    execute: true,
+    thinking_layer: "L0_intuitive_baseline"
+  });
+}
+
+function triggerThinkingL1EligibilityCheck() {
+  setStatus("思考式 L1 資格檢查中…", "warn");
+  var rpt = document.getElementById("ai_report_text");
+  if (rpt) {
+    rpt.value = "【思考式 L1】檢查擴展特徵白名單（口袋 R／官方口袋／多階台）…";
+  }
+  sendToFusion("check_thinking_eligibility", {
+    material: currentMaterial,
+    thinking_layer: "L1_extended_features"
+  });
+}
+
+function triggerThinkingL1Programming() {
+  if (!confirm(
+    "【思考式編程 · L1 擴展特徵】\n\n" +
+    "在直覺式模板鏈上追加：多階台面 Z 綁定、口袋 R、官方口袋（若 ME 有辨識）。\n" +
+    "白名單較 L0 放寬；仍不覆寫孔 baseline。\n\n是否繼續？"
+  )) {
+    return;
+  }
+  setStatus("思考式編程（L1）執行中…", "warn");
+  var rpt2 = document.getElementById("ai_report_text");
+  if (rpt2) {
+    rpt2.value = "【思考式 L1】擴展特徵 → 分析 → 套用 → 執行…";
+  }
+  sendToFusion("run_thinking_programming", {
+    material: currentMaterial,
+    execute: true,
+    thinking_layer: "L1_extended_features"
+  });
+}
+
+function handleThinkingProgrammingResult(d) {
+  var layer = d.thinking_layer || "";
+  if (layer === "L2_deeper_plan") {
+    var rpt = document.getElementById("ai_report_text");
+    if (rpt) rpt.value = d.report_text || d.error || "";
+    if (d.multi_setup_plan) {
+      window._l2MultiSetupPlan = d.multi_setup_plan;
+      window._l2PlanId = d.multi_setup_plan.plan_id || "";
+    }
+    if (!d.success) {
+      setStatus(d.error || "思考式 L2 未執行", "err");
+      return;
+    }
+    if (d.awaiting_flip_checkpoint) {
+      var cp = d.checkpoint || {};
+      setStatus("L2 Setup1 已完成；請翻面後按「L2 繼續 Setup2」", "warn");
+      if (rpt && cp.message) {
+        rpt.value = (rpt.value || "") + "\n\n" + cp.message;
+      }
+      return;
+    }
+    if (d.completed) {
+      setStatus("思考式 L2：雙 Setup 均已執行", "ok");
+    } else if (d.executed) {
+      setStatus("思考式 L2：已執行 Setup " + (d.executed_sequences || []).join(","), "ok");
+    } else {
+      setStatus("思考式 L2：劇本已產生（未執行）", "ok");
+    }
+    return;
+  }
+  var label = layer === "L1_extended_features" ? "思考式 L1" : "思考式 L0";
+  handleProgrammingModeResult(d, label);
+}
+
+function triggerThinkingL2EligibilityCheck() {
+  setStatus("思考式 L2 資格檢查中…", "warn");
+  sendToFusion("check_thinking_eligibility", {
+    material: currentMaterial,
+    thinking_layer: "L2_deeper_plan"
+  });
+}
+
+function triggerThinkingL2Programming() {
+  if (!confirm(
+    "【思考式 L2 · 多 Setup】\n\n" +
+    "Setup1：頂面 2D/3D + Z+ 孔。\n" +
+    "完成後暫停，請翻面並設定第二 Setup WCS，再按「L2 繼續 Setup2」。\n\n是否繼續？"
+  )) return;
+  setStatus("思考式 L2 Setup1 執行中…", "warn");
+  sendToFusion("run_thinking_programming", {
+    material: currentMaterial,
+    execute: true,
+    thinking_layer: "L2_deeper_plan"
+  });
+}
+
+function triggerThinkingL2Resume() {
+  var pid = window._l2PlanId || "";
+  if (!pid && !window._l2MultiSetupPlan) {
+    setStatus("尚無 L2 劇本；請先執行「思考式 L2 Setup1」", "err");
+    return;
+  }
+  if (!confirm("確認已翻面並設定第二 Setup（AI_Setup_Bottom）WCS？\n將執行 Setup2 背面通孔。")) return;
+  setStatus("思考式 L2 Setup2 執行中…", "warn");
+  sendToFusion("run_thinking_programming", {
+    material: currentMaterial,
+    execute: true,
+    thinking_layer: "L2_deeper_plan",
+    resume_from_sequence: 2,
+    multi_setup_plan_id: pid,
+    confirm_flip: true,
+    wcs_confirmed: true
+  });
+}
+
+function applyAiPanelPatch(patch, fullPlan) {
+  var recTmpls = (patch && patch.recommended_templates) || (fullPlan && fullPlan.recommended_templates);
+  if (recTmpls && (patch === null || patch.apply_2d_templates !== false)) {
+    if (recTmpls.contourChamfer && recTmpls.contourChamfer !== "(不使用)") {
+      settingsState.contourChamfer = recTmpls.contourChamfer;
+    }
+    if (recTmpls.terrace_face_ops && recTmpls.terrace_face_ops.length) {
+      window._terraceFaceOps = recTmpls.terrace_face_ops;
+    }
+    var tfr = document.getElementById("top_face_rough_sel");
+    var tff = document.getElementById("top_face_finish_sel");
+    var prr = document.getElementById("profile_rough_sel");
+    var pff = document.getElementById("profile_finish_sel");
+    if (tfr && recTmpls.topFaceRough && recTmpls.topFaceRough !== "(不使用)") tfr.value = recTmpls.topFaceRough;
+    if (tff && recTmpls.topFaceFinish && recTmpls.topFaceFinish !== "(不使用)") tff.value = recTmpls.topFaceFinish;
+    if (prr && recTmpls.profileRough && recTmpls.profileRough !== "(不使用)") prr.value = recTmpls.profileRough;
+    if (pff && recTmpls.profileFinish && recTmpls.profileFinish !== "(不使用)") pff.value = recTmpls.profileFinish;
+  }
+  if (patch && patch.terrace_face_ops && patch.terrace_face_ops.length) {
+    window._terraceFaceOps = patch.terrace_face_ops;
+  }
+
+  var holePatches = (patch && patch.hole_rows) || [];
+  holePatches.forEach(function(pr) {
+    var i = pr.idx;
+    var h = holeData[i];
+    if (!h) return;
+    var tmplIdx = parseInt(pr.tmplIdx, 10);
+    if (isNaN(tmplIdx) || tmplIdx < 0) return;
+    var selectEl = document.getElementById("tmpl" + i);
+    if (selectEl) {
+      var hasOpt = false;
+      for (var oi = 0; oi < selectEl.options.length; oi++) {
+        if (parseInt(selectEl.options[oi].value, 10) === tmplIdx) {
+          hasOpt = true;
+          break;
+        }
+      }
+      if (hasOpt) {
+        selectEl.value = String(tmplIdx);
+        h._tmplIdx = tmplIdx;
+      }
+    } else {
+      h._tmplIdx = tmplIdx;
+    }
+    var chosen = (h._tmplIdx >= 0 && h._tmplIdx < (h.dropItems || []).length) ? (h.dropItems[h._tmplIdx] || {}) : {};
+    h.hasDrill = !!chosen.hasDrill;
+    h.showReamerControl = !!chosen.hasReamer;
+    var cycleType = String(chosen.cycleType || "").toLowerCase();
+    var toolType = String(chosen.toolType || "").toLowerCase();
+    var hasDrillUrl = (chosen.drillUrl != null) && (String(chosen.drillUrl).trim() !== "");
+    h.showPitch = (cycleType === "bore-milling" || toolType === "flat end mill" || (h.isCBLarge && hasDrillUrl));
+    if (cycleType === "reaming" || toolType === "reamer") {
+      h.showReamerControl = true;
+      h.hasDrill = true;
+    } else if (cycleType === "deep-drilling" || toolType === "drill") {
+      h.hasDrill = true;
+    }
+    syncRowControlVisibility(i);
+  });
+
+  var slotPatches = (patch && patch.slot_rows) || [];
+  slotPatches.forEach(function(pr) {
+    var i = pr.idx;
+    var s = slotData[i];
+    if (!s) return;
+    var tmplIdx = parseInt(pr.tmplIdx, 10);
+    if (isNaN(tmplIdx) || tmplIdx < 0) return;
+    s._tmplIdx = tmplIdx;
+  });
+
+  var pcrPatches = (patch && patch.pocket_corner_r_rows) || [];
+  pcrPatches.forEach(function(pr) {
+    var i = pr.idx;
+    var row = pocketCornerRData[i];
+    if (!row) return;
+    if (pr.skip_execute) return;
+    var tmplIdx = parseInt(pr.tmplIdx, 10);
+    if (isNaN(tmplIdx) || tmplIdx < 0) return;
+    row._tmplIdx = tmplIdx;
+  });
+
+  function _applyOfficialPatchRows(rows, dataArr, idPrefix) {
+    (rows || []).forEach(function(pr) {
+      var i = pr.idx;
+      var row = dataArr[i];
+      if (!row) return;
+      row._tmpl2dIdx = parseInt(pr.tmpl2dIdx, 10);
+      row._tmpl3dIdx = parseInt(pr.tmpl3dIdx, 10);
+      row.bindMode = pr.bindMode || row.bindMode || "auto";
+      var bindSel = document.getElementById(idPrefix + "_bind_" + i);
+      var sel2d = document.getElementById(idPrefix + "_tmpl2d_" + i);
+      var sel3d = document.getElementById(idPrefix + "_tmpl3d_" + i);
+      if (bindSel && pr.bindMode) bindSel.value = pr.bindMode;
+      if (sel2d && !isNaN(row._tmpl2dIdx)) sel2d.value = String(row._tmpl2dIdx);
+      if (sel3d && !isNaN(row._tmpl3dIdx)) sel3d.value = String(row._tmpl3dIdx);
+    });
+  }
+  _applyOfficialPatchRows(patch && patch.official_slot_pocket_rows, officialSlotPocketData, "official_slot");
+  _applyOfficialPatchRows(patch && patch.official_pocket_slot_rows, officialPocketSlotData, "official_pocket_slot");
+
+  renderTable();
+  renderPocketSlotTable();
+
+  if (patch && patch.notes && patch.notes.length) {
+    var rpt = document.getElementById("ai_report_text");
+    if (rpt && rpt.value) {
+      rpt.value = rpt.value + "\n\n【套用說明】\n" + patch.notes.join("\n");
+    }
+  }
+}
+function onSetupChange() {
+  currentSetup = document.getElementById("setup_sel").value;
+  sendToFusion("setup_change", {setup: currentSetup});
+  setStatus("切換 Setup: " + currentSetup + " — 更新 3D/WCS…", "");
+}
+function onMaterialChange() {
+  currentMaterial = document.getElementById("material_sel").value;
+  saveOperatorPrefs();
+  sendToFusion("material_change", {material: currentMaterial});
+}
+function onMachineChange() {
+  currentMachine = document.getElementById("machine_sel").value;
+  saveOperatorPrefs();
+  sendToFusion("machine_change", {machine: currentMachine});
+}
+function onTmplChange(i) {
+  var sel = document.getElementById("tmpl" + i);
+  var v = sel ? parseInt(sel.value) : 0;
+  holeData[i]._tmplIdx = isNaN(v) ? 0 : v;
+  // 先用目前選到的模板即時同步列顯示狀態，避免切換當下欄位失效。
+  var row = holeData[i] || {};
+  var items = row.dropItems || [];
+  var chosen = (row._tmplIdx >= 0 && row._tmplIdx < items.length) ? (items[row._tmplIdx] || {}) : {};
+  var cycleType = String(chosen.cycleType || "").toLowerCase();
+  var toolType = String(chosen.toolType || "").toLowerCase();
+  row.hasDrill = !!chosen.hasDrill;
+  row.showReamerControl = !!chosen.hasReamer;
+  row.showPitch = !!chosen.hasMillBore || (!!row.isCBLarge && !!chosen.drillUrl);
+  if (cycleType === "bore-milling" || toolType === "flat end mill") {
+    row.showPitch = true;
+  } else if (cycleType === "reaming" || toolType === "reamer") {
+    row.showReamerControl = true;
+    row.hasDrill = true;
+  } else if (cycleType === "deep-drilling" || toolType === "drill") {
+    row.hasDrill = true;
+  }
+  // 切換模板時重置該列加工控制狀態，避免前一模板的深度輸入殘留。
+  // 沉頭列採最小化策略：避免重置深度/模式，降低被通用邏輯覆蓋的風險。
+  var through = !!row.through;
+  if (!row.isCBLarge) {
+    row._drillMode = through ? "鑽深預設" : "修改深度";
+    row._reamMode = through ? "鉸深預設" : "修改深度";
+    row._pitchMode = "預設";
+  }
+  row._useCalcDrillDepth = false;
+  row._drillDepthCalcMM = null;
+  if (!row.isCBLarge) {
+    var depthVal = parseFloat(row.depth || 0);
+    row._drillDepth = through ? 1.5 : (isNaN(depthVal) ? 0 : depthVal);
+    row._reamDepth = through ? 1.0 : Math.max((isNaN(depthVal) ? 0 : depthVal) - 1.0, 0.0);
+  }
+  // 列級刷新：僅刷新被切換的那一列，不重繪整張表。
+  var calcEl = document.getElementById("calc_" + i);
+  if (calcEl) calcEl.textContent = "";
+  syncRowControlVisibility(i);
+  requestCalcForReamerRow(i);
+  sendToFusion("tmpl_change", {idx: i, tmplIdx: holeData[i]._tmplIdx});
+}
+
+function updateDrillDepthDisplay(i) {
+  var row = holeData[i];
+  if (!row) return;
+  var inp = document.getElementById("drill_depth_" + i);
+  var auto = document.getElementById("drill_depth_auto_" + i);
+  var modeEl = document.getElementById("drill_mode_" + i);
+  if (!inp || !auto) return;
+  var modeVal = modeEl ? modeEl.value : (row._drillMode || "鑽深預設");
+  var useCalc = !!row._useCalcDrillDepth || (!!row.showReamerControl && !row.through && !row.isCBLarge);
+  row._useCalcDrillDepth = useCalc;
+  // 沉頭列在「銑深預設(內部仍為鑽深預設)」也要顯示深度值。
+  var modeAllowsDepthInput = (modeVal !== "鑽深預設") || !!row.isCBLarge;
+  inp.style.display = (!useCalc && modeAllowsDepthInput) ? "" : "none";
+  auto.style.display = useCalc ? "" : "none";
+  if (useCalc && row._drillDepthCalcMM != null && !isNaN(parseFloat(row._drillDepthCalcMM))) {
+    auto.textContent = "依計算結果";
+  } else if (useCalc) {
+    auto.textContent = "依計算結果";
+  }
+}
+
+function syncRowControlVisibility(i) {
+  var row = holeData[i];
+  if (!row) return;
+  var drillMode = document.getElementById("drill_mode_" + i);
+  var reamMode = document.getElementById("ream_mode_" + i);
+  var reamDepth = document.getElementById("ream_depth_" + i);
+  var pitchMode = document.getElementById("pitch_mode_" + i);
+  var pitchVal = document.getElementById("pitch_val_" + i);
+  var calc = document.getElementById("calc_" + i);
+  var drillTipLab = document.getElementById("drill_tip_lab_" + i);
+  var reamTipLab = document.getElementById("ream_tip_lab_" + i);
+
+  var hasDrill = !!row.hasDrill;
+  var showReamer = !!row.showReamerControl;
+  var showPitch = !!row.showPitch;
+  var items = row.dropItems || [];
+  var ti = (typeof row._tmplIdx === "number") ? row._tmplIdx : 0;
+  var chosen = (ti >= 0 && ti < items.length) ? (items[ti] || {}) : {};
+  var hasDrillUrl = (chosen.drillUrl != null) && (String(chosen.drillUrl).trim() !== "");
+  // 沉頭列初次載入時，若目前模板有 drillUrl，視為可顯示銑深模式。
+  if (row.isCBLarge && hasDrillUrl) {
+    hasDrill = true;
+  }
+  if (row.isCBLarge) {
+    hasDrill = false;
+    showReamer = false;
+  }
+
+  if (chamferOnlyMode) {
+    hasDrill = false;
+    showReamer = false;
+    showPitch = false;
+  }
+
+  if (drillMode) {
+    drillMode.style.display = hasDrill ? "" : "none";
+    drillMode.disabled = !!(showReamer && !row.through && !row.isCBLarge);
+    if (drillMode.disabled) {
+      drillMode.value = "修改深度";
+      row._drillMode = "修改深度";
+    }
+  }
+  if (reamMode) reamMode.style.display = showReamer ? "" : "none";
+  if (reamDepth) reamDepth.style.display = (showReamer && row._reamMode !== "鉸深預設") ? "" : "none";
+  if (pitchMode) pitchMode.style.display = showPitch ? "" : "none";
+  if (pitchVal) pitchVal.style.display = (showPitch && row._pitchMode === "修改節距") ? "" : "none";
+  if (calc) calc.style.display = (showReamer && !row.through) ? "" : "none";
+
+  if (drillTipLab) {
+    var dmVal = drillMode ? drillMode.value : (row._drillMode || "");
+    var showDrillTip = hasDrill && row.through && (dmVal === "鑽過孔底部" || dmVal === "鑽過毛坯底部");
+    drillTipLab.style.display = showDrillTip ? "" : "none";
+  }
+  if (reamTipLab) {
+    var rmVal = reamMode ? reamMode.value : (row._reamMode || "");
+    var showReamTip = showReamer && row.through && (rmVal === "鉸過孔底部" || rmVal === "鉸過毛坯底部");
+    reamTipLab.style.display = showReamTip ? "" : "none";
+  }
+
+  updateDrillDepthDisplay(i);
+}
+
+function requestCalcForReamerRow(i) {
+  var row = holeData[i];
+  if (!row || row.through || !row.showReamerControl) return;
+  var reamDepthEl = document.getElementById("ream_depth_" + i);
+  var tmplSel = document.getElementById("tmpl" + i);
+  if (!reamDepthEl) return;
+  var dep = parseFloat(reamDepthEl.value);
+  if (isNaN(dep) || dep <= 0) return;
+  sendToFusion("depth_change", {
+    idx: i,
+    depth: dep,
+    tmplIdx: tmplSel ? parseInt(tmplSel.value) : 0
+  });
+}
+
+function collectHoleRows() {
+  var rows = [];
+  holeData.forEach(function(h, i) {
+    var sel = document.getElementById("tmpl" + i);
+    var drillMode = document.getElementById("drill_mode_" + i);
+    var drillDepth = document.getElementById("drill_depth_" + i);
+    var drillTip = document.getElementById("drill_tip_" + i);
+    var reamMode = document.getElementById("ream_mode_" + i);
+    var reamDepth = document.getElementById("ream_depth_" + i);
+    var reamTip = document.getElementById("ream_tip_" + i);
+    var pitchMode = document.getElementById("pitch_mode_" + i);
+    var pitchVal = document.getElementById("pitch_val_" + i);
+    
+    var drillDepthVal = drillDepth ? parseFloat(drillDepth.value) : null;
+    var reamDepthVal = reamDepth ? parseFloat(reamDepth.value) : null;
+    var pitchValVal = pitchVal ? parseFloat(pitchVal.value) : 0.06;
+    
+    rows.push({
+      idx: i,
+      tmplIdx: (sel && !isNaN(parseInt(sel.value))) ? parseInt(sel.value) : (h._tmplIdx || 0),
+      drillMode: drillMode ? drillMode.value : null,
+      drillDepth: isNaN(drillDepthVal) ? null : drillDepthVal,
+      useCalcDrillDepth: !!h._useCalcDrillDepth,
+      calcDrillDepthMM: (h._drillDepthCalcMM == null || isNaN(parseFloat(h._drillDepthCalcMM))) ? null : parseFloat(h._drillDepthCalcMM),
+      drillTip: drillTip ? drillTip.checked : false,
+      reamMode: reamMode ? reamMode.value : null,
+      reamDepth: isNaN(reamDepthVal) ? null : reamDepthVal,
+      reamTip: reamTip ? reamTip.checked : false,
+      pitchMode: pitchMode ? pitchMode.value : "預設",
+      pitchVal: isNaN(pitchValVal) ? 0.06 : pitchValVal
+    });
+  });
+  return rows;
+}
+
+function sendExecute() {
+  var rows = collectHoleRows();
+  var slotRows = collectSlotRows();
+  var pocketCornerRRows = collectPocketCornerRRows();
+  var officialSlotPocketRows = collectOfficialSlotPocketRows();
+  var officialPocketSlotRows = collectOfficialPocketSlotRows();
+  var officialPocketRows = officialSlotPocketRows.concat(officialPocketSlotRows);
+  sendToFusion("execute", {
+    mode: "all",
+    setup:    document.getElementById("setup_sel").value,
+    material: document.getElementById("material_sel").value,
+    topFaceRough:  document.getElementById("top_face_rough_sel").value,
+    topFaceFinish: document.getElementById("top_face_finish_sel").value,
+    profileRough:  document.getElementById("profile_rough_sel").value,
+    profileFinish: document.getElementById("profile_finish_sel").value,
+    contourChamfer: settingsState.contourChamfer || "(不使用)",
+    terraceFaceOps: window._terraceFaceOps || [],
+    topFace:  document.getElementById("top_face_rough_sel").value,
+    profile:  document.getElementById("profile_rough_sel").value,
+    holeTopHeightMode: settingsState.holeTopHeightMode,
+    rayDiameterDeltaMM: settingsState.rayDiameterDeltaMM,
+    chamferInterferenceToolDiaMM: settingsState.chamferInterferenceToolDiaMM,
+    chamferInterferenceTopDeltaTolMM: settingsState.chamferInterferenceTopDeltaTolMM,
+    rows:     rows,
+    slotRows: slotRows,
+    pocketCornerRRows: pocketCornerRRows,
+    officialPocketRows: officialPocketRows,
+    officialSlotPocketRows: officialSlotPocketRows,
+    officialPocketSlotRows: officialPocketSlotRows
+  });
+  setStatus("執行中（階段1:2D → 階段2:3D）...", "");
+  document.getElementById("btn_exec").disabled = true;
+}
+function onExecute() {
+  sendExecute();
+}
+window.addEventListener("change", function(e) {
+  var id = (e.target && e.target.id) ? e.target.id : "";
+  if (id === "top_face_rough_sel" || id === "top_face_finish_sel") {
+    saveOperatorPrefs();
+  }
+});
+function onDrillModeChange(i) {
+  var mode = document.getElementById("drill_mode_" + i);
+  if (!mode) return;
+  if (holeData[i] && holeData[i].showReamerControl && !holeData[i].through && !holeData[i].isCBLarge) {
+    mode.value = "修改深度";
+    holeData[i]._drillMode = "修改深度";
+    syncRowControlVisibility(i);
+    return;
+  }
+  holeData[i]._drillMode = mode.value;
+  syncRowControlVisibility(i);
+}
+function onReamModeChange(i) {
+  var mode = document.getElementById("ream_mode_" + i);
+  if (!mode) return;
+  holeData[i]._reamMode = mode.value;
+  syncRowControlVisibility(i);
+}
+function onReamDepthChange(i) {
+  var inp = document.getElementById('ream_depth_' + i);
+  if (!inp) return;
+  var val = parseFloat(inp.value);
+  if (isNaN(val)) {
+    holeData[i]._useCalcDrillDepth = false;
+    holeData[i]._drillDepthCalcMM = null;
+    updateDrillDepthDisplay(i);
+    return;
+  }
+  holeData[i]._reamDepth = val;
+  holeData[i]._useCalcDrillDepth = true;
+  var tmplSel = document.getElementById("tmpl" + i);
+  sendToFusion('depth_change', {
+    idx: i,
+    depth: val,
+    tmplIdx: tmplSel ? parseInt(tmplSel.value) : 0
+  });
+  updateDrillDepthDisplay(i);
+}
+function onPitchModeChange(i) {
+  var mode = document.getElementById("pitch_mode_" + i);
+  if (!mode) return;
+  holeData[i]._pitchMode = mode.value;
+  if (mode.value === "修改節距") {
+    var row = holeData[i] || {};
+    var items = row.dropItems || [];
+    var ti = (typeof row._tmplIdx === "number") ? row._tmplIdx : 0;
+    var chosen = (ti >= 0 && ti < items.length) ? (items[ti] || {}) : {};
+    var pDef = parseFloat(chosen.pitchDefaultMM);
+    if (!isNaN(pDef) && pDef > 0) {
+      row._pitchVal = pDef;
+      var valInp = document.getElementById("pitch_val_" + i);
+      if (valInp) valInp.value = pDef;
+    }
+  }
+  syncRowControlVisibility(i);
+}
+function onPitchValChange(i) {
+  var inp = document.getElementById("pitch_val_" + i);
+  if (!inp) return;
+  var val = parseFloat(inp.value);
+  if (isNaN(val)) return;
+  holeData[i]._pitchVal = val;
+}
+// 全域契約（見 docs/行為準則.md §2.1）：僅倒角模板＝翻面後快速倒角、屏蔽一般加工模板；勿擅自改觸發範圍或與 C0.2/C0.3/不指定互斥邏輯混改。
+function onChamferOnlyToggle() {
+  var chk = document.getElementById("chamfer_only_toggle");
+  chamferOnlyMode = !!(chk && chk.checked);
+  applyQuickChamferSwitch();
+  renderTable();
+  renderPocketSlotTable();
+  setStatus(chamferOnlyMode ? "僅倒角模板模式（全項目）" : "一般模板模式", "");
+}
+// 全域契約（見 docs/行為準則.md §2.1）：C0.2/C0.3/不指定永遠互斥單選；勿改為多選 OR 或與僅倒角模板語意綁死。
+function onChamferFilterToggle(target) {
+  var c02 = document.getElementById("chk_c02");
+  var c03 = document.getElementById("chk_c03");
+  var noC = document.getElementById("chk_no_chamfer");
+  var active = target || "c02";
+  if (active !== "c02" && active !== "c03" && active !== "noChamfer") {
+    active = "c02";
+  }
+
+  chamferFilter.c02 = (active === "c02");
+  chamferFilter.c03 = (active === "c03");
+  chamferFilter.noChamfer = (active === "noChamfer");
+
+  if (c02) c02.checked = chamferFilter.c02;
+  if (c03) c03.checked = chamferFilter.c03;
+  if (noC) noC.checked = chamferFilter.noChamfer;
+  applyQuickChamferSwitch();
+  renderTable();
+  renderPocketSlotTable();
+}
+
+function getActiveChamferTag() {
+  if (chamferFilter.c02) return "C0.2";
+  if (chamferFilter.c03) return "C0.3";
+  return "";
+}
+
+function applyQuickChamferSwitch() {
+  // 快速切換只在「僅倒角模板」啟用時生效，將各列自動切到指定倒角模板。
+  if (!chamferOnlyMode) return;
+  var tag = getActiveChamferTag();
+  holeData.forEach(function(h) {
+    if (!h) return;
+    var items = h.dropItems || [];
+    var targetIdx = -1;
+    if (tag) {
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i] || {};
+        var label = String(it.label || "").toUpperCase().replace(/\s+/g, "");
+        if (!!it.hasChamfer && !it.hasDrill && label.indexOf(tag) >= 0) {
+          targetIdx = i;
+          break;
+        }
+      }
+    } else if (chamferFilter.noChamfer) {
+      // 不指定倒角時，快速切到第一個可用倒角模板（不限 C 值）。
+      for (var j = 0; j < items.length; j++) {
+        var it2 = items[j] || {};
+        if (!!it2.hasChamfer && !it2.hasDrill) {
+          targetIdx = j;
+          break;
+        }
+      }
+    }
+    if (targetIdx >= 0) {
+      h._tmplIdx = targetIdx;
+    }
+  });
+}
+function onRescan() {
+  var sel = document.getElementById("setup_sel");
+  currentSetup = (sel && sel.value) ? sel.value : (currentSetup || "");
+  setStatus("完全重掃描中（Setup: " + (currentSetup || "—") + "）...", "");
+  sendToFusion("rescan", {
+    setup: currentSetup,
+    full: true
+  });
+}
+window.addEventListener("keydown", function(e) {
+  if (e.altKey && (e.key === "c" || e.key === "C")) {
+    var chk = document.getElementById("chamfer_only_toggle");
+    if (!chk) return;
+    chk.checked = !chk.checked;
+    onChamferOnlyToggle();
+    e.preventDefault();
+  }
+});
+
+// 下拉選單支援滑鼠滾輪切換選項
+document.addEventListener("wheel", function(e) {
+  var t = e.target;
+  if (!t || t.tagName !== "SELECT") return;
+  var sel = t;
+  var count = sel.options ? sel.options.length : 0;
+  if (count <= 0) return;
+  var idx = sel.selectedIndex;
+  if (idx < 0) idx = 0;
+  var next = idx + (e.deltaY > 0 ? 1 : -1);
+  if (next < 0) next = 0;
+  if (next >= count) next = count - 1;
+  if (next !== idx) {
+    sel.selectedIndex = next;
+    sel.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+  e.preventDefault();
+}, { passive: false });
+
+function _rowIdxFromTarget(target) {
+  if (!target || !target.closest) return -1;
+  var tr = target.closest("#hole_body tr");
+  if (!tr || !tr.id || tr.id.indexOf("row") !== 0) return -1;
+  var idx = parseInt(tr.id.slice(3));
+  return isNaN(idx) ? -1 : idx;
+}
+
+// 事件委派：確保欄位內任何操作都能穩定觸發高亮
+document.addEventListener("click", function(e) {
+  var idx = _rowIdxFromTarget(e.target);
+  if (idx >= 0) selectRow(idx);
+});
+document.addEventListener("focusin", function(e) {
+  var idx = _rowIdxFromTarget(e.target);
+  if (idx >= 0) selectRow(idx);
+});
+// 滑鼠移入用列事件處理，避免重複 TX hover
+
+function updateMCPProgress(percentage, statusText) {
+  var panel = document.getElementById("mcp_progress_panel");
+  var bar = document.getElementById("mcp_status_bar");
+  var pctText = document.getElementById("mcp_status_pct");
+  var descText = document.getElementById("mcp_status_text");
+  
+  if (!panel || !bar || !pctText || !descText) return;
+  
+  panel.style.display = "block";
+  panel.style.opacity = "1";
+  
+  bar.style.width = percentage + "%";
+  pctText.textContent = percentage + "%";
+  descText.textContent = statusText || "";
+  
+  if (percentage >= 100) {
+    if (window._mcpProgressTimeout) clearTimeout(window._mcpProgressTimeout);
+    window._mcpProgressTimeout = setTimeout(function() {
+      panel.style.opacity = "0";
+      setTimeout(function() {
+        if (panel.style.opacity === "0") {
+          panel.style.display = "none";
+        }
+      }, 500);
+    }, 3000);
+  } else {
+    if (window._mcpProgressTimeout) {
+      clearTimeout(window._mcpProgressTimeout);
+      window._mcpProgressTimeout = null;
+    }
+  }
+}
+
+// =========================================================================
+// Three.js 3D Point Cloud Viewport Logic
+// =========================================================================
+var currentVisionMode = "FULL_3D";
+
+function ensureIntegratedVisionMode() {
+  syncVisionModeUI("FULL_3D");
+  sendToFusion("vision_mode_change", { mode: "FULL_3D", skip_rescan: true });
+}
+var threeJsLoaded = false;
+var threeControlsLoaded = false;
+
+var threeScene = null;
+var threeCamera = null;
+var threeRenderer = null;
+var threeControls = null;
+var threePoints = null;
+var threeMesh = null;
+var threeMeshEdges = null;
+var threeAxes = null;
+var threeGrid = null;
+var threeWcsGroup = null;
+var threeToolpathGroup = null;
+var threeAnimationId = null;
+var threeWcsVisible = true;
+
+function loadScript(url, callback) {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = url;
+  script.onload = callback;
+  script.onerror = function() {
+    console.error("Failed to load script: " + url);
+  };
+  document.head.appendChild(script);
+}
+
+function initThreeLibraries(callback) {
+  if (window.THREE) {
+    threeJsLoaded = true;
+    if (window.THREE.OrbitControls) {
+      threeControlsLoaded = true;
+      if (callback) callback();
+      return;
+    }
+  }
+  
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js", function() {
+    threeJsLoaded = true;
+    loadScript("https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js", function() {
+      threeControlsLoaded = true;
+      if (callback) callback();
+    });
+  });
+}
+
+function initThreeViewport() {
+  var container = document.getElementById("three_canvas_div");
+  if (!container) return;
+  
+  container.innerHTML = "";
+  
+  var width = container.clientWidth || 300;
+  var height = container.clientHeight || 320;
+  
+  threeScene = new THREE.Scene();
+  threeScene.background = new THREE.Color(0xffffff);
+  
+  threeCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
+  threeCamera.up.set(0, 0, 1);
+  threeCamera.position.set(80, -120, 90);
+  
+  threeRenderer = new THREE.WebGLRenderer({ antialias: true });
+  threeRenderer.setSize(width, height);
+  threeRenderer.setPixelRatio(window.devicePixelRatio || 1);
+  container.appendChild(threeRenderer.domElement);
+  
+  threeControls = new THREE.OrbitControls(threeCamera, threeRenderer.domElement);
+  threeControls.enableDamping = true;
+  threeControls.dampingFactor = 0.05;
+  threeControls.screenSpacePanning = true;
+  
+  var ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  threeScene.add(ambientLight);
+  
+  var dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  dirLight.position.set(200, 200, 200);
+  threeScene.add(dirLight);
+  
+  threeGrid = null;
+  
+  threeAxes = new THREE.AxesHelper(50);
+  threeAxes.visible = false;
+  threeScene.add(threeAxes);
+  
+  buildThreeWcsFrame(null, null);
+  
+  window.addEventListener("resize", onThreeResize);
+  
+  animateThree();
+}
+
+function onThreeResize() {
+  if (!threeRenderer || !threeCamera) return;
+  var container = document.getElementById("three_canvas_div");
+  if (!container) return;
+  var w = container.clientWidth;
+  var h = container.clientHeight;
+  threeCamera.aspect = w / h;
+  threeCamera.updateProjectionMatrix();
+  threeRenderer.setSize(w, h);
+}
+
+function animateThree() {
+  threeAnimationId = requestAnimationFrame(animateThree);
+  if (document.hidden) return;
+  if (threeControls) threeControls.update();
+  if (threeRenderer && threeScene && threeCamera) {
+    threeRenderer.render(threeScene, threeCamera);
+  }
+}
+
+function updateThreeLegend(mode, meshInfo, wcsInfo) {
+  var legend = document.getElementById("three_legend");
+  if (!legend) return;
+  var setupLabel = (wcsInfo && wcsInfo.setup_name) ? wcsInfo.setup_name : (currentSetup || "");
+  if (mode === "mesh") {
+    var tri = meshInfo && meshInfo.triangles != null ? meshInfo.triangles : "";
+    var vtx = meshInfo && meshInfo.vertices != null ? meshInfo.vertices : "";
+    var oWorld = (wcsInfo && wcsInfo.origin_world_mm && wcsInfo.origin_world_mm.length >= 3)
+      ? wcsInfo.origin_world_mm
+      : null;
+    var oTxt = "";
+    if (oWorld) {
+      oTxt = " · 世界 O(" + Number(oWorld[0]).toFixed(1) + "," + Number(oWorld[1]).toFixed(1) + "," + Number(oWorld[2]).toFixed(1) + ")";
+    }
+    if (tri !== "" && vtx !== "") {
+      legend.innerHTML = '<div style="color:#9cdcfe;">Setup ' + setupLabel + ' · WCS 本地' + oTxt + '</div><div style="color:#aaa;">' + tri + ' 面 · ' + vtx + ' 頂點 · Setup WCS Z↑</div>';
+    } else {
+      legend.textContent = "Setup " + setupLabel + " · WCS 本地 · Z↑";
+    }
+    return;
+  }
+  if (mode === "points") {
+    legend.textContent = "射線點雲（備援）";
+    return;
+  }
+  legend.textContent = "3D 射線掃描";
+}
+
+function clearThreePreview() {
+  if (!threeScene) return;
+  if (threePoints) {
+    threeScene.remove(threePoints);
+    threePoints.geometry.dispose();
+    threePoints.material.dispose();
+    threePoints = null;
+  }
+  if (threeMesh) {
+    threeScene.remove(threeMesh);
+    threeMesh.geometry.dispose();
+    threeMesh.material.dispose();
+    threeMesh = null;
+  }
+  if (threeMeshEdges) {
+    threeScene.remove(threeMeshEdges);
+    threeMeshEdges.geometry.dispose();
+    threeMeshEdges.material.dispose();
+    threeMeshEdges = null;
+  }
+}
+
+function renderThreeMesh(mesh, wcsInfo) {
+  if (!threeScene || !mesh || mesh.ok === false) return false;
+  if (!mesh.vertices || mesh.vertices.length < 9) return false;
+  if (!mesh.indices || mesh.indices.length < 3) return false;
+  clearThreePreview();
+  var geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(mesh.vertices, 3));
+  geometry.setIndex(mesh.indices);
+  geometry.computeVertexNormals();
+  var material = new THREE.MeshPhongMaterial({
+    color: 0x8a8a8a,
+    flatShading: false,
+    shininess: 20,
+    transparent: false,
+    opacity: 1.0,
+    side: THREE.DoubleSide
+  });
+  threeMesh = new THREE.Mesh(geometry, material);
+  threeScene.add(threeMesh);
+  var edgesGeometry = new THREE.EdgesGeometry(geometry, 25);
+  threeMeshEdges = new THREE.LineSegments(
+    edgesGeometry,
+    new THREE.LineBasicMaterial({ color: 0x111111 })
+  );
+  threeScene.add(threeMeshEdges);
+  var mp = mesh.preview || {};
+  var wcs = wcsInfo || mesh.wcs_frame || null;
+  window._lastWcsInfo = wcs;
+  var box = new THREE.Box3().setFromObject(threeMesh);
+  buildThreeWcsFrame(wcs, box);
+  updateThreeLegend("mesh", {
+    triangles: mp.triangle_count || Math.floor(mesh.indices.length / 3),
+    vertices: mp.vertex_count || Math.floor(mesh.vertices.length / 3)
+  }, wcs);
+  fitThreeCameraToObject(threeMesh);
+  return true;
+}
+
+function renderThreeFromFeatures(snap) {
+  if (!snap || !snap.recognized_features) return [];
+  var feats = snap.recognized_features;
+  var pts = [];
+  (feats.hole_instances || []).forEach(function(h) {
+    var x = (h.world_x_mm != null) ? h.world_x_mm : h.cx_mm;
+    var y = (h.world_y_mm != null) ? h.world_y_mm : h.cy_mm;
+    var z = (h.world_z_mm != null) ? h.world_z_mm : 0;
+    if (x == null || y == null) return;
+    pts.push({ x: x, y: y, z: z, type: "cylinder" });
+  });
+  (feats.slots || []).forEach(function(s) {
+    if (s.cx_mm == null || s.cy_mm == null) return;
+    pts.push({ x: s.cx_mm, y: s.cy_mm, z: 0, type: "plane" });
+  });
+  return pts;
+}
+
+function renderThreePoints(points) {
+  if (!threeScene) return;
+  clearThreePreview();
+  if (!points || points.length === 0) return;
+  updateThreeLegend("points");
+  
+  var geometry = new THREE.BufferGeometry();
+  var positions = [];
+  var colors = [];
+  
+  var colorMap = {
+    'plane': new THREE.Color(0x4facfe),
+    'cylinder': new THREE.Color(0x00f2fe),
+    'cone': new THREE.Color(0xff0844),
+    'sphere': new THREE.Color(0xf12711),
+    'torus': new THREE.Color(0xf5af19),
+    'nurbs': new THREE.Color(0xb224ef),
+    'other': new THREE.Color(0x757f9a)
+  };
+  
+  var minX = 1e9, minY = 1e9, minZ = 1e9;
+  var maxX = -1e9, maxY = -1e9, maxZ = -1e9;
+  
+  points.forEach(function(pt) {
+    positions.push(pt.x, pt.y, pt.z);
+    
+    minX = Math.min(minX, pt.x); minY = Math.min(minY, pt.y); minZ = Math.min(minZ, pt.z);
+    maxX = Math.max(maxX, pt.x); maxY = Math.max(maxY, pt.y); maxZ = Math.max(maxZ, pt.z);
+    
+    var clr = colorMap[pt.type] || colorMap['other'];
+    colors.push(clr.r, clr.g, clr.b);
+  });
+  
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+  
+  var material = new THREE.PointsMaterial({
+    size: 4.5,
+    vertexColors: true,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0.9,
+    depthWrite: true
+  });
+  
+  threePoints = new THREE.Points(geometry, material);
+  threeScene.add(threePoints);
+  
+  if (minX <= maxX) {
+    var cx = (minX + maxX) * 0.5;
+    var cy = (minY + maxY) * 0.5;
+    var cz = (minZ + maxZ) * 0.5;
+    
+    var dx = maxX - minX;
+    var dy = maxY - minY;
+    var dz = maxZ - minZ;
+    var radius = Math.sqrt(dx*dx + dy*dy + dz*dz) * 0.5;
+    
+    if (radius > 0) {
+      window._lastCenter = {x: cx, y: cy, z: cz};
+      window._lastRadius = radius;
+      resetThreeCamera();
+    }
+  }
+}
+
+
+function disposeThreeObject(obj) {
+  if (!obj) return;
+  if (obj.geometry) obj.geometry.dispose();
+  if (obj.material) {
+    if (Array.isArray(obj.material)) obj.material.forEach(function(m) { if (m) m.dispose(); });
+    else obj.material.dispose();
+  }
+}
+
+function disposeThreeGroup(group) {
+  if (!group) return;
+  while (group.children.length > 0) {
+    var child = group.children[0];
+    group.remove(child);
+    if (child.children && child.children.length) disposeThreeGroup(child);
+    else disposeThreeObject(child);
+  }
+}
+
+function updateThreeWcsOverlay(wcsInfo) {
+  var el = document.getElementById("three_wcs_setup");
+  if (!el) return;
+  el.textContent = (wcsInfo && wcsInfo.setup_name) ? wcsInfo.setup_name : (currentSetup || "\u2014");
+}
+
+function _threeVecFromArr(arr, fallback) {
+  if (!arr || arr.length < 3) return fallback.clone();
+  return new THREE.Vector3(Number(arr[0]) || 0, Number(arr[1]) || 0, Number(arr[2]) || 0);
+}
+
+function buildThreeWcsFrame(wcsInfo, box) {
+  if (!threeScene || !window.THREE) return;
+  if (threeWcsGroup) {
+    threeScene.remove(threeWcsGroup);
+    disposeThreeGroup(threeWcsGroup);
+    threeWcsGroup = null;
+  }
+  if (threeGrid) {
+    threeGrid.visible = false;
+  }
+  threeWcsGroup = new THREE.Group();
+  var wcsLocal = !wcsInfo || wcsInfo.space === "setup_wcs_local" || wcsInfo.space === "model_fallback";
+  var origin = wcsLocal
+    ? new THREE.Vector3(0, 0, 0)
+    : _threeVecFromArr(wcsInfo && wcsInfo.origin_mm, new THREE.Vector3(0, 0, 0));
+  threeWcsGroup.position.copy(origin);
+  if (!wcsLocal && wcsInfo && wcsInfo.x_axis && wcsInfo.y_axis && wcsInfo.z_axis) {
+    var xDir = _threeVecFromArr(wcsInfo.x_axis, new THREE.Vector3(1, 0, 0)).normalize();
+    var yDir = _threeVecFromArr(wcsInfo.y_axis, new THREE.Vector3(0, 1, 0)).normalize();
+    var zDir = _threeVecFromArr(wcsInfo.z_axis, new THREE.Vector3(0, 0, 1)).normalize();
+    var basis = new THREE.Matrix4().makeBasis(xDir, yDir, zDir);
+    threeWcsGroup.setRotationFromMatrix(basis);
+  }
+  var axisLen = 40;
+  if (box && !box.isEmpty()) {
+    var size = box.getSize(new THREE.Vector3());
+    axisLen = Math.min(120, Math.max(25, Math.max(size.x, size.y, size.z) * 0.35));
+  }
+  [
+    { dir: new THREE.Vector3(1, 0, 0), color: 0xff5555 },
+    { dir: new THREE.Vector3(0, 1, 0), color: 0x55dd55 },
+    { dir: new THREE.Vector3(0, 0, 1), color: 0x5599ff }
+  ].forEach(function(def) {
+    threeWcsGroup.add(new THREE.ArrowHelper(def.dir, new THREE.Vector3(0, 0, 0), axisLen, def.color, axisLen * 0.12, axisLen * 0.06));
+  });
+  threeWcsGroup.add(new THREE.Mesh(
+    new THREE.SphereGeometry(axisLen * 0.05, 10, 10),
+    new THREE.MeshBasicMaterial({ color: 0x333333 })
+  ));
+  threeWcsGroup.visible = threeWcsVisible;
+  threeScene.add(threeWcsGroup);
+  updateThreeWcsOverlay(wcsInfo);
+}
+
+function extractWcsInfoFromSnap(snap, mesh) {
+  if (mesh && mesh.wcs_frame) return mesh.wcs_frame;
+  var mb = snap && snap.machining_basis;
+  if (mb && mb.wcs_frame) return mb.wcs_frame;
+  if (mb && mb.setup_name) return { setup_name: mb.setup_name };
+  return { setup_name: currentSetup || "" };
+}
+
+function updateThreeWcsGrid(box) {
+  if (!threeScene || !box || box.isEmpty()) return;
+  var maxReach = Math.max(
+    Math.abs(box.min.x), Math.abs(box.max.x),
+    Math.abs(box.min.y), Math.abs(box.max.y),
+    10
+  );
+  var gridSize = Math.max(100, Math.ceil(maxReach * 2.2 / 10) * 10);
+  var divisions = Math.min(24, Math.max(8, Math.round(gridSize / 10)));
+  if (threeGrid) {
+    threeScene.remove(threeGrid);
+    if (threeGrid.geometry) threeGrid.geometry.dispose();
+    if (threeGrid.material) {
+      if (Array.isArray(threeGrid.material)) {
+        threeGrid.material.forEach(function(m) { if (m) m.dispose(); });
+      } else {
+        threeGrid.material.dispose();
+      }
+    }
+  }
+  threeGrid = new THREE.GridHelper(gridSize, divisions, 0x444455, 0x222233);
+  threeGrid.rotation.x = Math.PI / 2;
+  threeGrid.position.set(0, 0, 0);
+  threeScene.add(threeGrid);
+  if (threeAxes) {
+    threeAxes.position.set(0, 0, 0);
+    var axisLen = Math.min(80, Math.max(20, gridSize * 0.2));
+    threeAxes.scale.set(axisLen / 50, axisLen / 50, axisLen / 50);
+  }
+}
+
+function fitThreeCameraToObject(obj) {
+  if (!threeCamera || !threeControls || !obj) return;
+  var box = new THREE.Box3().setFromObject(obj);
+  if (threeMeshEdges) box.expandByObject(threeMeshEdges);
+  var wcs = window._lastWcsInfo;
+  var wcsLocal = !wcs || wcs.space === "setup_wcs_local" || wcs.space === "model_fallback";
+  if (!wcsLocal && wcs && wcs.origin_mm) {
+    box.expandByPoint(_threeVecFromArr(wcs.origin_mm, new THREE.Vector3()));
+  }
+  if (box.isEmpty()) return;
+  var size = box.getSize(new THREE.Vector3());
+  var center = box.getCenter(new THREE.Vector3());
+  var container = document.getElementById("three_canvas_div");
+  var aspect = (container && container.clientHeight > 0)
+    ? (container.clientWidth / container.clientHeight)
+    : threeCamera.aspect;
+  var sphere = new THREE.Sphere();
+  box.getBoundingSphere(sphere);
+  var radius = Math.max(sphere.radius, 1);
+  var fovRad = threeCamera.fov * (Math.PI / 180);
+  var fitHeight = radius / Math.tan(fovRad * 0.5);
+  var fitWidth = radius / (Math.tan(fovRad * 0.5) * Math.max(aspect, 0.1));
+  var dist = Math.max(fitHeight, fitWidth, 1) * 1.38;
+  dist *= 1.12;
+  window._lastCenter = { x: center.x, y: center.y, z: center.z };
+  window._lastRadius = Math.max(size.x, size.y, size.z) * 0.5;
+  window._lastCameraDist = dist;
+  threeCamera.up.set(0, 0, 1);
+  threeControls.target.copy(center);
+  var viewDir = new THREE.Vector3(0.65, -0.75, 0.85).normalize();
+  threeCamera.position.copy(center).add(viewDir.multiplyScalar(dist));
+  threeControls.update();
+  buildThreeWcsFrame(window._lastWcsInfo || null, box);
+}
+
+function resetThreeCamera() {
+  if (!threeCamera || !threeControls) return;
+  var cx = (window._lastCenter && window._lastCenter.x) != null ? window._lastCenter.x : 0;
+  var cy = (window._lastCenter && window._lastCenter.y) != null ? window._lastCenter.y : 0;
+  var cz = (window._lastCenter && window._lastCenter.z) != null ? window._lastCenter.z : 0;
+  var dist = window._lastCameraDist || window._lastRadius * 2.2 || 50;
+  threeCamera.up.set(0, 0, 1);
+  threeControls.target.set(cx, cy, cz);
+  var viewDir = new THREE.Vector3(0.65, -0.75, 0.85).normalize();
+  threeCamera.position.set(cx, cy, cz).add(viewDir.multiplyScalar(dist));
+  threeControls.update();
+}
+
+function toggleThreeAxes() {
+  threeWcsVisible = !threeWcsVisible;
+  if (threeWcsGroup) threeWcsGroup.visible = threeWcsVisible;
+  var btn = document.getElementById("btn_toggle_axes");
+  if (btn) {
+    btn.style.background = threeWcsVisible ? "rgba(0,120,212,0.8)" : "rgba(0,0,0,0.6)";
+  }
+}
+
+function syncVisionModeUI(mode) {
+  currentVisionMode = "FULL_3D";
+  var container = document.getElementById("three_viewport_container");
+  if (container) container.style.display = "block";
+  var badgeRight = document.getElementById("vision_mode_badge_right");
+  [badgeRight].forEach(function(b) {
+    if (!b) return;
+    b.textContent = "2D+3D";
+    b.style.background = "rgba(0,120,212,0.2)";
+    b.style.color = "#0078d4";
+    b.style.borderColor = "#0078d4";
+  });
+  setTimeout(onThreeResize, 50);
+}
+
+function switchVisionMode(mode) {
+  syncVisionModeUI("FULL_3D");
+  sendToFusion("vision_mode_change", { mode: "FULL_3D", skip_rescan: true });
+}
+
+function handleVisionSnapshot(snap) {
+  if (!snap) return;
+  
+  if (snap.ok) {
+    var c = (snap.scan_diagnostics || {});
+    var feats = snap.recognized_features || {};
+    var hi = (feats.hole_instances ? feats.hole_instances.length : 0);
+    var hl = (feats.holes ? feats.holes.length : 0);
+    var slotsVal = (feats.slots ? feats.slots.length : 0);
+    var contoursVal = (feats.contours ? feats.contours.length : 0);
+    
+    var setupName = (snap.machining_basis && snap.machining_basis.setup_name) || '';
+    
+    var html = '';
+    
+    // Header
+    html += '<div class="vision-summary-header">';
+    html += '  <span class="mode-title">模式 2D FAST + 3D 射線</span>';
+    if (setupName) {
+      html += '  <span class="setup-tag">' + setupName + '</span>';
+    }
+    html += '</div>';
+    
+    // Grid
+    html += '<div class="vision-feature-grid">';
+    
+    // Holes Badge
+    var holeClass = hi > 0 ? '' : ' empty-badge';
+    html += '  <div class="vision-feature-badge' + holeClass + '">';
+    html += '    <span class="badge-val">' + hi + ' <span style="font-size:9px;font-weight:normal;color:#88a8c8;">(' + hl + ')</span></span>';
+    html += '    <span class="badge-lbl">孔實例 (合併)</span>';
+    html += '  </div>';
+    
+    // Slots Badge
+    var slotClass = slotsVal > 0 ? '' : ' empty-badge';
+    html += '  <div class="vision-feature-badge' + slotClass + '">';
+    html += '    <span class="badge-val">' + slotsVal + '</span>';
+    html += '    <span class="badge-lbl">槽特徵</span>';
+    html += '  </div>';
+    
+    // Contours Badge
+    var contourClass = contoursVal > 0 ? '' : ' empty-badge';
+    html += '  <div class="vision-feature-badge' + contourClass + '">';
+    html += '    <span class="badge-val">' + contoursVal + '</span>';
+    html += '    <span class="badge-lbl">外輪廓</span>';
+    html += '  </div>';
+    
+    html += '</div>'; // End grid
+    
+    // Physics Card (Mesh Spec & Ray Hits)
+    var hasPerimeter = (snap.profiles && snap.profiles.topview_semantic && snap.profiles.topview_semantic.outer_chain && snap.profiles.topview_semantic.outer_chain.perimeter_mm);
+    var meshPrev = (snap.scan_diagnostics && snap.scan_diagnostics.mesh_preview) || {};
+    var hasMesh = (meshPrev.triangle_count > 0);
+    var hasRays = (feats.points_3d && feats.points_3d.length > 0);
+    
+    if (hasPerimeter || hasMesh || hasRays) {
+      html += '<div class="vision-physics-card">';
+      
+      if (hasPerimeter) {
+        var perim = Number(snap.profiles.topview_semantic.outer_chain.perimeter_mm).toFixed(1);
+        html += '  <div class="physics-row">';
+        html += '    <span class="physics-label">外框周長</span>';
+        html += '    <span class="physics-value">約 <strong>' + perim + '</strong> mm</span>';
+        html += '  </div>';
+      }
+      
+      if (hasMesh) {
+        html += '  <div class="physics-row" style="' + (hasPerimeter ? 'border-top:1px solid rgba(255,255,255,0.05);padding-top:4px;margin-top:2px;' : '') + '">';
+        html += '    <span class="physics-label">3D Mesh 規格</span>';
+        html += '    <span class="physics-value"><strong>' + meshPrev.triangle_count.toLocaleString() + '</strong> 面 · <strong>' + (meshPrev.vertex_count || 0).toLocaleString() + '</strong> 頂點</span>';
+        html += '  </div>';
+      }
+      
+      if (hasRays) {
+        var src = (snap.scan_diagnostics && snap.scan_diagnostics.spherical_scan && snap.scan_diagnostics.spherical_scan.preview_source) || '';
+        var srcNote = '';
+        if (src === 'face_sample') srcNote = ' (面取樣)';
+        else if (src === 'ray_unfiltered') srcNote = ' (未過濾)';
+        
+        var rayBorder = (hasPerimeter || hasMesh) ? 'border-top:1px solid rgba(255,255,255,0.05);padding-top:4px;margin-top:2px;' : '';
+        html += '  <div class="physics-row" style="' + rayBorder + '">';
+        html += '    <span class="physics-label">3D 射線擊中</span>';
+        html += '    <span class="physics-value"><strong>' + feats.points_3d.length + '</strong> 點' + srcNote + '</span>';
+        html += '  </div>';
+      }
+      
+      html += '</div>';
+    }
+    
+    var el = document.getElementById("vision_summary");
+    if (el) el.innerHTML = html;
+    
+
+  }
+  
+  {
+    var statusOverlay = document.getElementById("three_overlay_status");
+    
+    initThreeLibraries(function() {
+      if (!threeScene) {
+        initThreeViewport();
+      }
+      
+      var mesh = ((snap.recognized_features || {}).mesh_3d) || snap.mesh_3d || null;
+      var wcsInfo = extractWcsInfoFromSnap(snap, mesh);
+      window._lastWcsInfo = wcsInfo;
+      if (renderThreeMesh(mesh, wcsInfo)) {
+        if (statusOverlay) statusOverlay.style.display = "none";
+      } else {
+        clearThreePreview();
+        var meshInfo = (snap.scan_diagnostics && snap.scan_diagnostics.mesh_preview) || {};
+        if (statusOverlay) {
+          statusOverlay.style.display = "block";
+          if (meshInfo.triangle_count > 0 && (!mesh || !mesh.vertices || mesh.vertices.length < 9)) {
+            statusOverlay.textContent = "mesh 資料傳輸異常，請重新掃描";
+          } else {
+            statusOverlay.textContent = "無法產生實體預覽；請在 Scripts and Add-Ins 重載 Smart AI CAM 後按「重新掃描」";
+          }
+        }
+      }
+    });
+  }
+}
+
+function switchRightTab(tabId) {
+  var tabs = document.querySelectorAll('.recognition-tab');
+  tabs.forEach(function(t) {
+    t.classList.remove('active');
+  });
+  
+  var panels = document.querySelectorAll('.tab-content-panel');
+  panels.forEach(function(p) {
+    p.classList.remove('active');
+  });
+  
+  var clickedTab = document.querySelector('[onclick="switchRightTab(\'' + tabId + '\')"]');
+  if (clickedTab) clickedTab.classList.add('active');
+  
+  var activePanel = document.getElementById(tabId);
+  if (activePanel) activePanel.classList.add('active');
+}
+
+// ---- Panel split + palette fullscreen ----
+var panelSplitDrag = { active: false, startX: 0, startWidth: 0 };
+var paletteFullscreenState = { active: false, normalWidth: null, normalHeight: null };
+
+function applyPanelSplitFromPrefs() {
+  var p = loadPrefs();
+  var pct = parseFloat(p.panelSplitPct);
+  if (!isNaN(pct) && pct >= 25 && pct <= 75) {
+    document.documentElement.style.setProperty("--panel-left-width", pct + "%");
+  } else {
+    document.documentElement.style.setProperty("--panel-left-width", "50%");
+  }
+}
+
+function savePanelSplitToPrefs() {
+  var main = document.querySelector(".app-main");
+  var left = document.querySelector(".panel-left");
+  if (!main || !left) return;
+  var splitter = document.getElementById("panel_splitter");
+  var splitterW = splitter ? splitter.getBoundingClientRect().width : 6;
+  var total = main.getBoundingClientRect().width - splitterW;
+  if (total <= 0) return;
+  var pct = (left.getBoundingClientRect().width / total) * 100;
+  var p = loadPrefs();
+  p.panelSplitPct = Math.round(Math.max(25, Math.min(75, pct)) * 10) / 10;
+  savePrefs(p);
+}
+
+function onPanelSplitMove(e) {
+  if (!panelSplitDrag.active) return;
+  var main = document.querySelector(".app-main");
+  var left = document.querySelector(".panel-left");
+  if (!main || !left) return;
+  var splitter = document.getElementById("panel_splitter");
+  var splitterW = splitter ? splitter.getBoundingClientRect().width : 6;
+  var total = main.getBoundingClientRect().width - splitterW;
+  var minW = 280;
+  var maxW = Math.max(minW, total - 280);
+  var newW = panelSplitDrag.startWidth + (e.clientX - panelSplitDrag.startX);
+  newW = Math.max(minW, Math.min(maxW, newW));
+  var pct = (newW / total) * 100;
+  document.documentElement.style.setProperty("--panel-left-width", pct.toFixed(1) + "%");
+}
+
+function onPanelSplitEnd() {
+  if (!panelSplitDrag.active) return;
+  panelSplitDrag.active = false;
+  var splitter = document.getElementById("panel_splitter");
+  if (splitter) splitter.classList.remove("dragging");
+  document.body.style.cursor = "";
+  document.body.style.userSelect = "";
+  savePanelSplitToPrefs();
+  if (typeof onThreeResize === "function") onThreeResize();
+}
+
+function initPanelSplitter() {
+  var splitter = document.getElementById("panel_splitter");
+  var left = document.querySelector(".panel-left");
+  if (!splitter || !left) return;
+  applyPanelSplitFromPrefs();
+  splitter.addEventListener("mousedown", function(e) {
+    e.preventDefault();
+    panelSplitDrag.active = true;
+    panelSplitDrag.startX = e.clientX;
+    panelSplitDrag.startWidth = left.getBoundingClientRect().width;
+    splitter.classList.add("dragging");
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+  });
+  window.addEventListener("mousemove", onPanelSplitMove);
+  window.addEventListener("mouseup", onPanelSplitEnd);
+}
+
+function togglePaletteFullscreen() {
+  var btn = document.getElementById("btn_palette_fullscreen");
+  if (paletteFullscreenState.active) {
+    var rw = paletteFullscreenState.normalWidth || settingsState.paletteWidth || 1440;
+    var rh = paletteFullscreenState.normalHeight || settingsState.paletteHeight || 950;
+    sendToFusion("palette_fullscreen", { enable: false, width: rw, height: rh });
+    paletteFullscreenState.active = false;
+    if (btn) btn.textContent = "⛶";
+    setStatus("面板已還原", "ok");
+  } else {
+    paletteFullscreenState.normalWidth = window.innerWidth || settingsState.paletteWidth || 1440;
+    paletteFullscreenState.normalHeight = window.innerHeight || settingsState.paletteHeight || 950;
+    var sw = (window.screen && window.screen.availWidth) ? window.screen.availWidth : 1600;
+    var sh = (window.screen && window.screen.availHeight) ? window.screen.availHeight : 1000;
+    var w = Math.max(960, sw - 40);
+    var h = Math.max(720, sh - 80);
+    sendToFusion("palette_fullscreen", { enable: true, width: w, height: h });
+    paletteFullscreenState.active = true;
+    if (btn) btn.textContent = "🗗";
+    setStatus("全螢幕模式（再按一次還原）", "ok");
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPanelSplitter);
+} else {
+  initPanelSplitter();
+}
+
+</script>
+</body>
+</html>
+</html>

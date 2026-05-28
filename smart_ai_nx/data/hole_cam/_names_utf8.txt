@@ -1,0 +1,16 @@
+﻿python.exe : Traceback (most recent call last):
+位於 C:\Users\y00079\AppData\Local\Temp\ps-script-12a767d8-49f6-43a4-84ce-2b933b0aa28c.ps1:101 字元:1
++ & $py -c "
++ ~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<string>", line 13, in <module>
+    print(i, d.get('NAME'), 'ft', d.get('FEATURE_TYPE'), 'th', d.get('THROUGH'), 'opers', d.get('CAM_OPERS','')[:50])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp950' codec can't encode character '\u9525' in position 1: illegal multibyte sequence
+0 None ft None th None opers 
+1 None ft 0 th 2 opers 0,1
+2 Slot ft 1 th 2 opers 33,34,35,37,36,39,40
+3 公差孔 ft 0 th 2 opers 0,1
+4 

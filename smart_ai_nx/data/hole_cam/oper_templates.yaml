@@ -1,0 +1,78 @@
+# UG/NX 工序模板庫（欄位對照星空 oper_type_new.txt → 自有格式）
+# template_name 對應 NX 工序類型；實際建立工序在 Phase 2 NX Open
+
+templates:
+  spot_center:
+    gy_name_zh: 點孔
+    template_name: SPOT_DRILLING
+    tool_type: Centerdrill
+    tool_name_pattern: "C{diameter_ceiling}"
+    depth_type: point
+    depth_mm: 1.0
+    oper_sort: 9
+
+  drill_peck_g83:
+    gy_name_zh: 鑽孔G83
+    template_name: DRILLING
+    tool_type: Drilling Tool
+    tool_name_pattern: "ZT{diameter}"
+    depth_type: auto_blind_or_through
+    thru_clearance_mm: 2.5
+    oper_sort: 10
+
+  drill_ream:
+    gy_name_zh: 鉸孔
+    template_name: BORING_REAMING
+    tool_type: Reamer
+    tool_name_pattern: "REAM{diameter}"
+    depth_type: auto_blind_or_through
+    oper_sort: 20
+
+  tap_rigid:
+    gy_name_zh: 攻牙
+    template_name: TAPPING
+    tool_type: Tap
+    tool_name_pattern: "{thread}"
+    depth_type: thread_depth
+    oper_sort: 30
+
+  face_rough:
+    gy_name_zh: 平面粗铣
+    template_name: FACE_MILLING
+    tool_type: Mill
+    cut_method_stage: rough
+    oper_sort: 40
+
+  face_finish:
+    gy_name_zh: 平面精铣
+    template_name: FACE_MILLING
+    tool_type: Mill
+    cut_method_stage: finish
+    oper_sort: 50
+
+  slot_rough:
+    gy_name_zh: 槽粗铣
+    template_name: PLANAR_MILL
+    tool_type: Mill
+    cut_method_stage: rough
+    oper_sort: 60
+
+  slot_finish:
+    gy_name_zh: 槽精铣
+    template_name: PLANAR_MILL
+    tool_type: Mill
+    cut_method_stage: finish
+    oper_sort: 70
+
+  pocket_rough:
+    gy_name_zh: 型腔粗铣
+    template_name: CAVITY_MILL
+    tool_type: Mill
+    cut_method_stage: rough
+    oper_sort: 80
+
+  manual_review:
+    gy_name_zh: 人工確認
+    template_name: null
+    tool_type: null
+    oper_sort: 999

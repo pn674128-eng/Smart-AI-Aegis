@@ -1,0 +1,18 @@
+{
+  "drawing_no": "TEST-001",
+  "features": [
+    {
+      "category": "hole",
+      "diameter_mm": 10,
+      "tolerance": "H7",
+      "feature_identity": "HOLE_REAM_D10.0_H7"
+    },
+    {
+      "category": "face_plane",
+      "kind": "TOP_PLANAR",
+      "feature_identity": "FACE_TOP_PLANAR"
+    }
+  ],
+  "hole_id": "10.0x1",
+  "meta": {}
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-ai.local/schema/quote_facts.v0.1.json",
+  "title": "quote_facts",
+  "description": "Smart AI CAD 統一估價事實（Core + Bridge 共用）",
+  "type": "object",
+  "required": ["schema_version", "source_id", "units"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.1" },
+    "source_id": {
+      "type": "string",
+      "description": "例如 freecad_core、zwcad_2d、manual"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "enum": ["2d", "3d", "notes"] }
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "path": { "type": "string" },
+        "format": { "type": "string", "description": "step|dwg|dxf|fcstd" }
+      }
+    },
+    "units": { "type": "string", "enum": ["mm", "inch"] },
+    "qty": { "type": "integer", "minimum": 1, "default": 1 },
+    "material": { "type": "string" },
+    "envelope_mm": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "volume_cm3": { "type": "number", "minimum": 0 },
+    "surface_area_cm2": { "type": "number", "minimum": 0 },
+    "holes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "diameter_mm": { "type": "number" },
+          "count": { "type": "integer" },
+          "depth_mm": { "type": "number" }
+        }
+      }
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "width_mm": { "type": "number" },
+          "length_mm": { "type": "number" },
+          "count": { "type": "integer" }
+        }
+      }
+    },
+    "drawing_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "2d": {
+      "type": "object",
+      "properties": {
+        "perimeter_mm": { "type": "number" },
+        "block_count": { "type": "integer" },
+        "layer_summary": { "type": "object" },
+        "title_block": { "type": "object" }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "values": { "type": "array" }
+        }
+      }
+    }
+  }
+}

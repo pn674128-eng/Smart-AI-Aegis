@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart AI Aegis · Smart AI CAM Fusion</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-title">Smart AI Aegis <span class="badge">R12</span></div>
+      <div class="brand-sub">Smart AI CAM Fusion MCP</div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-row">
+        <span class="status-label">Ollama</span>
+        <span id="status-ollama" class="status-dot dot-unknown" title="檢查中"></span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">MCP 9877</span>
+        <span id="status-mcp" class="status-dot dot-unknown"></span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Model</span>
+        <span id="status-model" class="status-val">-</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">History</span>
+        <span id="status-history" class="status-val">0</span>
+      </div>
+    </div>
+
+    <div class="section-title">
+      MCP 工具 <span id="tools-count" class="count">-</span>
+    </div>
+    <div id="tools-list" class="tools-list">
+      <div class="tool-loading">載入中...</div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button id="btn-reset" class="btn btn-ghost" title="清空對話歷史">
+        ⟲ 重設對話
+      </button>
+      <a href="https://127.0.0.1" id="link-docs" class="btn-link" hidden></a>
+      <div class="hint">Ctrl+Enter 送出 · Esc 取消</div>
+    </div>
+  </aside>
+
+  <!-- ===== Main chat area ===== -->
+  <main class="chat-area">
+    <div id="messages" class="messages">
+      <div class="welcome">
+        <div class="welcome-title">Smart AI Aegis</div>
+        <div class="welcome-text">
+          值得信任的智能體 — Smart AI CAM Fusion 的加工主腦。
+          支援 MCP 工具、本機學習庫與 6 層切削解析。
+        </div>
+        <div class="suggested-questions">
+          <button class="suggested" data-q="你是誰？能做什麼？">你是誰？能做什麼？</button>
+          <button class="suggested" data-q="Smart AI CAM Fusion 學習庫有多少資料？">學習庫有多少資料？</button>
+          <button class="suggested" data-q="我這個工件有什麼特徵？">當前工件特徵</button>
+          <button class="suggested" data-q="AL6061 鋁件鑽 D5 通孔 40mm 建議參數">鋁件 D5×40 鑽孔</button>
+          <button class="suggested" data-q="thinking 模式跟 intuitive 模式有什麼差別？">編程模式差異</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer">
+      <textarea
+        id="input"
+        rows="2"
+        placeholder="問 cam-helper… (Ctrl+Enter 送出)"
+      ></textarea>
+      <div class="composer-actions">
+        <button id="btn-stop" class="btn btn-ghost" disabled>停止</button>
+        <button id="btn-send" class="btn btn-primary">送出 ↵</button>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

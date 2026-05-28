@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart AI 四方協作</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Smart AI 四方協作</h1>
+      <div class="sub">Antigravity · Cursor · Aegis · 師父 — 同屏對談直到結論</div>
+    </div>
+    <div class="toolbar">
+      <button type="button" id="btn-start" class="primary">開始協作</button>
+      <button type="button" id="btn-refresh">重新整理</button>
+    </div>
+  </header>
+  <div id="status-bar">請按「開始協作」</div>
+  <div class="grid">
+    <section class="col col-ag">
+      <div class="col-h">Antigravity · 探索</div>
+      <div class="messages" id="col-ag"></div>
+    </section>
+    <section class="col col-cu">
+      <div class="col-h">Cursor · 收斂</div>
+      <div class="messages" id="col-cu"></div>
+    </section>
+    <section class="col col-ae">
+      <div class="col-h">Aegis · 主腦</div>
+      <div class="messages" id="col-ae"></div>
+    </section>
+    <section class="col col-ma">
+      <div class="col-h">師父 · 你</div>
+      <div class="messages" id="col-ma"></div>
+    </section>
+  </div>
+  <div class="composer">
+    <textarea id="input" placeholder="輸入後 Enter 發送（Shift+Enter 換行）…"></textarea>
+    <div class="row">
+      <label><input type="checkbox" id="chk-ag" checked /> Antigravity 回覆</label>
+      <label><input type="checkbox" id="chk-cu" checked /> Cursor 回覆</label>
+      <label><input type="checkbox" id="chk-ae" checked /> Aegis 回覆</label>
+      <button type="button" class="send" id="btn-send">發送 · 四方一輪</button>
+    </div>
+    <div class="note">
+      三欄 AI 由 Ollama 協作人格 + 9876 討論串封存；真實 IDE 改碼仍可在 Cursor 進行，結果會同步進討論串。
+    </div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

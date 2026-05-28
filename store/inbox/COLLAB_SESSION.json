@@ -1,0 +1,13 @@
+{
+  "active": true,
+  "topic": "你的任務",
+  "ticket_id": "tkt_f9f7a3af5b52",
+  "workspace": "E:\\ollama\\cam-helper-tools",
+  "bridge": "local_dual_sdk",
+  "backends": {
+    "explore": "ollama-fallback",
+    "implement": "ollama-fallback",
+    "challenge": "ollama-fallback",
+    "facilitate": "ollama-aegis"
+  }
+}

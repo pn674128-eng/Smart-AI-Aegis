@@ -1,0 +1,24 @@
+{
+  "event": "updated",
+  "ticket_id": "tkt_f9f7a3af5b52",
+  "rev": 48,
+  "status": "open",
+  "type": "plugin_change",
+  "summary": "協同修改: 你的任務",
+  "owner": "cursor",
+  "core_approved": false,
+  "reply": "",
+  "payload": {
+    "workspace": "E:\\ollama\\cam-helper-tools",
+    "task": "你的任務",
+    "bridge": "local_dual_sdk",
+    "phase": "facilitate_done",
+    "backends": {
+      "explore": "ollama-fallback",
+      "implement": "ollama-fallback",
+      "challenge": "ollama-fallback",
+      "facilitate": "ollama-aegis"
+    }
+  },
+  "updated_at": "2026-05-28T09:48:26Z"
+}

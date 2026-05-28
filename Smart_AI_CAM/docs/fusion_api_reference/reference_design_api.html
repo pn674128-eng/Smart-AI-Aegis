@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>設計 API 參考</title>
+  <style>
+    body{margin:0;padding:12px 14px;background:#1e1e1e;color:#e3e3e3;font-family:"Segoe UI",Arial,sans-serif;line-height:1.5;font-size:13px}
+    h1,h2{margin:0 0 8px}h1{font-size:19px;color:#8fd3ff}h2{margin-top:18px;font-size:16px;color:#ffd37f}
+    .muted{color:#a0a0a0;margin-bottom:10px}
+    table{width:100%;border-collapse:collapse;margin:8px 0 14px;background:#252525}
+    th,td{border:1px solid #3f3f3f;padding:6px 8px;text-align:left;vertical-align:top}
+    th{background:#333;color:#f0f0f0}
+    code,pre{color:#93e2b1;font-family:Consolas,monospace}
+    pre{background:#151515;border:1px solid #333;border-radius:6px;padding:10px;white-space:pre-wrap}
+    .box{background:#242424;border:1px solid #3a3a3a;border-radius:6px;padding:10px;margin:10px 0}
+    a{color:#8fd3ff;text-decoration:none}.nav{margin-bottom:12px}
+    ul{margin:8px 0 8px 18px;padding:0}
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="reference.html">&larr; 回主頁</a></div>
+  <h1>設計 API 參考 — BRepBody / BRepFace / Sketch</h1>
+  <div class="muted">幾何識別、投影草圖與特徵讀取常用 API 速查。</div>
+
+  <h2>BRepBody 常用屬性</h2>
+  <table>
+    <tr><th>屬性 / 方法</th><th>型態</th><th>說明</th></tr>
+    <tr><td><code>body.name</code></td><td>str</td><td>Body 名稱（Occurrence 映射用）</td></tr>
+    <tr><td><code>body.faces</code></td><td>BRepFaces</td><td>面集合</td></tr>
+    <tr><td><code>body.edges</code></td><td>BRepEdges</td><td>邊集合</td></tr>
+    <tr><td><code>body.boundingBox</code></td><td>BoundingBox3D</td><td>AABB（cm）</td></tr>
+    <tr><td><code>body.entityToken</code></td><td>str</td><td>唯一識別碼（修改後失效）</td></tr>
+    <tr><td><code>body.isVisible</code></td><td>bool</td><td>可見性</td></tr>
+  </table>
+
+  <h2>BRepFace 常用屬性</h2>
+  <table>
+    <tr><th>屬性 / 方法</th><th>型態</th><th>說明</th></tr>
+    <tr><td><code>face.geometry.surfaceType</code></td><td>SurfaceTypes</td><td>面型枚舉</td></tr>
+    <tr><td><code>face.loops</code></td><td>BRepLoops</td><td>迴圈集合</td></tr>
+    <tr><td><code>face.boundingBox</code></td><td>BoundingBox3D</td><td>面包圍盒（cm）</td></tr>
+    <tr><td><code>face.entityToken</code></td><td>str</td><td>唯一識別碼</td></tr>
+    <tr><td><code>adsk.core.Plane.cast(face.geometry).normal</code></td><td>Vector3D</td><td>平面法向量</td></tr>
+    <tr><td><code>adsk.core.Cylinder.cast(face.geometry).radius</code></td><td>float cm</td><td>圓柱半徑</td></tr>
+  </table>
+
+  <h2>BRepLoop / BRepEdge 常用屬性</h2>
+  <table>
+    <tr><th>屬性</th><th>說明</th></tr>
+    <tr><td><code>loop.isOuter</code></td><td>True = 外圈</td></tr>
+    <tr><td><code>loop.coEdges</code></td><td>CoEdge 集合，.edge 為 BRepEdge</td></tr>
+    <tr><td><code>edge.geometry.curveType</code></td><td>Line3DCurveType / Arc3DCurveType …</td></tr>
+    <tr><td><code>edge.length</code></td><td>float cm</td></tr>
+    <tr><td><code>edge.startVertex.geometry</code></td><td>Point3D 起點</td></tr>
+    <tr><td><code>adsk.core.Arc3D.cast(edge.geometry).radius</code></td><td>弧半徑 cm</td></tr>
+    <tr><td><code>adsk.core.Arc3D.cast(edge.geometry).center</code></td><td>弧中心點 cm</td></tr>
+  </table>
+
+  <h2>SurfaceTypes 枚舉</h2>
+  <table>
+    <tr><th>常數</th><th>說明</th></tr>
+    <tr><td><code>PlaneSurfaceType</code></td><td>平面</td></tr>
+    <tr><td><code>CylinderSurfaceType</code></td><td>圓柱面（孔壁）</td></tr>
+    <tr><td><code>ConeSurfaceType</code></td><td>錐面（倒角孔）</td></tr>
+    <tr><td><code>SphereSurfaceType</code></td><td>球面</td></tr>
+    <tr><td><code>TorusSurfaceType</code></td><td>環面</td></tr>
+    <tr><td><code>NurbsSurfaceType</code></td><td>自由曲面</td></tr>
+  </table>
+
+  <h2>Curve3DTypes 枚舉</h2>
+  <table>
+    <tr><th>常數</th><th>說明</th></tr>
+    <tr><td><code>Line3DCurveType</code></td><td>直線</td></tr>
+    <tr><td><code>Arc3DCurveType</code></td><td>弧（含圓）</td></tr>
+    <tr><td><code>EllipticalArc3DCurveType</code></td><td>橢圓弧</td></tr>
+    <tr><td><code>NurbsCurve3DType</code></td><td>NURBS 曲線</td></tr>
+  </table>
+
+  <h2>root.findBRepUsingRay</h2>
+  <pre>entities = root.findBRepUsingRay(
+    start_point,       # Point3D
+    ray_direction,     # Vector3D
+    adsk.fusion.BRepEntityTypes.BRepFaceEntityType,
+    0.001,             # ray_radius cm
+    False,             # include_invisible
+    hit_pts,           # ObjectCollection
+)
+# item(0) = 最近命中面；回傳空 = miss</pre>
+
+  <h2>Sketch 投影 API</h2>
+  <pre>sk = root.sketches.add(planar_face)
+oc = sk.project(edge)   # 回傳 ObjectCollection
+# 判斷物件類型
+if adsk.fusion.SketchCircle.cast(oc.item(i)): ...
+if adsk.fusion.SketchArc.cast(oc.item(i)):    ...
+if adsk.fusion.SketchLine.cast(oc.item(i)):   ...
+# 注意：project() 只接受 native body 的邊</pre>
+
+  <h2>units 換算（內部單位 = cm）</h2>
+  <table>
+    <tr><th>換算</th><th>公式</th></tr>
+    <tr><td>cm → mm</td><td><code>x * 10.0</code></td></tr>
+    <tr><td>mm → cm</td><td><code>x / 10.0</code></td></tr>
+    <tr><td>cm² → mm²</td><td><code>x * 100.0</code></td></tr>
+    <tr><td>cm³ → mm³</td><td><code>x * 1000.0</code></td></tr>
+  </table>
+
+  <div class="box">
+    <strong>重要限制：</strong>
+    <ul>
+      <li><code>sketch.project(edge)</code> 對 Occurrence proxy 回傳 None，需映射至 root.bRepBodies</li>
+      <li><code>SketchPoint.isVisible</code> 不存在，孤立點用 deleteMe() 清除</li>
+      <li><code>entityToken</code> 模型修改後失效，操作後需重查</li>
+      <li>Assembly 設計不可創建/修改/刪除幾何</li>
+    </ul>
+  </div>
+</body>
+</html>

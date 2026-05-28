@@ -1,0 +1,282 @@
+{
+  "templates": {
+    "spot_center": {
+      "gy_name_zh": "點孔",
+      "template_name": "SPOT_DRILLING",
+      "tool_type": "Centerdrill",
+      "tool_name_pattern": "C{diameter_ceiling}",
+      "depth_type": "point",
+      "depth_mm": 1.0,
+      "oper_sort": 9
+    },
+    "drill_peck_g83": {
+      "gy_name_zh": "鑽孔G83",
+      "template_name": "DRILLING",
+      "tool_type": "Drilling Tool",
+      "tool_name_pattern": "ZT{diameter}",
+      "depth_type": "auto_blind_or_through",
+      "thru_clearance_mm": 2.5,
+      "oper_sort": 10
+    },
+    "drill_ream": {
+      "gy_name_zh": "鉸孔",
+      "template_name": "BORING_REAMING",
+      "tool_type": "Reamer",
+      "tool_name_pattern": "REAM{diameter}",
+      "depth_type": "auto_blind_or_through",
+      "oper_sort": 20
+    },
+    "tap_rigid": {
+      "gy_name_zh": "攻牙",
+      "template_name": "TAPPING",
+      "tool_type": "Tap",
+      "tool_name_pattern": "{thread}",
+      "depth_type": "thread_depth",
+      "oper_sort": 30
+    },
+    "face_rough": {
+      "gy_name_zh": "平面粗铣",
+      "template_name": "FACE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 40
+    },
+    "face_finish": {
+      "gy_name_zh": "平面精铣",
+      "template_name": "FACE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 50
+    },
+    "slot_rough": {
+      "gy_name_zh": "槽粗铣",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 60
+    },
+    "slot_finish": {
+      "gy_name_zh": "槽精铣",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 70
+    },
+    "pocket_rough": {
+      "gy_name_zh": "型腔粗铣",
+      "template_name": "CAVITY_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 80
+    },
+    "boring": {
+      "gy_name_zh": "鏜孔",
+      "template_name": "BORING",
+      "tool_type": "Boring Tool",
+      "depth_type": "auto_blind_or_through",
+      "oper_sort": 15
+    },
+    "chamfer_mill": {
+      "gy_name_zh": "铣倒角",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 14
+    },
+    "chamfer_drill": {
+      "gy_name_zh": "钻倒角",
+      "template_name": "DRILLING",
+      "tool_type": "Drilling Tool",
+      "depth_type": "point",
+      "oper_sort": 14
+    },
+    "drill_angled": {
+      "gy_name_zh": "斜孔",
+      "template_name": "DRILLING",
+      "tool_type": "Drilling Tool",
+      "depth_type": "auto_blind_or_through",
+      "oper_sort": 10
+    },
+    "hole_mill_rough_2d": {
+      "gy_name_zh": "2D孔開粗",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 11
+    },
+    "hole_mill_semi": {
+      "gy_name_zh": "孔銑半精",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "semi",
+      "oper_sort": 12
+    },
+    "hole_mill_finish": {
+      "gy_name_zh": "孔銑精銑",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 13
+    },
+    "hole_mill_finish_2d": {
+      "gy_name_zh": "2D孔精銑",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 13
+    },
+    "countersink_cavity": {
+      "gy_name_zh": "型腔沉頭",
+      "template_name": "CAVITY_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 11
+    },
+    "countersink_contour": {
+      "gy_name_zh": "等高沉頭",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 11
+    },
+    "hole_chamfer_2d": {
+      "gy_name_zh": "2D孔倒角/沉頭",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 14
+    },
+    "csink_2d_finish": {
+      "gy_name_zh": "2D沉頭精光",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 13
+    },
+    "slot_2d_finish": {
+      "gy_name_zh": "槽2D精光",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 7
+    },
+    "slot_face_mill": {
+      "gy_name_zh": "槽平面銑",
+      "template_name": "FACE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 7
+    },
+    "floor_wall_outer": {
+      "gy_name_zh": "底壁銑外形",
+      "template_name": "FLOOR_WALL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 4
+    },
+    "floor_wall_pocket": {
+      "gy_name_zh": "底壁銑內腔",
+      "template_name": "FLOOR_WALL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 6
+    },
+    "face_top_mill": {
+      "gy_name_zh": "面銑頂部",
+      "template_name": "FACE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 2
+    },
+    "adaptive_rough": {
+      "gy_name_zh": "自適應開粗",
+      "template_name": "ADAPTIVE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 6
+    },
+    "cavity_rough": {
+      "gy_name_zh": "型腔整體開粗",
+      "template_name": "CAVITY_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 6
+    },
+    "zlevel_finish": {
+      "gy_name_zh": "等高精光",
+      "template_name": "ZLEVEL_PROFILE",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 7
+    },
+    "face_semi": {
+      "gy_name_zh": "平面半精",
+      "template_name": "FACE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "semi",
+      "oper_sort": 6
+    },
+    "surface_rough": {
+      "gy_name_zh": "曲面開粗",
+      "template_name": "VARIABLE_CONTOUR",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 8
+    },
+    "surface_semi": {
+      "gy_name_zh": "曲面半精",
+      "template_name": "VARIABLE_CONTOUR",
+      "tool_type": "Mill",
+      "cut_method_stage": "semi",
+      "oper_sort": 8
+    },
+    "surface_finish": {
+      "gy_name_zh": "曲面精加工",
+      "template_name": "VARIABLE_CONTOUR",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 8
+    },
+    "slotted_hole_rough": {
+      "gy_name_zh": "腰型孔開粗",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 11
+    },
+    "slotted_hole_semi": {
+      "gy_name_zh": "腰型孔半精",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "semi",
+      "oper_sort": 12
+    },
+    "slotted_hole_finish": {
+      "gy_name_zh": "腰型孔精銑",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 13
+    },
+    "open_pocket_adaptive": {
+      "gy_name_zh": "開放型腔自適應",
+      "template_name": "ADAPTIVE_MILLING",
+      "tool_type": "Mill",
+      "cut_method_stage": "rough",
+      "oper_sort": 6
+    },
+    "multi_csink_step1": {
+      "gy_name_zh": "多沉頭(1)",
+      "template_name": "PLANAR_MILL",
+      "tool_type": "Mill",
+      "cut_method_stage": "finish",
+      "oper_sort": 11
+    },
+    "manual_review": {
+      "gy_name_zh": "人工確認",
+      "template_name": null,
+      "tool_type": null,
+      "oper_sort": 999
+    }
+  }
+}

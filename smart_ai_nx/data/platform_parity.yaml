@@ -1,0 +1,64 @@
+# Smart AI CAM (Fusion 9877) 主幹 ↔ Smart AI CAM-NX (9878) ↔ V8.702 概念
+trunk: Smart_AI_CAM
+reference: StarCAM_QuickCAM_V8702
+nx_port: 9878
+fusion_port: 9877
+
+ui_blocks:
+  - id: common_settings
+    fusion: [setup_sel, material_sel, machine_sel]
+    nx_panel: [material_profile, scheme_id]
+    xingkong_ref: [config.ini material, WsqAutoCAM.prt templates]
+
+  - id: hole_table
+    fusion: hole rows in palette.html
+    nx_panel: feature_rows_json
+    xingkong_ref: [Hole_CAM dialogs, hole_type.txt]
+
+  - id: intuitive_programming
+    fusion: [check_intuitive_eligibility, run_intuitive_one_click]
+    nx: [check_semi_auto_eligibility, get_semi_auto_plan]
+    xingkong_ref: [零件自动编程]
+
+  - id: cutting_lookup
+    fusion: query_smart_cutting
+    nx: query_smart_cutting
+    xingkong_ref: [刀库, oper_type F/S fields]
+
+  - id: mcp_progress
+    fusion: mcp_progress_panel
+    nx_panel: mcp_progress_panel
+
+mcp_actions:
+  - fusion: get_cam_agent_manifest
+    nx: get_cam_agent_manifest
+  - fusion: scan_machining_features
+    nx: scan_machining_features
+  - fusion: check_intuitive_eligibility
+    nx: check_semi_auto_eligibility
+  - fusion: run_intuitive_programming
+    nx: get_semi_auto_plan
+    note: NX plan-only until execute wired
+  - fusion: query_smart_cutting
+    nx: query_smart_cutting
+    impl: bridge_readonly_fusion
+  - fusion: null
+    nx: nx_hole_cam_catalog
+    xingkong_ref: hole_type catalog
+  - fusion: null
+    nx: nx_match_feature_cam
+    xingkong_ref: single feature rule match
+
+feature_categories:
+  - trunk: hole
+    xingkong: FEATURE_TYPE=0
+    nx_identity: HOLE_*
+  - trunk: slot
+    xingkong: FEATURE_TYPE=1
+    nx_identity: SLOT_*
+  - trunk: face_plane
+    xingkong: FACE_MILLING / 平面
+    nx_identity: FACE_*
+  - trunk: surface_shoe
+    xingkong: CONTOUR_AREA / 曲面
+    nx_note: NX 優勢區

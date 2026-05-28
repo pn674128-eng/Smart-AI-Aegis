@@ -1,0 +1,8 @@
+﻿.venv*/
+FreeCAD*/
+__pycache__/
+*.log
+*.lnk
+*.pyc
+*.exe
+Smart_AI_CAM_Tools/

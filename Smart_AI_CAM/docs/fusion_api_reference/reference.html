@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fusion API 參考手冊</title>
+  <style>
+    body { margin: 0; padding: 12px 14px; background: #1e1e1e; color: #e3e3e3; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.5; font-size: 13px; }
+    h1, h2, h3 { margin: 0 0 8px; }
+    h1 { font-size: 19px; color: #8fd3ff; }
+    h2 { margin-top: 18px; font-size: 16px; color: #ffd37f; }
+    h3 { margin-top: 12px; font-size: 14px; color: #b8e19a; }
+    .muted { color: #a0a0a0; margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; background: #252525; }
+    th, td { border: 1px solid #3f3f3f; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #333; color: #f0f0f0; }
+    code, pre { color: #93e2b1; font-family: Consolas, monospace; }
+    pre { background: #151515; border: 1px solid #333; border-radius: 6px; padding: 10px; white-space: pre-wrap; }
+    .box { background: #242424; border: 1px solid #3a3a3a; border-radius: 6px; padding: 10px; margin: 10px 0; }
+    ul { margin: 8px 0 8px 18px; padding: 0; }
+  </style>
+</head>
+<body>
+  <h1>將幾何特徵帶入 CAM 工序 — 完整參考清單</h1>
+  <div class="muted">用途：作為孔/槽識別與插件升級的長期基礎規範。</div>
+    <div class="muted">
+    <a href="reference_cam_methods.html">打開：附錄 CAM Methods 全表</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_design_api.html">打開：設計 API（BRepBody/Face/Sketch）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_cam_api.html">打開： CAM Parameter API（官方完整）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_setup_operation.html">打開：Setup &amp; Operation API（官方完整）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_cam_core.html">打開：CAM Core API（CAM/Setups/Operations/ToolLib/PostProcess）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_machine_template.html">打開：Machine / CAMTemplate / NCProgram API</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_manufacturing_overview.html">打開：製造 API 功能總覽（資料夾/陣列/ManufacturingModel/ToolLibraries）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_recognition.html">打開：特徵辨識 API（孔/嘴袋/PocketRecognitionSelection）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_geometry_selection.html">打開：幾何選取 API（CurveSelections/Chain/FaceContour/Silhouette/Sketch/MachiningTime）</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_tool_preset.html">打開：工具 / ToolPreset / SetupGroup API</a>
+    &nbsp;｜&nbsp;
+    <a href="reference_additive_export.html">打開：Additive / Export / PrintSetting API</a>
+  </div>
+  <h2>先備：dump_params（必備工具）</h2>
+  <pre>def dump_params(op):
+    params = op.parameters
+    for i in range(params.count):
+        p = params.item(i)
+        print(f"[{i:03d}] {p.name:&lt;42s} {type(p.value).__name__:&lt;36s} expr={p.expression}")</pre>
+  <h2>方式一：holeFaces 直接帶入孔面</h2>
+  <pre>holeMode = params.itemByName('holeMode')
+holeFaces = params.itemByName('holeFaces')
+vec = holeFaces.value.value
+vec.push_back(faces[0])
+holeFaces.value.value = vec
+holeMode.expression = "'selection-faces'"</pre>
+  <h2>方式二：holePoints 用點座標帶入</h2>
+  <pre>holePoints = params.itemByName('holePoints')
+vec = holePoints.value.value
+vec.push_back(some_vertex_or_point)
+holePoints.value.value = vec
+holeMode.expression = "'selection-points'"</pre>
+  <h2>方式三：直徑範圍自動比對</h2>
+  <pre>holeMode.expression = "'diameter'"
+params.itemByName('holeDiameterMinimum').expression = '5mm'
+params.itemByName('holeDiameterMaximum').expression = '10mm'</pre>
+  <h2>方式四：CadContours2dParameterValue（輪廓幾何）</h2>
+  <pre>geo_param = params.itemByName('geometries')
+cad_val = adsk.cam.CadContours2dParameterValue.cast(geo_param.value)
+curves = cad_val.getCurveSelections()
+new_sel = adsk.cam.CadCurve.createFaceContour(face)
+curves.add(new_sel)
+cad_val.applyCurveSelections(curves)</pre>
+  <h2>方式五：Hole Signature XML（模板自動比對）</h2>
+  <pre>template = adsk.cam.CAMTemplate.createFromFile(path)
+template.setHoleSignatureXML(xml_str)
+input_obj = adsk.cam.CreateFromCAMTemplateInput.create()
+input_obj.camTemplate = template
+setup.createFromCAMTemplate2(input_obj)</pre>
+  <h2>方式六：expression 直接寫（Choice / Boolean / Float）</h2>
+  <pre>params.itemByName('cycleType').expression = "'drilling'"
+params.itemByName('holeMode').expression = "'selection-faces'"
+params.itemByName('selectSameDiameter').expression = 'true'
+params.itemByName('topHeight_mode').expression = "'from hole top'"</pre>
+  <h2>選擇指引</h2>
+  <ul>
+    <li>有 holeMode：孔面→方式一；點→方式二；直徑批次→方式三。</li>
+    <li>有 geometries：輪廓/挖槽/面輪廓→方式四。</li>
+    <li>模板整模型匹配→方式五（Hole Signature XML）。</li>
+    <li>模式/開關/數值→方式六（expression）。</li>
+  </ul>
+  <div class="box">本頁作為未來識別策略與插件升級的基礎參考，先 dump_params 再落地。</div>
+
+  <h2>方式七：topHeight_mode / bottomHeight_mode（高度定義）</h2>
+  <pre>params.itemByName('topHeight_mode').expression = "'from hole top'"
+params.itemByName('topHeight_offset').expression = '0mm'
+params.itemByName('bottomHeight_mode').expression = "'from hole bottom'"
+params.itemByName('bottomHeight_offset').expression = '0mm'
+# mode: 'model top' | 'from hole top' | 'from hole bottom' | 'from setup top' | 'from stock top'</pre>
+
+  <h2>方式八：stockOffsets（餘量設定）</h2>
+  <pre>params.itemByName('stockOffsets').expression = '0mm'
+params.itemByName('stockToLeaveFloor').expression = '0mm'
+params.itemByName('stockToLeaveSide').expression = '0mm'
+params.itemByName('roughingStockToLeave').expression = '0.3mm'</pre>
+
+  <h2>方式九：setup.models body 映射（Occurrence -> native）</h2>
+  <pre>root = design.rootComponent
+for i in range(setup.models.count):
+    b = adsk.fusion.BRepBody.cast(setup.models.item(i))
+    bname = b.name or ''
+    native = None
+    for ri in range(root.bRepBodies.count):
+        rb = root.bRepBodies.item(ri)
+        if (rb.name or '') == bname:
+            native = rb; break
+    target = native if native else b
+    # target 可安全傳入 sketch.project(edge)</pre>
+
+</body>
+</html>

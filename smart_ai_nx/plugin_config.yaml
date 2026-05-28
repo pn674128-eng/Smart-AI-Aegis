@@ -1,0 +1,30 @@
+# Smart AI CAM-NX — 外掛全域設定（參照星空 config.ini 精簡版，可自行編輯）
+version: "0.3"
+product: Smart AI CAM-NX
+platform: NX1953
+architecture:
+  trunk: Smart_AI_CAM
+  reference: StarCAM_QuickCAM_V8702
+  doc: docs/MASTER_ARCHITECTURE.md
+  parity: data/platform_parity.yaml
+
+paths:
+  nx_cam_library: "${UGII_CAM_LIBRARY_FEEDS_SPEEDS_ASCII_DIR}"
+  ollama_store: "${SMART_AI_STORE_DIR}"
+  fusion_addin_readonly: "${SMART_AI_FUSION_ADDIN}"
+
+behavior:
+  semi_auto_max_features: 80
+  require_human_gate_before_toolpath: true
+  default_material_profile: carbon_steel
+  default_scheme: default_part_milling
+
+ui:
+  menu_cascade_label: Smart AI Aegis NX
+  journal_info: run_smart_ai_nx.py
+  journal_bridge: run_smart_ai_nx_bridge.py
+
+notes:
+  - 孔/槽/面規則見 data/hole_cam/ 與 data/schemes/
+  - 切削參數仍走 MCP query_smart_cutting + 公司 cut_methods.dat
+  - 不複製第三方商業外掛程式，僅自有 YAML + NX Open（下一階段）

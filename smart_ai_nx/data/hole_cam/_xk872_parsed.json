@@ -1,0 +1,807 @@
+[
+  {
+    "xk_index": 1,
+    "name_zh": null,
+    "feature_type": 0,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 9,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 2,
+    "name_zh": "Slot",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 101,
+    "slot_type": 8,
+    "cam_oper_ids": [
+      33,
+      34,
+      35,
+      37,
+      36,
+      39,
+      40
+    ],
+    "oper_count": 7
+  },
+  {
+    "xk_index": 3,
+    "name_zh": "そ畉ふ",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 0,
+    "color_id": 186,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 4,
+    "name_zh": "�p繞┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 134,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 5,
+    "name_zh": "�j繞┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 69,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 6,
+    "name_zh": "�pキ┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 75,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 7,
+    "name_zh": "�jキ┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 47,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 8,
+    "name_zh": "�p�栓だ@┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 112,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 9,
+    "name_zh": "�j�栓だ@┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 29,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 10,
+    "name_zh": "�p�栓ぅ�┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 97,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 11,
+    "name_zh": "�j�栓ぅ�┏脸ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 55,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 12,
+    "name_zh": "�p硄ふ脸ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 1,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 13,
+    "name_zh": "�j硄ふ脸ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 160,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 14,
+    "name_zh": "�p�栓こq脸ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 142,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      9,
+      25,
+      25
+    ],
+    "oper_count": 5
+  },
+  {
+    "xk_index": 15,
+    "name_zh": "�j�栓こq脸ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 152,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 16,
+    "name_zh": "↖繷脸ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 161,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      21
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 17,
+    "name_zh": "�p�祭@ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 125,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 18,
+    "name_zh": "�j�祭@ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 161,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 19,
+    "name_zh": "�p�栓お祭@ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 125,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 20,
+    "name_zh": "�j�栓お祭@ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 141,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 21,
+    "name_zh": "�讥�ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 105,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 22,
+    "name_zh": "�j�讥�ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 117,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 23,
+    "name_zh": "�栓お讥�ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 191,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 24,
+    "name_zh": "�j�栓お讥�ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 83,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 25,
+    "name_zh": "硄ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 36,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      19
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 26,
+    "name_zh": "�j硄ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 211,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      13,
+      19
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 27,
+    "name_zh": "�栓こqふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 122,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 28,
+    "name_zh": "�j�栓こqふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 44,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      13,
+      19
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 29,
+    "name_zh": "↖繷ふ",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 0,
+    "color_id": 55,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      66
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 30,
+    "name_zh": "�栓えI繷",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 0,
+    "color_id": 66,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      23
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 31,
+    "name_zh": "�h�栓えI繷",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 0,
+    "color_id": 77,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      23
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 32,
+    "name_zh": "↖繷�激�",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 88,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      66
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 33,
+    "name_zh": "�h竊ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 89,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      12
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 34,
+    "name_zh": "�栓うh竊ふ",
+    "feature_type": 0,
+    "through": 1,
+    "slope": 0,
+    "color_id": 132,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      12,
+      18
+    ],
+    "oper_count": 4
+  },
+  {
+    "xk_index": 35,
+    "name_zh": "�h竊↖繷�激�",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 73,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1,
+      12
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 36,
+    "name_zh": "キ┏綪ふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 141,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      16,
+      19
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 37,
+    "name_zh": "�栓ぞPふ",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 208,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      16,
+      19
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 38,
+    "name_zh": "��的�[�u",
+    "feature_type": 0,
+    "through": 0,
+    "slope": 0,
+    "color_id": 59,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      12,
+      18
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 39,
+    "name_zh": "弊ふ",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 1,
+    "color_id": 162,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      10,
+      0,
+      1
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 40,
+    "name_zh": "谎膀非à",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 0,
+    "color_id": 211,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      32
+    ],
+    "oper_count": 1
+  },
+  {
+    "xk_index": 41,
+    "name_zh": "喙膀非ふ",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 0,
+    "color_id": 186,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      0,
+      1
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 42,
+    "name_zh": "谎�~��",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 1,
+    "color_id": 125,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      48,
+      49,
+      36
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 43,
+    "name_zh": "谎郴��",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 0,
+    "color_id": 186,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      46
+    ],
+    "oper_count": 1
+  },
+  {
+    "xk_index": 44,
+    "name_zh": "�食�佳",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      33,
+      34,
+      45,
+      37,
+      70
+    ],
+    "oper_count": 5
+  },
+  {
+    "xk_index": 45,
+    "name_zh": "ず近锅",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 1,
+    "cam_oper_ids": [
+      50,
+      51,
+      70
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 46,
+    "name_zh": "�b�食�佳",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 83,
+    "slot_type": 2,
+    "cam_oper_ids": [
+      33,
+      34,
+      45,
+      37,
+      40
+    ],
+    "oper_count": 5
+  },
+  {
+    "xk_index": 47,
+    "name_zh": "秨�窦�",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 3,
+    "cam_oper_ids": [
+      33,
+      34,
+      45,
+      37,
+      40
+    ],
+    "oper_count": 5
+  },
+  {
+    "xk_index": 48,
+    "name_zh": "硄佳",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 4,
+    "cam_oper_ids": [
+      33,
+      34,
+      53,
+      54
+    ],
+    "oper_count": 4
+  },
+  {
+    "xk_index": 49,
+    "name_zh": "竬��佳",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 5,
+    "cam_oper_ids": [
+      50,
+      51
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 50,
+    "name_zh": "竬��ふ",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 6,
+    "cam_oper_ids": [
+      50,
+      51
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 51,
+    "name_zh": "秨�窳浼�",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 186,
+    "slot_type": 7,
+    "cam_oper_ids": [
+      74,
+      37
+    ],
+    "oper_count": 2
+  },
+  {
+    "xk_index": 52,
+    "name_zh": "ㄤ�L佳",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 2,
+    "color_id": 164,
+    "slot_type": 9,
+    "cam_oper_ids": [
+      33,
+      34,
+      39,
+      37,
+      36
+    ],
+    "oper_count": 5
+  },
+  {
+    "xk_index": 53,
+    "name_zh": "�栓�",
+    "feature_type": 0,
+    "through": 2,
+    "slope": 0,
+    "color_id": 200,
+    "slot_type": 8,
+    "cam_oper_ids": [
+      72,
+      71,
+      73
+    ],
+    "oper_count": 3
+  },
+  {
+    "xk_index": 54,
+    "name_zh": "代刚",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 0,
+    "color_id": 186,
+    "slot_type": 0,
+    "cam_oper_ids": [
+      37
+    ],
+    "oper_count": 1
+  },
+  {
+    "xk_index": 55,
+    "name_zh": "竬↖繷",
+    "feature_type": 1,
+    "through": 2,
+    "slope": 0,
+    "color_id": 186,
+    "slot_type": 8,
+    "cam_oper_ids": [
+      80,
+      79,
+      81,
+      82
+    ],
+    "oper_count": 4
+  }
+]

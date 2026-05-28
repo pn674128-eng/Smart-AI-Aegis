@@ -1,0 +1,41 @@
+# Smart AI NX — 三類 PRT / 部件材料對照（工法細節建好後再填 cut_method 預設）
+# profile_key 用於 MCP params.material_profile
+
+carbon_steel:
+  id: carbon_steel
+  label_zh: 碳鋼
+  label_en: Carbon Steel
+  nx_part_material_hint: 碳鋼模板
+  library_ref: MAT_Y00001
+  resolver_material: S50C
+  cut_method_defaults:
+    rough: HSM_ROUGH
+    semi: HSM_SEMI
+    finish: HSM_FINISH
+  notes: 對應公司 PRT 碳鋼件；切削庫見 NX_CAM_Library
+
+aluminum:
+  id: aluminum
+  label_zh: 鋁材
+  label_en: Aluminum
+  nx_part_material_hint: 鋁模板
+  library_ref: MAT_ALUM
+  resolver_material: AL6061
+  cut_method_defaults:
+    rough: HSM_ROUGH
+    semi: HSM_SEMI
+    finish: HSM_FINISH
+  notes: 對應公司 PRT 鋁件
+
+high_hardness:
+  id: high_hardness
+  label_zh: 高硬度
+  label_en: High Hardness
+  nx_part_material_hint: 硬料模板
+  library_ref: MAT_HARD
+  resolver_material: SKD11_hardened
+  cut_method_defaults:
+    rough: HSM_ROUGH
+    semi: HSM_SEMI
+    finish: HSM_FINISH
+  notes: 對應公司 PRT 高硬度件；HRC 高時走 GoldCobra L2A

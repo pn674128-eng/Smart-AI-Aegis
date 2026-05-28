@@ -1,0 +1,29 @@
+---
+description: Smart AI 三方協作 — 對話直到結論（Antigravity 與 Cursor 同等）
+globs:
+alwaysApply: true
+---
+
+# Smart AI Triad — 對話協作（非單方面改碼）
+
+## 原則
+
+- **Antigravity** = 探索輪（假設、風險、替代方案）— **必須發言，非可選**
+- **Cursor** = 收斂輪（可行性、改動範圍、測試）— **必須發言**
+- **Aegis** = 主持與綜述結論草案
+- **師父** = 理論與最終認可
+
+協作未完成 = `assist_collab_status` 顯示 `missing_participants` 含 `antigravity` 或 `cursor`。
+
+## 當 `store/inbox/PENDING_FOR_CURSOR.flag` 或 `latest_ticket.json` 存在時
+
+1. 讀 `assist_get_discussion`（或 `latest_ticket.json` 的 ticket_id）
+2. **先** `assist_add_discussion(by=cursor, role=converge, content=...)` 寫入收斂觀點（即使尚未改碼）
+3. 再視需要改程式；改碼結果不代替討論發言
+4. 禁止在 Antigravity 未發言時單方面 `assist_propose_conclusion`
+
+## HTTP（9876 需運行）
+
+```json
+{"action":"assist_add_discussion","params":{"ticket_id":"tkt_xxx","by":"cursor","role":"converge","content":"..."}}
+```
